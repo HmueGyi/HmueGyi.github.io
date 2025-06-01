@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hmuegyi | AI + ROS 2 Enthusiast</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --accent-color: #007acc;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #111827;
+      --text-color: #f1f1f1;
+      --accent-color: #1e90ff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    #typewriter {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: var(--accent-color);
+      font-size: 1.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      background: var(--accent-color);
+      color: white;
+      padding: 1rem;
+    }
+
+    .robot-section {
+      text-align: center;
+      margin-top: 3rem;
+      padding-bottom: 2rem;
+    }
+
+    .robot-section img {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .robot-section button {
+      background: var(--accent-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      #typewriter {
+        font-size: 1rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="themeToggle">Dark Mode</button>
+
+  <header>
+    <h1>👋 Hi, I'm Hmue Set San</h1>
+    <div id="typewriter"></div>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>🧠 My Focus</h2>
+      <ul>
+        <li>🤖 Developing intelligent systems using Python and ROS 2</li>
+        <li>🛠️ Building real-time robotic applications with ROS 2 nodes and topics</li>
+        <li>🧠 Creating AI models for perception, decision-making, and control</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>💡 Why AI + ROS 2?</h2>
+      <ul>
+        <li>⚙️ AI makes robots smarter — ROS 2 makes them communicate and act</li>
+        <li>📡 Combining AI algorithms with ROS 2 middleware for autonomous tasks</li>
+        <li>🔁 Continuously experimenting with simulation and real-world integration</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📬 Contact</h2>
+      <ul>
+        <li>📧 <a href="mailto:hmuesett2002@gmail.com">hmuesett2002@gmail.com</a></li>
+        <li>🧑‍💻 Let's build smart robots together!</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Robot Greeting -->
+  <div class="robot-section">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="Robot Icon" />
+    <br />
+    <button onclick="robotGreet()">🤖 Make Robot Say Hello</button>
+  </div>
+
+  <footer>
+    &copy; 2025 Hmuegyi | Built with 💡 and 💻
+  </footer>
+
+  <script>
+    // Typewriter effect with updated message
+    const messages = [
+      "🚀 Experienced in Backend Development",
+      "🧠 ROS 2 + Python Enthusiast",
+      "🤖 Building the Future of Robotics"
+    ];
+    let i = 0, j = 0, currentMessage = "", isDeleting = false;
+
+    function typeWriter() {
+      const display = document.getElementById("typewriter");
+
+      if (!isDeleting && j <= messages[i].length) {
+        currentMessage = messages[i].substring(0, j++);
+        display.textContent = currentMessage;
+        setTimeout(typeWriter, 100);
+      } else if (isDeleting && j > 0) {
+        currentMessage = messages[i].substring(0, j--);
+        display.textContent = currentMessage;
+        setTimeout(typeWriter, 60);
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) i = (i + 1) % messages.length;
+        setTimeout(typeWriter, 1000);
+      }
+    }
+    typeWriter();
+
+    // Theme toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.onclick = () => {
+      const root = document.documentElement;
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        root.removeAttribute('data-theme');
+        toggleBtn.textContent = 'Dark Mode';
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        toggleBtn.textContent = 'Light Mode';
+      }
+    };
+
+    // Robot greeting with Web Speech API
+    function robotGreet() {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = "Hello! I am your friendly robot assistant!";
+      msg.voice = speechSynthesis.getVoices().find(voice => voice.name.includes('Google') || voice.lang.includes('en'));
+      msg.pitch = 1.1;
+      msg.rate = 0.9;
+      msg.volume = 1;
+      speechSynthesis.speak(msg);
+    }
+
+    // Load voices (some browsers need this triggered)
+    window.speechSynthesis.onvoiceschanged = () => {};
+  </script>
+
+</body>
+</html>
