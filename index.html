@@ -1,238 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hmuegyi | AI + ROS 2 Enthusiast</title>
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #222222;
-      --accent-color: #007acc;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hmuegyi - Backend & Robotics Developer</title>
 
-    [data-theme="dark"] {
-      --bg-color: #111827;
-      --text-color: #f1f1f1;
-      --accent-color: #1e90ff;
-    }
+    <style>
+        /* Reset & basics */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background 0.3s ease, color 0.3s ease;
-    }
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background-color: var(--accent-color);
-      color: white;
-    }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-    #typewriter {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      font-style: italic;
-    }
+        a:hover {
+            text-decoration: underline;
+            color: var(--link-hover-color);
+        }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
+        /* CSS Variables for light and dark mode */
+        :root {
+            /* Dark mode colors */
+            --bg-color: #121212;
+            --text-color: #eee;
+            --link-color: #00adee;
+            --link-hover-color: #1db954;
+            --header-bg: #181818;
+            --section-bg: #222;
+            --button-bg: #00adee;
+            --button-text: #121212;
+            --button-hover-bg: #1db954;
+            --skill-bar-bg: #333;
+            --skill-bar-fill: #1db954;
+            --footer-bg: #181818;
+            --footer-text: #bbb;
+            --footer-link-color: #00adee;
+            --footer-link-hover-color: #1db954;
+        }
 
-    section {
-      margin-bottom: 2rem;
-    }
+        body.light {
+            /* Improved Light mode colors - softer & modern */
+            --bg-color: #f9fafb;
+            --text-color: #2a2a2a;
+            --link-color: #3a7bd5;
+            --link-hover-color: #2a52be;
+            --header-bg: #ffffff;
+            --section-bg: #ffffff;
+            --button-bg: #3a7bd5;
+            --button-text: #fff;
+            --button-hover-bg: #2a52be;
+            --skill-bar-bg: #e1e8f9;
+            --skill-bar-fill: #3a7bd5;
+            --footer-bg: #f1f3f5;
+            --footer-text: #444;
+            --footer-link-color: #3a7bd5;
+            --footer-link-hover-color: #2a52be;
+        }
 
-    h2 {
-      color: var(--accent-color);
-      font-size: 1.5rem;
-    }
+        /* Container */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1rem 2rem 4rem;
+        }
 
-    ul {
-      padding-left: 1.5rem;
-      line-height: 1.6;
-    }
+        /* Header with navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
 
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
+        header:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        header h1 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            letter-spacing: 2px;
+            user-select: none;
+            color: var(--link-color);
+            transition: color 0.4s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    #themeToggle {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      cursor: pointer;
-      z-index: 10;
-      font-size: 0.9rem;
-    }
+        /* Header with navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
 
-    footer {
-      text-align: center;
-      background: var(--accent-color);
-      color: white;
-      padding: 1rem;
-    }
+        header:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
 
-    .robot-section {
-      text-align: center;
-      margin-top: 3rem;
-      padding-bottom: 2rem;
-    }
+        header h1 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            letter-spacing: 2px;
+            user-select: none;
+            color: var(--link-color);
+            transition: color 0.4s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    .robot-section img {
-      width: 100px;
-      margin-bottom: 1rem;
-    }
+        /* Navigation */
+        nav a {
+            margin-left: 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
 
-    .robot-section button {
-      background: var(--accent-color);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+        nav a:hover {
+            color: var(--link-hover-color);
+        }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
+        /* Dark/Light toggle button */
+        #toggleTheme {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            font-size: 1.8rem;
+            color: var(--link-color);
+            transition: color 0.4s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
 
-      #typewriter {
-        font-size: 1rem;
-      }
+        #toggleTheme:hover {
+            color: var(--link-hover-color);
+        }
 
-      h2 {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+        #toggleTheme svg {
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 130px;
+            padding-top: 10px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--link-color);
+            transition: color 0.4s ease;
+            text-shadow: 1px 1px 5px rgba(0, 173, 238, 0.5);
+            letter-spacing: 1.5px;
+        }
+
+        .typewriter {
+            font-size: 1.5rem;
+            font-style: italic;
+            height: 40px;
+            margin-bottom: 1.5rem;
+            color: var(--link-hover-color);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid var(--link-hover-color);
+            animation: blink-caret 0.7s steps(1) infinite;
+            transition: color 0.4s ease, border-color 0.4s ease;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 3rem;
+            padding: 2.5rem 2rem;
+            background: var(--section-bg);
+            border-radius: 15px;
+            box-shadow: 0 0 12px var(--link-color)44;
+            transition: transform 0.3s ease, background 0.4s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 25px var(--link-hover-color)cc;
+        }
+
+        section h3 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--link-hover-color);
+            margin-bottom: 1.2rem;
+            user-select: none;
+            letter-spacing: 1px;
+            font-weight: 800;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: color 0.4s ease;
+        }
+
+        section p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        /* Contact form */
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--link-hover-color);
+            letter-spacing: 0.5px;
+        }
+
+        input,
+        textarea {
+            padding: 0.7rem 1rem;
+            margin-bottom: 1.3rem;
+            border: 2px solid var(--link-color);
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 1rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #999;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--link-hover-color);
+            background: var(--section-bg);
+            box-shadow: 0 0 8px var(--link-hover-color);
+        }
+
+        button[type="submit"] {
+            background: var(--button-bg);
+            color: var(--button-text);
+            font-weight: 800;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            align-self: center;
+            max-width: 180px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 0 12px var(--button-bg)aa;
+        }
+
+        button[type="submit"]:hover {
+            background: var(--button-hover-bg);
+            box-shadow: 0 0 22px var(--button-hover-bg);
+        }
+
+        /* Skills and Logos */
+        .skills-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skills-logos img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.15));
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .skills-logos img:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 4px var(--link-hover-color));
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 1rem;
+            }
+
+            nav {
+                margin-top: 0.6rem;
+                width: 100%;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+
 </head>
+
 <body>
+    <header>
+        <h1>HMUEGYI</h1>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button id="toggleTheme" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+            <!-- Sun icon by default for light mode -->
+            <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none;">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <!-- Moon icon for dark mode -->
+            <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+            </svg>
+        </button>
+    </header>
 
-  <button id="themeToggle">Dark Mode</button>
+    <main class="container">
+        <section id="hero" class="hero">
+            <h2>Backend & Robotics Developer</h2>
+            <div class="typewriter" aria-live="polite" aria-atomic="true"></div>
+        </section>
 
-  <header>
-    <h1>👋 Hi, I'm Hmue Set San</h1>
-    <div id="typewriter"></div>
-  </header>
+        <section id="skills" aria-labelledby="skills-heading">
+            <h3 id="skills-heading">Skills & Tools</h3>
+            <p>
+                I have a strong foundation in backend development, cloud computing, and robotics. Below are some of the
+                tools and technologies I frequently use:
+            </p>
+            <div class="skills-logos" aria-label="Skills and technologies logos">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"
+                    title="Linux" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
+                    title="Python" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg" alt="ROS" title="ROS"
+                    style="width:50px; height:50px;" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"
+                    title="C++" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg" alt="Gazebo"
+                    title="Gazebo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"
+                    title="Docker" />
 
-  <div class="container">
-    <section>
-      <h2>🧠 My Focus</h2>
-      <ul>
-        <li>🤖 Developing intelligent systems using Python and ROS 2</li>
-        <li>🛠️ Building real-time robotic applications with ROS 2 nodes and topics</li>
-        <li>🧠 Creating AI models for perception, decision-making, and control</li>
-      </ul>
-    </section>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                    alt="Kubernetes" title="Kubernetes" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"
+                    title="Git" />
+            </div>
+        </section>
 
-    <section>
-      <h2>💡 Why AI + ROS 2?</h2>
-      <ul>
-        <li>⚙️ AI makes robots smarter — ROS 2 makes them communicate and act</li>
-        <li>📡 Combining AI algorithms with ROS 2 middleware for autonomous tasks</li>
-        <li>🔁 Continuously experimenting with simulation and real-world integration</li>
-      </ul>
-    </section>
 
-    <section>
-      <h2>📬 Contact</h2>
-      <ul>
-        <li>📧 <a href="mailto:hmuesett2002@gmail.com">hmuesett2002@gmail.com</a></li>
-        <li>🧑‍💻 Let's build smart robots together!</li>
-      </ul>
-    </section>
-  </div>
 
-  <!-- Robot Greeting -->
-  <div class="robot-section">
-    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="Robot Icon" />
-    <br />
-    <button onclick="robotGreet()">🤖 Make Robot Say Hello</button>
-  </div>
+        <section id="about" aria-labelledby="about-heading">
+            <h3 id="about-heading">About Me</h3>
+            <p>
+                I'm passionate about creating robust backend services and integrating robotics systems. My experience
+                spans cloud architecture, container orchestration, and embedded systems programming.
+            </p>
+        </section>
 
-  <footer>
-    &copy; 2025 Hmuegyi | Built with 💡 and 💻
-  </footer>
+        <section id="contact" aria-labelledby="contact-heading">
+            <h3 id="contact-heading">Contact Me</h3>
+            <form action="mailto:hmuegyi@example.com" method="POST" enctype="text/plain" aria-label="Contact form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your full name" />
 
-  <script>
-    // Typewriter effect with updated message
-    const messages = [
-      "🚀 Experienced in Backend Development",
-      "🧠 ROS 2 + Python Enthusiast",
-      "🤖 Building the Future of Robotics"
-    ];
-    let i = 0, j = 0, currentMessage = "", isDeleting = false;
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com" />
 
-    function typeWriter() {
-      const display = document.getElementById("typewriter");
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required
+                    placeholder="Write your message here..."></textarea>
 
-      if (!isDeleting && j <= messages[i].length) {
-        currentMessage = messages[i].substring(0, j++);
-        display.textContent = currentMessage;
-        setTimeout(typeWriter, 100);
-      } else if (isDeleting && j > 0) {
-        currentMessage = messages[i].substring(0, j--);
-        display.textContent = currentMessage;
-        setTimeout(typeWriter, 60);
-      } else {
-        isDeleting = !isDeleting;
-        if (!isDeleting) i = (i + 1) % messages.length;
-        setTimeout(typeWriter, 1000);
-      }
-    }
-    typeWriter();
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
 
-    // Theme toggle
-    const toggleBtn = document.getElementById('themeToggle');
-    toggleBtn.onclick = () => {
-      const root = document.documentElement;
-      const isDark = root.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        root.removeAttribute('data-theme');
-        toggleBtn.textContent = 'Dark Mode';
-      } else {
-        root.setAttribute('data-theme', 'dark');
-        toggleBtn.textContent = 'Light Mode';
-      }
-    };
+    <script>
+        // Dark/Light mode toggle
+        const toggleBtn = document.getElementById('toggleTheme');
+        const iconSun = document.getElementById('iconSun');
+        const iconMoon = document.getElementById('iconMoon');
 
-    // Robot greeting with Web Speech API
-    function robotGreet() {
-      const msg = new SpeechSynthesisUtterance();
-      msg.text = "Hello! I am your friendly robot assistant!";
-      msg.voice = speechSynthesis.getVoices().find(voice => voice.name.includes('Google') || voice.lang.includes('en'));
-      msg.pitch = 1.1;
-      msg.rate = 0.9;
-      msg.volume = 1;
-      speechSynthesis.speak(msg);
-    }
+        // Initialize theme from localStorage or system preference
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.classList.toggle('light', savedTheme === 'light');
+            } else {
+                // Default: match system preference
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                document.body.classList.toggle('light', prefersLight);
+            }
+            updateIcon();
+        }
 
-    // Load voices (some browsers need this triggered)
-    window.speechSynthesis.onvoiceschanged = () => {};
-  </script>
+        function updateIcon() {
+            if (document.body.classList.contains('light')) {
+                iconSun.style.display = 'inline';
+                iconMoon.style.display = 'none';
+                toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+            } else {
+                iconSun.style.display = 'none';
+                iconMoon.style.display = 'inline';
+                toggleBtn.setAttribute('aria-label', 'Switch to light mode');
+            }
+        }
 
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+            updateIcon();
+        });
+
+        initTheme();
+
+        // Typewriter effect for hero subtitle
+        const typewriterElement = document.querySelector('.typewriter');
+        const phrases = [
+            "Learning to build smart AI programs.",
+            "Working on basic robot software.",
+            "Using Linux to run projects.",
+            "Writing clean and simple code.",
+            "Exploring how AI and robots work."
+        ];
+
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        let currentPhrase = '';
+        let isDeleting = false;
+        let typingSpeed = 100;
+        let pauseDuration = 1800;
+
+        function type() {
+            if (!isDeleting && letterIndex <= phrases[phraseIndex].length) {
+                currentPhrase = phrases[phraseIndex].substring(0, letterIndex);
+                typewriterElement.textContent = currentPhrase;
+                letterIndex++;
+                setTimeout(type, typingSpeed);
+            } else if (isDeleting && letterIndex >= 0) {
+                currentPhrase = phrases[phraseIndex].substring(0, letterIndex);
+                typewriterElement.textContent = currentPhrase;
+                letterIndex--;
+                setTimeout(type, typingSpeed / 2);
+            } else if (!isDeleting && letterIndex > phrases[phraseIndex].length) {
+                isDeleting = true;
+                setTimeout(type, pauseDuration);
+            } else if (isDeleting && letterIndex < 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, typingSpeed);
+            }
+        }
+
+        type();
+
+        // Speech synthesis greeting on page load (once)
+        window.addEventListener('load', () => {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance('Welcome to my website');
+                utterance.lang = 'en-US';
+                utterance.rate = 1;
+                window.speechSynthesis.speak(utterance);
+            }
+        });
+
+    </script>
 </body>
+<footer>
+    &copy; 2002 Hmuegyi. All rights reserved. | <a href="hmuesett2002@gmail.com">hmuegyi@example.com</a>
+</footer>
+
 </html>
