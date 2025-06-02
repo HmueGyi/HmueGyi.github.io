@@ -14,6 +14,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -23,11 +28,6 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
             transition: background 0.4s ease, color 0.4s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
         }
 
         a {
@@ -41,9 +41,8 @@
             color: var(--link-hover-color);
         }
 
-        /* CSS Variables for light and dark mode */
+        /* Light/Dark mode variables */
         :root {
-            /* Dark mode colors */
             --bg-color: #121212;
             --text-color: #eee;
             --link-color: #00adee;
@@ -62,7 +61,6 @@
         }
 
         body.light {
-            /* Improved Light mode colors - softer & modern */
             --bg-color: #f9fafb;
             --text-color: #2a2a2a;
             --link-color: #3a7bd5;
@@ -80,14 +78,12 @@
             --footer-link-hover-color: #2a52be;
         }
 
-        /* Container */
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 1rem 2rem 4rem;
         }
 
-        /* Header with navigation */
         header {
             position: fixed;
             top: 0;
@@ -111,64 +107,28 @@
             font-weight: 800;
             font-size: 1.75rem;
             letter-spacing: 2px;
-            user-select: none;
             color: var(--link-color);
             transition: color 0.4s ease;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Header with navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--header-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 2rem;
-            transition: background 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        header:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        header h1 {
-            font-weight: 800;
-            font-size: 1.75rem;
-            letter-spacing: 2px;
-            user-select: none;
-            color: var(--link-color);
-            transition: color 0.4s ease;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Navigation */
         nav a {
             margin-left: 2rem;
             font-weight: 600;
             font-size: 1rem;
-            transition: color 0.3s ease;
         }
 
         nav a:hover {
             color: var(--link-hover-color);
         }
 
-        /* Dark/Light toggle button */
         #toggleTheme {
             background: none;
             border: none;
             cursor: pointer;
-            outline: none;
             font-size: 1.8rem;
             color: var(--link-color);
             transition: color 0.4s ease;
-            user-select: none;
             display: flex;
             align-items: center;
             padding: 0;
@@ -181,10 +141,8 @@
         #toggleTheme svg {
             width: 28px;
             height: 28px;
-            pointer-events: none;
         }
 
-        /* Hero Section */
         .hero {
             margin-top: 130px;
             padding-top: 10px;
@@ -195,9 +153,7 @@
         .hero h2 {
             font-weight: 900;
             font-size: 3rem;
-            margin-bottom: 0.5rem;
             color: var(--link-color);
-            transition: color 0.4s ease;
             text-shadow: 1px 1px 5px rgba(0, 173, 238, 0.5);
             letter-spacing: 1.5px;
         }
@@ -214,7 +170,6 @@
             overflow: hidden;
             border-right: 3px solid var(--link-hover-color);
             animation: blink-caret 0.7s steps(1) infinite;
-            transition: color 0.4s ease, border-color 0.4s ease;
             font-family: 'Courier New', Courier, monospace;
         }
 
@@ -224,7 +179,6 @@
             }
         }
 
-        /* Sections */
         section {
             margin-bottom: 3rem;
             padding: 2.5rem 2rem;
@@ -240,15 +194,12 @@
         }
 
         section h3 {
-            margin-top: 0;
             font-size: 2rem;
             color: var(--link-hover-color);
             margin-bottom: 1.2rem;
-            user-select: none;
             letter-spacing: 1px;
             font-weight: 800;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: color 0.4s ease;
         }
 
         section p {
@@ -257,10 +208,8 @@
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
-            color: var(--text-color);
         }
 
-        /* Contact form */
         form {
             display: flex;
             flex-direction: column;
@@ -286,8 +235,7 @@
             font-size: 1rem;
             background: var(--bg-color);
             color: var(--text-color);
-            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.3s ease;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
         }
 
         input::placeholder,
@@ -315,7 +263,6 @@
             transition: background 0.3s ease, box-shadow 0.3s ease;
             align-self: center;
             max-width: 180px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             box-shadow: 0 0 12px var(--button-bg)aa;
         }
 
@@ -324,7 +271,6 @@
             box-shadow: 0 0 22px var(--button-hover-bg);
         }
 
-        /* Skills and Logos */
         .skills-logos {
             display: flex;
             justify-content: center;
@@ -339,7 +285,6 @@
             object-fit: contain;
             filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.15));
             transition: transform 0.3s ease;
-            cursor: default;
         }
 
         .skills-logos img:hover {
@@ -347,7 +292,6 @@
             filter: drop-shadow(0 0 4px var(--link-hover-color));
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
@@ -358,18 +302,47 @@
             nav {
                 margin-top: 0.6rem;
                 width: 100%;
+                display: flex;
+                flex-direction: column;
             }
 
             nav a {
-                margin-left: 1rem;
-                font-size: 0.9rem;
+                margin-left: 0;
+                margin-bottom: 0.7rem;
+                font-size: 1rem;
             }
 
             .hero h2 {
                 font-size: 2.3rem;
             }
+
+            .container {
+                max-width: 100%;
+                padding: 1rem 1rem 3rem;
+            }
+
+            form {
+                padding: 0 1rem;
+            }
+
+            input,
+            textarea,
+            button[type="submit"] {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .typewriter {
+                font-size: 1.2rem;
+            }
         }
     </style>
+
 
 </head>
 
@@ -557,7 +530,7 @@
     </script>
 </body>
 <footer>
-    &copy; 2002 Hmuegyi. All rights reserved. | <a href="hmuesett2002@gmail.com">hmuesett2002@gmail.com</a>
+    &copy; 2002 Hmuegyi. All rights reserved. | <a href="https://github.com/HmueGyi">hmuegyi.git</a>
 </footer>
 
 </html>
