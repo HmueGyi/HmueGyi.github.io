@@ -129,22 +129,22 @@
         }
 
         /* Optional: Adjust button sizes or margins */
-        #toggleTheme,
-        #menuToggle {
+        #toggleTheme {
+            display: auto;  
             font-size: 1.8rem;
             background: none;
             border: none;
             cursor: pointer;
             color: var(--link-color);
-            padding: 0;
-            display: flex;
-            align-items: center;
             transition: color 0.4s ease;
+            text-align: center;
+            margin-left: 2rem;
         }
 
         #toggleTheme:hover {
             color: var(--link-hover-color);
         }
+
 
         #toggleTheme svg {
             width: 28px;
@@ -431,13 +431,6 @@
     <header>
         <h1>Hmuegyi</h1>
         <div class="header-right">
-            <button id="toggleTheme" aria-label="Toggle light and dark mode">
-                <!-- Moon icon SVG -->
-                <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    aria-hidden="true">
-                    <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
-                </svg>
-            </button>
             <button id="menuToggle" aria-label="Toggle navigation menu">☰</button>
         </div>
         <nav id="navMenu" aria-label="Primary navigation">
@@ -446,8 +439,17 @@
             <a href="#skills" tabindex="0">Skills</a>
             <a href="#projects" tabindex="0">Projects</a>
             <a href="#contact" tabindex="0">Contact</a>
+
+            <!-- Dark/Light Mode Toggle (moved here) -->
+            <button id="toggleTheme" aria-label="Toggle light and dark mode">
+                <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
+                </svg>
+            </button>
         </nav>
     </header>
+
 
     <main class="container">
         <section id="home" class="hero" tabindex="0">
