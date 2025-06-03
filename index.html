@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hmuegyi - Backend & Robotics Developer</title>
+    <title>Hmuegyi - Robotics software Developer</title>
 
     <style>
         /* Reset & basics */
@@ -130,14 +130,14 @@
 
         /* Optional: Adjust button sizes or margins */
         #toggleTheme {
-            display: auto;  
+            display: auto;
             font-size: 1.8rem;
             background: none;
             border: none;
             cursor: pointer;
             color: var(--link-color);
             transition: color 0.4s ease;
-            text-align: center;
+            text-align: left;
             margin-left: 2rem;
         }
 
@@ -162,7 +162,7 @@
 
         .hero h2 {
             font-weight: 900;
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--link-color);
             text-shadow: 1px 1px 5px rgba(0, 173, 238, 0.5);
             letter-spacing: 1.5px;
@@ -303,6 +303,14 @@
             filter: drop-shadow(0 0 4px var(--link-hover-color));
         }
 
+        @media (max-width: 600px) {
+            .typewriter {
+                white-space: normal;
+                /* allow wrapping on small screens */
+                font-size: 1rem;
+            }
+        }
+
         @media (max-width: 620px) {
             header {
                 padding: 0.5rem 1rem;
@@ -429,7 +437,7 @@
 
 <body>
     <header>
-        <h1>Hmuegyi</h1>
+        <h1>HmueGyi</h1>
         <div class="header-right">
             <button id="menuToggle" aria-label="Toggle navigation menu">☰</button>
         </div>
@@ -453,33 +461,43 @@
 
     <main class="container">
         <section id="home" class="hero" tabindex="0">
-            <h2>Backend & Robotics Developer</h2>
+            <h2>Junior Backend & Robotics Developer</h2>
             <div class="typewriter" id="typewriter"></div>
         </section>
 
         <section id="about" tabindex="0">
             <h3>About Me</h3>
             <p>Hello! I'm Hmuegyi, passionate about backend development and robotics. I enjoy crafting efficient code
-                and creating innovative robotic solutions.</p>
+                and creating innovative robotic solutions and artificial intelligence project.</p>
         </section>
-
         <section id="skills" tabindex="0">
             <h3>Skills</h3>
             <p>Here are some technologies I work with:</p>
             <div class="skills-logos" aria-label="Skills logos">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                    alt="Linux Logo" />
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                     alt="Python Logo" />
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
                     alt="C++ Logo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
+                    alt="Ubuntu Logo" />
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg" alt="ROS Logo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg"
+                    alt="Gazebo Logo" />
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
                     alt="Docker Logo" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                    alt="Linux Logo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                    alt="TensorFlow Logo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                    alt="PyTorch Logo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL Logo" />
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git Logo" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript Logo" />
             </div>
         </section>
-
         <section id="projects" tabindex="0">
             <h3>Projects</h3>
             <p>Checkout some of my work on <a href="https://github.com/hmuegyi" target="_blank"
@@ -586,6 +604,7 @@
         });
 
         // Typewriter effect
+        // Typewriter effect
         const typewriterElement = document.getElementById('typewriter');
         const phrases = [
             "Coding my way into the future.",
@@ -628,10 +647,17 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            if (phrases.length) {
-                setTimeout(type, delayBetweenPhrases);
+            if (window.innerWidth < 600) {
+                // On small screens, show all phrases joined by spaces, no typing animation
+                typewriterElement.textContent = phrases.join(" ");
+            } else {
+                // On bigger screens, run the typewriter effect
+                if (phrases.length) {
+                    setTimeout(type, delayBetweenPhrases);
+                }
             }
         });
+
 
 
         // Optional: contact form submit handling (dummy)
