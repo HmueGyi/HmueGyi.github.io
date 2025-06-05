@@ -66,7 +66,7 @@
             --link-color: #3a7bd5;
             --link-hover-color: #2a52be;
             --header-bg: #ffffff;
-            --section-bg: #ffffff;
+            --section-bg: #eeeaea;
             --button-bg: #3a7bd5;
             --button-text: #fff;
             --button-hover-bg: #2a52be;
@@ -174,26 +174,69 @@
         }
 
         .typewriter {
-            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-size: clamp(0.75rem, 4vw, 1.1rem);
+            /* slightly larger min size for mobile */
             font-style: italic;
-            height: 40px;
             margin-bottom: 1.5rem;
-            color: var(--link-hover-color);
             font-weight: 700;
             letter-spacing: 0.12em;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid var(--link-hover-color);
-            animation: blink-caret 0.7s steps(1) infinite;
             font-family: 'Courier New', Courier, monospace;
+
+            color: var(--text-color);
+            display: inline-block;
+
+            /* ✅ Enable wrapping */
+            white-space: pre-line;
+            /* better for multiline \n support */
+            word-wrap: break-word;
+            overflow: visible;
+
+            /* ✅ Border animation (optional) */
+            border-right: 3px solid var(--link-hover-color);
+            animation: blink 1s step-end infinite;
+
+            /* ✅ Make sure width adapts */
+            max-width: 100%;
         }
 
 
-        @keyframes blink-caret {
-            50% {
-                border-color: transparent;
+
+        /* typing: from width 0 to 20ch */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 25ch;
             }
         }
+
+        /* deleting: from width 20ch back to 0 */
+        @keyframes deleting {
+            from {
+                width: 20ch;
+            }
+
+            to {
+                width: 0;
+            }
+        }
+
+        /* blinking caret */
+        @keyframes blink-caret {
+
+            0%,
+            100% {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: var(--link-hover-color);
+            }
+        }
+
+
 
         section {
             margin-bottom: 3rem;
@@ -313,6 +356,7 @@
                 white-space: normal;
                 /* allow wrapping on small screens */
                 font-size: 1rem;
+                height: 3.2rem;
             }
         }
 
@@ -686,11 +730,11 @@
         // Typewriter effect
         const typewriterElement = document.getElementById('typewriter');
         const phrases = [
-            "Coding my way into the future.",
-            "Building robots to change the world.",
-            "Backend systems architect.",
-            "Passionate about automation and AI.",
-            "Let's create something amazing."
+            "Learning to build smart AI models that solve real-world problems.",
+            "Exploring robotics with hands-on projects and sensor technologies.",
+            "Designing backend systems to support efficient and reliable applications.",
+            "Excited about algorithms, automation, and AI development.",
+            "Ready to create innovative AI and robotic solutions step by step."
         ];
         const typingSpeed = 80;
         const erasingSpeed = 40;
@@ -726,14 +770,8 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            if (window.innerWidth < 600) {
-                // On small screens, show all phrases joined by spaces, no typing animation
-                typewriterElement.textContent = phrases.join(" ");
-            } else {
-                // On bigger screens, run the typewriter effect
-                if (phrases.length) {
-                    setTimeout(type, delayBetweenPhrases);
-                }
+            if (phrases.length) {
+                setTimeout(type, delayBetweenPhrases);
             }
         });
 
