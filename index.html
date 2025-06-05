@@ -776,29 +776,27 @@
         });
 
         document.addEventListener('click', (e) => {
+            // If click is outside the menu and toggle button
             if (!navMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
                 navMenu.classList.remove('open');
-                menuToggleBtn.textContent = '☰';
+                menuToggleBtn.textContent = '☰'; // Always reset to hamburger icon
             }
         });
 
 
-        document.addEventListener('click', (e) => {
-            // If click is outside nav and not the toggle menu button
-            if (!navMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
-                navMenu.classList.remove('open');
-            }
-        });
-
+        // Close menu with ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 navMenu.classList.remove('open');
+                menuToggleBtn.textContent = '☰';
             }
         });
 
         toggleThemeBtn.addEventListener('click', () => {
             // Close the menu when toggle button is clicked
             navMenu.classList.remove('open');
+            menuToggleBtn.textContent = '☰';
+            menuToggleBtn.textContent = isOpen ? '×' : '☰';
         });
 
 
