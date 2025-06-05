@@ -679,6 +679,7 @@
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('open');
+                menuToggleBtn.textContent = '☰';
             });
         });
 
@@ -739,6 +740,7 @@
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
                 navMenu.classList.remove('open');
+                menuToggleBtn.textContent = '☰';
             }
         });
 
