@@ -482,6 +482,46 @@
             }
         }
 
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+
+            /* Footer adjustments */
+            .footer-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-section.about p {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+
+            .footer-section.social-media a {
+                margin: 0 1rem 1rem 1rem;
+            }
+
+            .footer-section.social-media img {
+                width: 28px;
+                height: 28px;
+            }
+
+            .footer-bottom p {
+                font-size: 0.8rem;
+            }
+
+            /* Header / Logo adjustments */
+            header h1 {
+                font-size: 1.2rem;
+                /* smaller logo on mobile */
+            }
+
+            nav a {
+                font-size: 1rem;
+                /* slightly smaller nav links */
+            }
+        }
+
+
         #backToTop {
             position: fixed;
             bottom: 30px;
@@ -619,18 +659,18 @@
             <form id="contactForm">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Your name" required />
-            
+
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Your email" required />
-            
+
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
-            
+
                 <!-- hidden field for timestamp -->
                 <input type="hidden" name="time" id="time">
-            
+
                 <button type="submit">Send</button>
-            </form>            
+            </form>
         </section>
     </main>
     <button id="backToTop" aria-label="Scroll to top" title="Back to top">
@@ -661,12 +701,12 @@
                         alt="Twitter" style="filter: brightness(0) invert(1);" />
                 </a>
 
-                <a href="https://t.me/@Hmue_Gyi" target="_blank" rel="noopener" aria-label="Telegram">
+                <a href="https://t.me/Hmue_Gyi" target="_blank" rel="noopener" aria-label="Telegram">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram"
                         style="filter: brightness(0) invert(1);" />
                 </a>
 
-                <a href="viber://chat?number=09941396827" target="_blank" rel="noopener" aria-label="Viber">
+                <a href="viber://chat?number=%2B959941396827" target="_blank" rel="noopener" aria-label="Viber">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/viber.svg" alt="Viber"
                         style="filter: brightness(0) invert(1);" />
                 </a>
