@@ -652,9 +652,20 @@
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
                         alt="LinkedIn" style="filter: brightness(0) invert(1);" />
                 </a>
+
                 <a href="https://twitter.com/hmuegyi" target="_blank" rel="noopener" aria-label="Twitter">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
                         alt="Twitter" style="filter: brightness(0) invert(1);" />
+                </a>
+
+                <a href="https://t.me/@Hmue_Gyi" target="_blank" rel="noopener" aria-label="Telegram">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram"
+                        style="filter: brightness(0) invert(1);" />
+                </a>
+
+                <a href="viber://chat?number=09941396827" target="_blank" rel="noopener" aria-label="Viber">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/viber.svg" alt="Viber"
+                        style="filter: brightness(0) invert(1);" />
                 </a>
             </div>
         </div>
@@ -664,7 +675,13 @@
         </div>
     </footer>
 
-    <script>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js">
+        // Initialize EmailJS (replace with your actual public key)
+        (function () {
+            emailjs.init("7Rrfvbn3cpMsy0eBT");
+        })();
+
         // Dark/Light mode toggle
         const toggleThemeBtn = document.getElementById('toggleTheme');
         const icon = document.getElementById('icon');
@@ -799,13 +816,18 @@
             menuToggleBtn.textContent = isOpen ? '×' : '☰';
         });
 
-
-        // Optional: contact form submit handling (dummy)
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
+
+            emailjs.sendForm("service_t07sxji", "template_b40010g", this)
+                .then(() => {
+                    alert("✅ Message sent successfully!");
+                    this.reset(); // clear form after sending
+                })
+                .catch(err => {
+                    alert("❌ Failed to send: " + JSON.stringify(err));
+                });
         });
 
         const backToTop = document.getElementById('backToTop');
