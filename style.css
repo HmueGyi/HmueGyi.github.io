@@ -559,24 +559,44 @@ footer {
     }
 }
 
-/* ✅ Footer social icons responsive for mobile */
+/* Mobile adjustments */
 @media (max-width: 480px) {
-    .footer-section.social-media {
-        display: flex;
+
+    /* Footer adjustments */
+    .footer-container {
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
+        gap: 2rem;
+    }
+
+    .footer-section.about p {
+        max-width: 100%;
+        font-size: 1rem;
     }
 
     .footer-section.social-media a {
-        margin: 0;
+        margin: 0 1rem 1rem 1rem;
     }
-    .footer-section.social-media a:hover img {
-        transform: scale(1.2);
-    }    
-}
 
+    .footer-section.social-media img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
+
+    /* Header / Logo adjustments */
+    header h1 {
+        font-size: 1.2rem;
+        /* smaller logo on mobile */
+    }
+
+    nav a {
+        font-size: 1rem;
+        /* slightly smaller nav links */
+    }
+}
 
 @media (max-width: 600px) {
     .about-container {
