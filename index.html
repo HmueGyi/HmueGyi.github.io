@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hmuegyi - Github profile</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hmuegyi - Robotics & AI Developer</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <header>
-        <h1>HmueGyi </h1>
+        <h1>HmueGyi</h1>
         <div class="header-right">
             <button id="menuToggle" aria-label="Toggle navigation menu">☰</button>
         </div>
@@ -21,7 +21,6 @@
             <a href="#projects" tabindex="0">Projects</a>
             <a href="#contact" tabindex="0">Contact</a>
 
-            <!-- Dark/Light Mode Toggle (moved here) -->
             <button id="toggleTheme" aria-label="Toggle light and dark mode">
                 <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     aria-hidden="true">
@@ -31,23 +30,110 @@
         </nav>
     </header>
 
-
     <main class="container">
-        <section id="home" class="hero" tabindex="0">
-            <h2>Robotics & AI Developer</h2>
-            <div class="typewriter" id="typewriter"></div>
+        <!-- Hero Section -->
+        <section id="home" class="hero" tabindex="0" aria-label="Hero">
+            <div class="hero-inner">
+                <div class="hero-left">
+                    <h2 class="hero-title">Robotics & AI Developer</h2>
+                    <div class="typewriter" id="typewriter" aria-live="polite"></div>
+
+                    <p class="hero-sub">
+                        I develop robotic systems and build intelligent models that solve real-world automation
+                        challenges.
+                    </p>
+
+                    <div class="hero-cta">
+                        <a class="btn" href="#projects">See Projects</a>
+                        <a class="btn ghost" href="#contact">Contact Me</a>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+
+                    <!-- Floating robot SVG -->
+                    <div class="robot-wrap" aria-hidden="true">
+                        <svg class="robot" width="190" height="180" viewBox="0 0 190 190"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cute animated robot">
+                            <defs>
+                                <!-- Soft blue body gradient -->
+                                <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#3c5bff" />
+                                    <stop offset="100%" stop-color="#5b7bff" />
+                                </linearGradient>
+
+                                <!-- Face background -->
+                                <linearGradient id="faceGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#ffffff" />
+                                    <stop offset="100%" stop-color="#e6e6ff" />
+                                </linearGradient>
+
+                                <!-- Drop shadow -->
+                                <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="0" dy="6" stdDeviation="10" flood-opacity="0.25" />
+                                </filter>
+                            </defs>
+
+                            <!-- Main robot head bubble -->
+                            <g filter="url(#shadow)">
+                                <path d="M40 80 Q40 40 100 40 Q160 40 160 80 Q160 120 100 130 Q40 120 40 80 Z"
+                                    fill="url(#bodyGrad)" />
+
+                                <!-- White face panel -->
+                                <rect x="55" y="60" width="90" height="55" rx="20" fill="url(#faceGrad)" />
+
+                                <!-- Cute eyes -->
+                                <circle class="pupil" cx="85" cy="85" r="8" fill="#1e1e1e" />
+                                <circle class="pupil" cx="115" cy="85" r="8" fill="#1e1e1e" />
+
+                                <!-- Eye shine -->
+                                <circle class="shine" cx="82" cy="83" r="3" fill="#fff" />
+                                <circle class="shine" cx="112" cy="83" r="3" fill="#fff" />
+
+
+                                <!-- Smile -->
+                                <path d="M80 100 Q100 112 120 100" stroke="#1e1e1e" stroke-width="2" fill="none"
+                                    stroke-linecap="round" />
+
+                                <!-- Headphones -->
+                                <rect x="32" y="70" width="10" height="35" rx="6" fill="#3c5bff" />
+                                <rect x="156" y="70" width="10" height="35" rx="6" fill="#3c5bff" />
+                                <circle cx="38" cy="90" r="18" fill="#5b7bff" opacity="1.2" />
+                                <circle cx="162" cy="90" r="18" fill="#5b7bff" opacity="1.2" />
+                            </g>
+                            <!-- Speech Bubble -->
+                            <g class="speech-bubble" transform="translate(50,20)">
+                                <!-- Bubble rectangle with rounded corners -->
+                                <rect x="0" y="0" width="90" height="35" rx="10" ry="10" fill="#fff" stroke="#3c5bff"
+                                    stroke-width="2" />
+
+                                <!-- Bubble tail -->
+                                <polygon points="20,35 30,35 25,45" fill="#fff" stroke="#3c5bff" stroke-width="2" />
+
+                                <!-- Text -->
+                                <text x="10" y="22" font-family="Arial" font-size="14" fill="#1e1e1e">Hello...</text>
+                            </g>
+
+                        </svg>
+                    </div>
+
+                </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" tabindex="0">
             <h3>About Me</h3>
             <div class="about-container">
                 <img src="./profile1.jpg" alt="Photo of Hmue Set San" class="about-photo" />
                 <p>
-                    Hello! I'm Hmue Set San, passionate about robotics and AI. I enjoy crafting efficient code
-                    and creating innovative robotic solutions and artificial intelligence projects.
+                    Hello! I'm Hmue Set San, passionate about robotics and AI. I enjoy crafting efficient code and
+                    creating
+                    innovative robotic solutions and artificial intelligence projects.
                 </p>
             </div>
         </section>
+
+        <!-- Skills Section -->
         <section id="skills" tabindex="0">
             <h3>Skills</h3>
             <p>Here are some technologies I work with:</p>
@@ -55,18 +141,19 @@
                 <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer"
                     aria-label="Learn about Linux">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                        alt="Linux Logo" />
+                        alt="Linux Logo" data-skill="Linux" />
                 </a>
                 <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer"
                     aria-label="Learn about Python">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                        alt="Python Logo" />
+                        alt="Python Logo" data-skill="Python" />
                 </a>
                 <a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer" aria-label="Learn about C++">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
-                        alt="C++ Logo" />
+                        alt="C++ Logo" data-skill="C++" />
                 </a>
-                <a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer" aria-label="Learn about Ubuntu">
+                <a href="https://www.ubuntu.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Learn about Ubuntu">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
                         alt="Ubuntu Logo" />
                 </a>
@@ -109,12 +196,37 @@
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section id="projects" tabindex="0">
             <h3>Projects</h3>
-            <p>Checkout some of my work on <a href="https://github.com/hmuegyi" target="_blank"
-                    rel="noopener noreferrer">GitHub</a>.</p>
+            <div class="projects-grid">
+                <article class="project-card" data-tilt>
+                    <div class="project-inner">
+                        <h2>Simulation Robot with ROS2</h2>
+                        <p>Stack: ROS, C++, URDF, Gazebo</p>
+                        <a class="project-link" href="#" aria-label="Open project">View</a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tilt>
+                    <div class="project-inner">
+                        <h2>Object Detection with AI</h2>
+                        <p>Stack: PyTorch, Python, YOLO</p>
+                        <a class="project-link" href="#" aria-label="Open project">View</a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tilt>
+                    <div class="project-inner">
+                        <h2>Large Language Model with AI</h2>
+                        <p>Stack: OLLAMA, Langchain</p>
+                        <a class="project-link" href="#" aria-label="Open project">View</a>
+                    </div>
+                </article>
+            </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" tabindex="0">
             <h3>Contact Me</h3>
             <form id="contactForm">
@@ -131,12 +243,15 @@
             </form>
         </section>
     </main>
+
+    <!-- Back to Top Button -->
     <button id="backToTop" aria-label="Scroll to top" title="Back to top">
         <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 24 24" width="26" fill="currentColor">
             <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8z" />
         </svg>
     </button>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section about">

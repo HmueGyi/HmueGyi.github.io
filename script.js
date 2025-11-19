@@ -1,8 +1,16 @@
-// Dark/Light mode toggle
+// ================== Elements ==================
 const toggleThemeBtn = document.getElementById('toggleTheme');
 const icon = document.getElementById('icon');
+const menuToggleBtn = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+const typewriterElement = document.getElementById('typewriter');
+const backToTop = document.getElementById('backToTop');
+const contactForm = document.getElementById('contactForm');
+const tiltCards = document.querySelectorAll('[data-tilt]');
+const revealElements = document.querySelectorAll('section, .project-card, .about-photo, .skills-logos a');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Initial theme setup based on saved preference or default to dark mode
+// ================== Dark/Light Mode ==================
 const savedTheme = localStorage.getItem('theme') || 'dark';
 if (savedTheme === 'light') {
     document.body.classList.add('light');
@@ -14,15 +22,15 @@ if (savedTheme === 'light') {
 
 function setIconToSun() {
     icon.innerHTML = `
-        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            d="M12 4v1M12 19v1M4.22 4.22l.7.7M18.36 18.36l.7.7M1 12h1M19 12h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z" />
-    `;
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      d="M12 4v1M12 19v1M4.22 4.22l.7.7M18.36 18.36l.7.7M1 12h1M19 12h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z" />
+  `;
 }
 
 function setIconToMoon() {
     icon.innerHTML = `
-        <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
-    `;
+    <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
+  `;
 }
 
 toggleThemeBtn.addEventListener('click', () => {
@@ -34,25 +42,18 @@ toggleThemeBtn.addEventListener('click', () => {
         setIconToMoon();
         localStorage.setItem('theme', 'dark');
     }
+    // Close mobile nav on toggle
+    navMenu.classList.remove('open');
+    menuToggleBtn.textContent = '☰';
 });
 
-// Responsive mobile menu toggle
-const menuToggleBtn = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-
+// ================== Mobile Menu ==================
 menuToggleBtn.addEventListener('click', () => {
     navMenu.classList.toggle('open');
-
-    // Toggle button text
-    if (menuToggleBtn.textContent === '☰') {
-        menuToggleBtn.textContent = '×';
-    } else {
-        menuToggleBtn.textContent = '☰';
-    }
+    menuToggleBtn.textContent = menuToggleBtn.textContent.trim() === '☰' ? '×' : '☰';
 });
 
-
-// Close menu when clicking a nav link (mobile)
+// Close menu on link click
 navMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('open');
@@ -60,100 +61,130 @@ navMenu.querySelectorAll('a').forEach(link => {
     });
 });
 
-// Typewriter effect
-const typewriterElement = document.getElementById('typewriter');
-const phrases = [
-    "Learning to build smart AI models that solve real-world problems.",
-    "Exploring robotics with hands-on projects and sensor technologies.",
-    "Designing backend systems to support efficient and reliable applications.",
-    "Excited about algorithms, automation, and AI development.",
-    "Ready to create innovative AI and robotic solutions step by step."
-];
-const typingSpeed = 90;
-const erasingSpeed = 60;
-const delayBetweenPhrases = 1800;
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function type() {
-    const currentPhrase = phrases[phraseIndex];
-    if (!isDeleting) {
-        // typing
-        typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === currentPhrase.length) {
-            isDeleting = true;
-            setTimeout(type, delayBetweenPhrases);
-        } else {
-            setTimeout(type, typingSpeed);
-        }
-    } else {
-        // deleting
-        typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            setTimeout(type, typingSpeed);
-        } else {
-            setTimeout(type, erasingSpeed);
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    if (phrases.length) {
-        setTimeout(type, delayBetweenPhrases);
-    }
-});
-
-document.addEventListener('click', (e) => {
-    // If click is outside the menu and toggle button
+// Close menu on outside click or ESC
+document.addEventListener('click', e => {
     if (!navMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
         navMenu.classList.remove('open');
-        menuToggleBtn.textContent = '☰'; // Always reset to hamburger icon
+        menuToggleBtn.textContent = '☰';
     }
 });
-
-
-// Close menu with ESC key
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         navMenu.classList.remove('open');
         menuToggleBtn.textContent = '☰';
     }
 });
 
-toggleThemeBtn.addEventListener('click', () => {
-    // Close the menu when toggle button is clicked
-    navMenu.classList.remove('open');
-    menuToggleBtn.textContent = '☰';
-    menuToggleBtn.textContent = isOpen ? '×' : '☰';
-});
+// ================== Typewriter ==================
+if (!prefersReducedMotion && typewriterElement) {
+    const phrases = [
+        "Developing intelligent AI agents to assist in everyday tasks.",
 
+        "Hands-on robotics with ROS, sensors, and autonomous navigation.",
 
-// Optional: contact form submit handling (dummy)
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Thank you for your message! I will get back to you soon.');
-    contactForm.reset();
-});
+        "Building robust AI systems using object detection and LLMs.",
 
-const backToTop = document.getElementById('backToTop');
+        "Exploring perception, planning, and decision-making for smart machines."
+    ];
+    let phraseIndex = 0, charIndex = 0, isDeleting = false;
+    const typingSpeed = 70, erasingSpeed = 36, delayBetween = 1600;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-        backToTop.classList.add('show');
-    } else {
-        backToTop.classList.remove('show');
+    function type() {
+        const current = phrases[phraseIndex];
+        if (!isDeleting) {
+            typewriterElement.textContent = current.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === current.length) {
+                isDeleting = true;
+                setTimeout(type, delayBetween);
+            } else {
+                setTimeout(type, typingSpeed + Math.random() * 40);
+            }
+        } else {
+            typewriterElement.textContent = current.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, typingSpeed);
+            } else {
+                setTimeout(type, erasingSpeed);
+            }
+        }
     }
-});
+    setTimeout(type, 700);
+} else if (typewriterElement) {
+    typewriterElement.textContent = "Building smart AI models that solve real problems.";
+}
 
-backToTop.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+// ================== Back to Top ==================
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) backToTop.classList.add('show');
+    else backToTop.classList.remove('show');
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ================== Contact Form ==================
+if (contactForm) {
+    contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+        alert('Thank you — I will get back to you soon.');
+        contactForm.reset();
+    });
+}
+
+// ================== Project Card Tilt ==================
+let lastMove = 0;
+tiltCards.forEach(card => {
+    if (prefersReducedMotion) return;
+    const inner = card.querySelector('.project-inner') || card;
+
+    card.addEventListener('mousemove', e => {
+        const now = Date.now();
+        if (now - lastMove < 12) return;
+        lastMove = now;
+
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        const rotY = (px - 0.5) * 20;
+        const rotX = (0.5 - py) * 12;
+        const translateZ = 18;
+
+        card.style.transform = `perspective(900px) translateZ(0) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+        inner.style.transform = `translateZ(${translateZ}px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        inner.style.transform = '';
     });
 });
+
+// ================== Reveal on Scroll ==================
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ================== Robot Animations ==================
+const pupils = document.querySelectorAll('.pupil');
+function blink() {
+    pupils.forEach(p => p.setAttribute('r', 0)); // close eyes
+    setTimeout(() => {
+        pupils.forEach(p => p.setAttribute('r', 8)); // open eyes (original radius)
+    }, 200);
+}
+// Blink every 3–4 seconds randomly to feel more natural
+setInterval(blink, Math.random() * 1000 + 3000);
+
+const bubble = document.querySelector('.speech-bubble');
+setTimeout(() => {
+    bubble.classList.add('show');
+}, 1000);
