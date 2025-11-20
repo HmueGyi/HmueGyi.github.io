@@ -76,7 +76,7 @@ h2 {
 }
 
 body.light {
-    --bg-color: #f6f8fb;
+    --bg-color: #c7d7ef;
     --text-color: #1f2933;
     --link-color: #2563eb;
     --link-hover-color: #0ea5a4;
@@ -442,21 +442,46 @@ section p {
     border-radius: 14px;
     padding: 18px;
     min-height: 160px;
-    transform-style: preserve-3d;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     box-shadow: var(--project-card-shadow);
+    transform: none;
+    transition: background 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+    border: 2px solid transparent;
 }
 
-/* Hover 3D effect */
-.project-card[data-tilt]:hover {
-    transform: translateY(-18px) rotateX(6deg);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+/* Desktop hover effect */
+.project-card:hover,
+.project-card:focus {
+    box-shadow: 0 12px 36px rgba(29, 185, 84, 0.45); /* subtle glow */
+    border: 2px solid var(--accent); /* green outline */
+    background: var(--section-bg);
+    outline: none;
 }
 
-/* Background accent gradients (optional) */
+/* Mobile / tap effect */
+@media (hover: none) and (pointer: coarse) {
+    .project-card:active {
+        box-shadow: 0 12px 36px rgba(29, 185, 84, 0.45);
+        border: 2px solid var(--accent);
+        background: var(--section-bg);
+    }
+}
+
+/* Optional: smooth transition for inner text */
+.project-card h2,
+.project-card p {
+    transition: color 0.25s ease;
+}
+
+.project-card:hover h2,
+.project-card:focus h2,
+.project-card:active h2 {
+    color: var(--link-hover-color);
+}
+
+
 .project-card::before {
     content: '';
     position: absolute;
@@ -745,4 +770,45 @@ footer {
         transition: none !important;
         animation: none !important;
     }
+}
+
+/* ================== Scroll Animations ================== */
+section, 
+.project-card, 
+.about-photo, 
+.skills-logos a {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================== Page Transition Frame ================== */
+#transition-frame {
+    position: fixed;
+    inset: 0;
+    background: #0e0e0e; /* or any color/gradient you want */
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+#transition-frame.hide {
+    opacity: 0;
+    pointer-events: none;
 }

@@ -7,11 +7,20 @@ const typewriterElement = document.getElementById('typewriter');
 const backToTop = document.getElementById('backToTop');
 const contactForm = document.getElementById('contactForm');
 const tiltCards = document.querySelectorAll('[data-tilt]');
-const revealElements = document.querySelectorAll('section, .project-card, .about-photo, .skills-logos a');
+const revealElements = document.querySelectorAll('section, .project-card, .about-photo, .skills-logos *, .skills-logos a');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ================== Dark/Light Mode ==================
-const savedTheme = localStorage.getItem('theme') || 'dark';
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+let savedTheme = localStorage.getItem('theme');
+
+// If no saved theme, use system preference
+if (!savedTheme) {
+    savedTheme = systemPrefersDark ? 'dark' : 'light';
+    localStorage.setItem('theme', savedTheme);
+}
+
+// Apply theme
 if (savedTheme === 'light') {
     document.body.classList.add('light');
     setIconToSun();
@@ -21,69 +30,86 @@ if (savedTheme === 'light') {
 }
 
 function setIconToSun() {
+    if (!icon) return;
     icon.innerHTML = `
-    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      d="M12 4v1M12 19v1M4.22 4.22l.7.7M18.36 18.36l.7.7M1 12h1M19 12h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z" />
-  `;
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 4v1M12 19v1M4.22 4.22l.7.7M18.36 18.36l.7.7M1 12h1M19 12h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z" />
+    `;
 }
 
 function setIconToMoon() {
+    if (!icon) return;
     icon.innerHTML = `
-    <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
-  `;
+        <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
+    `;
 }
 
-toggleThemeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    if (document.body.classList.contains('light')) {
-        setIconToSun();
-        localStorage.setItem('theme', 'light');
-    } else {
-        setIconToMoon();
-        localStorage.setItem('theme', 'dark');
+// Toggle button
+if (toggleThemeBtn) {
+    toggleThemeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        if (document.body.classList.contains('light')) {
+            setIconToSun();
+            localStorage.setItem('theme', 'light');
+        } else {
+            setIconToMoon();
+            localStorage.setItem('theme', 'dark');
+        }
+
+        // Close mobile nav on toggle
+        navMenu?.classList.remove('open');
+        if (menuToggleBtn) menuToggleBtn.textContent = '☰';
+    });
+}
+
+// Optional: react to system preference changes if user hasn't set manually
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+        if (e.matches) {
+            document.body.classList.remove('light');
+            setIconToMoon();
+        } else {
+            document.body.classList.add('light');
+            setIconToSun();
+        }
     }
-    // Close mobile nav on toggle
-    navMenu.classList.remove('open');
-    menuToggleBtn.textContent = '☰';
 });
 
 // ================== Mobile Menu ==================
-menuToggleBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('open');
-    menuToggleBtn.textContent = menuToggleBtn.textContent.trim() === '☰' ? '×' : '☰';
-});
-
-// Close menu on link click
-navMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        menuToggleBtn.textContent = '☰';
+if (menuToggleBtn && navMenu) {
+    menuToggleBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+        menuToggleBtn.textContent = menuToggleBtn.textContent.trim() === '☰' ? '×' : '☰';
     });
-});
 
-// Close menu on outside click or ESC
-document.addEventListener('click', e => {
-    if (!navMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
-        navMenu.classList.remove('open');
-        menuToggleBtn.textContent = '☰';
-    }
-});
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        navMenu.classList.remove('open');
-        menuToggleBtn.textContent = '☰';
-    }
-});
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            menuToggleBtn.textContent = '☰';
+        });
+    });
+
+    document.addEventListener('click', e => {
+        if (!navMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
+            navMenu.classList.remove('open');
+            menuToggleBtn.textContent = '☰';
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            navMenu.classList.remove('open');
+            menuToggleBtn.textContent = '☰';
+        }
+    });
+}
 
 // ================== Typewriter ==================
 if (!prefersReducedMotion && typewriterElement) {
     const phrases = [
         "Developing intelligent AI agents to assist in everyday tasks.",
-
         "Hands-on robotics with ROS, sensors, and autonomous navigation.",
-
         "Building robust AI systems using object detection and LLMs.",
-
         "Exploring perception, planning, and decision-making for smart machines."
     ];
     let phraseIndex = 0, charIndex = 0, isDeleting = false;
@@ -119,19 +145,19 @@ if (!prefersReducedMotion && typewriterElement) {
 
 // ================== Back to Top ==================
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) backToTop.classList.add('show');
-    else backToTop.classList.remove('show');
+    if (backToTop) {
+        if (window.scrollY > 400) backToTop.classList.add('show');
+        else backToTop.classList.remove('show');
+    }
 });
-backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 // ================== Contact Form ==================
-if (contactForm) {
-    contactForm.addEventListener('submit', e => {
-        e.preventDefault();
-        alert('Thank you — I will get back to you soon.');
-        contactForm.reset();
-    });
-}
+contactForm?.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you — I will get back to you soon.');
+    contactForm.reset();
+});
 
 // ================== Project Card Tilt ==================
 let lastMove = 0;
@@ -176,15 +202,34 @@ revealElements.forEach(el => revealObserver.observe(el));
 // ================== Robot Animations ==================
 const pupils = document.querySelectorAll('.pupil');
 function blink() {
-    pupils.forEach(p => p.setAttribute('r', 0)); // close eyes
+    pupils.forEach(p => p.setAttribute('r', 0));
     setTimeout(() => {
-        pupils.forEach(p => p.setAttribute('r', 8)); // open eyes (original radius)
+        pupils.forEach(p => p.setAttribute('r', 8));
     }, 200);
 }
-// Blink every 3–4 seconds randomly to feel more natural
 setInterval(blink, Math.random() * 1000 + 3000);
 
 const bubble = document.querySelector('.speech-bubble');
 setTimeout(() => {
-    bubble.classList.add('show');
+    bubble?.classList.add('show');
 }, 1000);
+
+// ================== Page Load Transition ==================
+window.addEventListener('load', () => {
+    const frame = document.getElementById('transition-frame');
+    setTimeout(() => {
+        frame?.classList.add('hide');
+    }, 300);
+});
+
+// ================== Project Card Clickable ==================
+document.querySelectorAll('.project-card').forEach(card => {
+    const link = card.querySelector('.project-link');
+    if (!link) return;
+
+    card.addEventListener('click', () => {
+        window.open(link.href, '_blank');
+    });
+
+    card.style.cursor = 'pointer';
+});
