@@ -1,0 +1,214 @@
+/* ================== Button ================== */
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    border-radius: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--link-color), var(--accent));
+    color: #04101a;
+    box-shadow: 0 8px 30px rgba(0, 173, 238, 0.12);
+    margin-right: 0.6rem;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    text-decoration: none;
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-color);
+}
+
+.btn:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--card-elev);
+}
+
+/* ================== Skills Logos ================== */
+.skills-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skills-logos a {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    padding: 8px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s cubic-bezier(.16, .9, .3, 1), box-shadow .3s ease;
+}
+
+.skills-logos img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 18px rgba(2, 12, 27, 0.6));
+    transition: transform 0.3s ease;
+}
+
+.skills-logos a:hover {
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: 0 20px 50px rgba(2, 12, 27, 0.65);
+}
+
+/* ================== Projects ================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.2rem;
+}
+
+.project-card {
+    background: var(--project-card-bg);
+    color: var(--project-card-text);
+    border-radius: 14px;
+    padding: 18px;
+    min-height: 160px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--project-card-shadow);
+    transform: none;
+    transition: background 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+    border: 2px solid transparent;
+}
+
+/* Desktop hover effect */
+.project-card:hover,
+.project-card:focus {
+    box-shadow: 0 12px 36px rgba(29, 185, 84, 0.45);
+    border: 2px solid var(--accent);
+    background: var(--section-bg);
+    outline: none;
+}
+
+/* Mobile / tap effect */
+@media (hover: none) and (pointer: coarse) {
+    .project-card:active {
+        box-shadow: 0 12px 36px rgba(29, 185, 84, 0.45);
+        border: 2px solid var(--accent);
+        background: var(--section-bg);
+    }
+}
+
+.project-card h2,
+.project-card p {
+    transition: color 0.25s ease;
+}
+
+.project-card:hover h2,
+.project-card:focus h2,
+.project-card:active h2 {
+    color: var(--link-hover-color);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: -60px;
+    width: 220px;
+    height: 220px;
+    background: var(--project-card-accent);
+    transform: rotate(30deg);
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+/* ================== Form ================== */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--link-hover-color);
+}
+
+input,
+textarea {
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.3rem;
+    border: 2px solid var(--link-color);
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #999;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--link-hover-color);
+    background: var(--section-bg);
+    box-shadow: 0 0 8px var(--link-hover-color);
+}
+
+button[type="submit"] {
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-weight: 800;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    align-self: center;
+    max-width: 180px;
+    box-shadow: 0 0 12px var(--button-bg)aa;
+}
+
+button[type="submit"]:hover {
+    background: var(--button-hover-bg);
+    box-shadow: 0 0 22px var(--button-hover-bg);
+}
+
+/* ================== Back to Top ================== */
+#backToTop {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--link-color), var(--accent));
+    color: #04101a;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 18px 40px rgba(2, 12, 27, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 0.45s cubic-bezier(.2, .9, .3, 1);
+    z-index: 1400;
+}
+
+#backToTop.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}

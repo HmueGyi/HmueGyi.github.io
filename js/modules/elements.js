@@ -1,0 +1,10 @@
+export const toggleThemeBtn = document.getElementById('toggleTheme');
+export const icon = document.getElementById('icon');
+export const menuToggleBtn = document.getElementById('menuToggle');
+export const navMenu = document.getElementById('navMenu');
+export const typewriterElement = document.getElementById('typewriter');
+export const backToTop = document.getElementById('backToTop');
+export const contactForm = document.getElementById('contactForm');
+export const tiltCards = document.querySelectorAll('[data-tilt]');
+export const revealElements = document.querySelectorAll('section, .project-card, .about-photo, .skills-logos *, .skills-logos a');
+export const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

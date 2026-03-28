@@ -1,0 +1,214 @@
+/* ================== Sections Base ================== */
+section {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: var(--section-bg);
+    border-radius: 14px;
+    box-shadow: var(--card-elev);
+    transform-style: preserve-3d;
+    transition: transform .45s ease, box-shadow .45s ease, background 0.4s ease;
+}
+
+section:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-3d);
+}
+
+section h3 {
+    font-size: 2.25rem;
+    text-align: center;
+    color: var(--link-hover-color);
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 800;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section p {
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+/* ================== Hero Section ================== */
+.hero {
+    margin-top: 130px;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    perspective: 1200px;
+}
+
+.hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 2.2rem;
+    align-items: center;
+}
+
+.hero-left {
+    text-align: left;
+}
+
+.hero-title {
+    font-weight: 900;
+    font-size: 2.6rem;
+    color: var(--link-color);
+    text-shadow: 0 6px 30px rgba(2, 12, 27, 0.6);
+    transform: translateZ(40px) translateY(-6px);
+    margin: 0 0 0.6rem;
+}
+
+.hero-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 60ch;
+    margin-top: 0.8rem;
+}
+
+/* ================== 3D Cube & Robot ================== */
+.hero-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.cube-wrap {
+    width: 260px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.robot-wrap {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.robot {
+    transform-origin: center;
+    animation: bob 4.2s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes bob {
+    0% { transform: translateY(-6px) rotateZ(-1deg) scale(1.01); }
+    50% { transform: translateY(6px) rotateZ(1.2deg) scale(1.02); }
+    100% { transform: translateY(-6px) rotateZ(-1deg) scale(1.01); }
+}
+
+.pupil {
+    transition: r 0.15s ease-in-out;
+}
+
+.speech-bubble {
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.speech-bubble.show {
+    opacity: 1;
+    transform: translateY(-10px);
+}
+
+/* ================== Typewriter ================== */
+.typewriter {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 0.4rem;
+    color: var(--text-color);
+    display: inline-block;
+    padding-right: 14px;
+    letter-spacing: 0.04em;
+    text-shadow: 0 8px 24px rgba(2, 12, 27, 0.55);
+    transform: translateZ(40px);
+    position: relative;
+}
+
+.typewriter::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3px;
+    height: 1.05em;
+    background: var(--link-color);
+    animation: caret 1s steps(2, end) infinite;
+    margin-left: 6px;
+}
+
+@keyframes caret {
+    50% { opacity: 0; }
+}
+
+/* ================== About Section ================== */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 2.8rem;
+}
+
+.about-photo {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 14px 40px rgba(2, 12, 27, 0.6);
+    border: 6px solid rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 980px) {
+    .hero-inner {
+        grid-template-columns: 1fr 320px;
+    }
+    .about-container {
+        gap: 1.4rem;
+    }
+}
+
+@media (max-width: 720px) {
+    .hero-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .cube-wrap {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .hero-right {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .typewriter {
+        white-space: normal;
+        font-size: 1rem;
+        height: 3.2rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.2rem;
+    }
+}

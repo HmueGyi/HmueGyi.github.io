@@ -1,0 +1,54 @@
+/* ================== Light/Dark Mode Variables ================== */
+:root {
+    --bg-color: #121212;
+    --text-color: #eee;
+    --link-color: #00adee;
+    --link-hover-color: #1db954;
+    --muted: #9aa6b2;
+    --accent: #1db954;
+    --header-bg: #181818;
+    --section-bg: #222;
+    --button-bg: #00adee;
+    --button-text: #121212;
+    --button-hover-bg: #1db954;
+    --skill-bar-bg: #333;
+    --skill-bar-fill: #1db954;
+    --footer-bg: #181818;
+    --footer-text: #bbb;
+    --footer-link-color: #00adee;
+    --footer-link-hover-color: #1db954;
+    --glass: rgba(255, 255, 255, 0.04);
+    --card-elev: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --shadow-3d: 0 18px 45px rgba(2, 12, 27, 0.7);
+    --project-card-bg: #1e1e1e;
+    --project-card-text: #eee;
+    --project-card-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --project-card-accent: radial-gradient(circle at 30% 30%, rgba(0, 173, 238, 0.12), transparent 35%), radial-gradient(circle at 70% 75%, rgba(29, 185, 84, 0.08), transparent 30%);
+}
+
+body.light {
+    --bg-color: #c7d7ef;
+    --text-color: #1f2933;
+    --link-color: #2563eb;
+    --link-hover-color: #0ea5a4;
+    --header-bg: #ffffff;
+    --section-bg: #ffffff;
+    --button-bg: #3a7bd5;
+    --button-text: #fff;
+    --button-hover-bg: #2a52be;
+    --skill-bar-bg: #e1e8f9;
+    --skill-bar-fill: #3a7bd5;
+    --footer-bg: #f1f3f5;
+    --footer-text: #444;
+    --footer-link-color: #3a7bd5;
+    --footer-link-hover-color: #2a52be;
+    --muted: #5b6b75;
+    --accent: #0ea5a4;
+    --glass: rgba(0, 0, 0, 0.02);
+    --card-elev: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --shadow-3d: 0 18px 45px rgba(0, 0, 0, 0.08);
+    --project-card-bg: #e3e3e3;
+    --project-card-text: #1f2933;
+    --project-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --project-card-accent: radial-gradient(circle at 30% 30%, rgba(0, 173, 238, 0.08), transparent 35%), radial-gradient(circle at 70% 75%, rgba(29, 185, 84, 0.05), transparent 30%);
+}
