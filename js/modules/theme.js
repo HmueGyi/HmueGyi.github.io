@@ -1,6 +1,3 @@
-import { toggleThemeBtn, icon } from './elements.js';
-import { closeMobileMenu } from './menu.js';
-
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 let savedTheme = localStorage.getItem('theme');
 
@@ -9,7 +6,7 @@ if (!savedTheme) {
     localStorage.setItem('theme', savedTheme);
 }
 
-export function applyTheme(theme) {
+function applyTheme(theme) {
     if (theme === 'light') {
         document.body.classList.add('light');
         if (icon) icon.innerHTML = `
@@ -24,7 +21,7 @@ export function applyTheme(theme) {
     }
 }
 
-export function initTheme() {
+function initTheme() {
     applyTheme(savedTheme);
 
     if (toggleThemeBtn) {

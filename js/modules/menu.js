@@ -1,11 +1,9 @@
-import { menuToggleBtn, navMenu } from './elements.js';
-
-export function closeMobileMenu() {
+function closeMobileMenu() {
     navMenu?.classList.remove('open');
     if (menuToggleBtn) menuToggleBtn.textContent = '☰';
 }
 
-export function initMenu() {
+function initMenu() {
     if (menuToggleBtn && navMenu) {
         menuToggleBtn.addEventListener('click', () => {
             navMenu.classList.toggle('open');

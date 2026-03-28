@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hmuegyi - Robotics & AI Developer</title>
+    <title>Hmuegyi - Robotics & AI Architect</title>
+    <!-- Professional Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/layout.css" />
@@ -13,128 +20,83 @@
 </head>
 
 <body>
-    <div id="transition-frame"></div>
     <header>
         <h1>HmueGyi</h1>
         <div class="header-right">
             <button id="menuToggle" aria-label="Toggle navigation menu">☰</button>
         </div>
-        <nav id="navMenu" aria-label="Primary navigation">
-            <a href="#home" tabindex="0">Home</a>
-            <a href="#about" tabindex="0">About</a>
-            <a href="#skills" tabindex="0">Skills</a>
-            <a href="#projects" tabindex="0">Projects</a>
-            <a href="#contact" tabindex="0">Contact</a>
-
-            <button id="toggleTheme" aria-label="Toggle light and dark mode">
-                <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    aria-hidden="true">
-                    <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
-                </svg>
-            </button>
-        </nav>
     </header>
+
+    <nav id="navMenu" aria-label="Primary navigation">
+        <a href="#home" tabindex="0">Home</a>
+        <a href="#about" tabindex="0">About</a>
+        <a href="#skills" tabindex="0">Skills</a>
+        <a href="#projects" tabindex="0">Projects</a>
+        <a href="#contact" tabindex="0">Contact</a>
+
+        <button id="toggleTheme" aria-label="Toggle light and dark mode">
+            <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 17a7 7 0 009-4.21z" />
+            </svg>
+        </button>
+    </nav>
 
     <main class="container">
         <!-- Hero Section -->
         <section id="home" class="hero" tabindex="0" aria-label="Hero">
             <div class="hero-inner">
                 <div class="hero-left">
-                    <h2 class="hero-title">Robotics & AI Developer</h2>
+                    <h2 class="hero-title">Robotics & AI Architect</h2>
                     <div class="typewriter" id="typewriter" aria-live="polite"></div>
 
                     <p class="hero-sub">
-                        I develop robotic systems and build intelligent models that solve real-world automation
-                        challenges.
+                        Designing intelligent automation and autonomous systems that redefine the intersection of AI and
+                        physics.
                     </p>
 
                     <div class="hero-cta">
-                        <a class="btn" href="#projects">See Projects</a>
-                        <a class="btn ghost" href="#contact">Contact Me</a>
+                        <a class="btn" href="#projects">Explore Projects</a>
+                        <a class="btn ghost" href="#contact">Get in Touch</a>
                     </div>
                 </div>
 
                 <div class="hero-right">
-
-                    <!-- Floating robot SVG -->
+                    <!-- Interactive Chatbot Mascot GIF -->
                     <div class="robot-wrap" aria-hidden="true">
-                        <svg class="robot" width="190" height="180" viewBox="0 0 190 190"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cute animated robot">
-                            <defs>
-                                <!-- Soft blue body gradient -->
-                                <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#3c5bff" />
-                                    <stop offset="100%" stop-color="#5b7bff" />
-                                </linearGradient>
-
-                                <!-- Face background -->
-                                <linearGradient id="faceGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#ffffff" />
-                                    <stop offset="100%" stop-color="#e6e6ff" />
-                                </linearGradient>
-
-                                <!-- Drop shadow -->
-                                <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feDropShadow dx="0" dy="6" stdDeviation="10" flood-opacity="0.25" />
-                                </filter>
-                            </defs>
-
-                            <!-- Main robot head bubble -->
-                            <g filter="url(#shadow)">
-                                <path d="M40 80 Q40 40 100 40 Q160 40 160 80 Q160 120 100 130 Q40 120 40 80 Z"
-                                    fill="url(#bodyGrad)" />
-
-                                <!-- White face panel -->
-                                <rect x="55" y="60" width="90" height="55" rx="20" fill="url(#faceGrad)" />
-
-                                <!-- Cute eyes -->
-                                <circle class="pupil" cx="85" cy="85" r="8" fill="#1e1e1e" />
-                                <circle class="pupil" cx="115" cy="85" r="8" fill="#1e1e1e" />
-
-                                <!-- Eye shine -->
-                                <circle class="shine" cx="82" cy="83" r="3" fill="#fff" />
-                                <circle class="shine" cx="112" cy="83" r="3" fill="#fff" />
-
-
-                                <!-- Smile -->
-                                <path d="M80 100 Q100 112 120 100" stroke="#1e1e1e" stroke-width="2" fill="none"
-                                    stroke-linecap="round" />
-
-                                <!-- Headphones -->
-                                <rect x="32" y="70" width="10" height="35" rx="6" fill="#3c5bff" />
-                                <rect x="156" y="70" width="10" height="35" rx="6" fill="#3c5bff" />
-                                <circle cx="38" cy="90" r="18" fill="#5b7bff" opacity="1.2" />
-                                <circle cx="162" cy="90" r="18" fill="#5b7bff" opacity="1.2" />
-                            </g>
-                            <!-- Speech Bubble -->
-                            <g class="speech-bubble" transform="translate(50,20)">
-                                <!-- Bubble rectangle with rounded corners -->
-                                <rect x="0" y="0" width="90" height="35" rx="10" ry="10" fill="#fff" stroke="#3c5bff"
-                                    stroke-width="2" />
-
-                                <!-- Bubble tail -->
-                                <polygon points="20,35 30,35 25,45" fill="#fff" stroke="#3c5bff" stroke-width="2" />
-
-                                <!-- Text -->
-                                <text x="10" y="22" font-family="Arial" font-size="14" fill="#1e1e1e">Hello...</text>
-                            </g>
-
-                        </svg>
+                        <img id="robot-gif" src="assets/Gif/Live chatbot.gif" alt="Live Chatbot Mascot" />
                     </div>
-
                 </div>
+            </div>
+
+            </div>
         </section>
 
         <!-- About Section -->
         <section id="about" tabindex="0">
             <h3>About Me</h3>
             <div class="about-container">
-                <img src="assets/images/profile1.jpg" alt="Photo of Hmue Set San" class="about-photo" />
-                <p>
-                    Hello! I'm Hmue Set San, passionate about robotics and AI. I enjoy crafting efficient code and
-                    creating
-                    innovative robotic solutions and artificial intelligence projects.
-                </p>
+                <div class="about-left">
+                    <img src="assets/images/profile1.jpg" alt="Photo of Hmue Set San" class="about-photo" />
+                </div>
+                <div class="about-right">
+                    <p>
+                        Hello! I am <strong>Hmue Set San</strong>, a professional <strong>Robotics & AI
+                            Developer</strong> with a rich academic foundation from three premier technical
+                        institutions.
+                    </p>
+                    <p>
+                        My journey began with deep-diving into computer engineering and autonomous systems, spending 1.5
+                        years at <strong>Computer University (Sittwe)</strong>, 1.5 years at <strong>Computer University
+                            (Monywa)</strong>, and 1 year at <strong>Computer University (Pathein)</strong>. This
+                        academic rotation provided me with a unique perspective on diverse technical ecosystems and
+                        research methodologies.
+                    </p>
+                    <p>
+                        Currently, I architect intelligent robotic solutions and machine learning models, merging
+                        complex algorithms with physical automation to solve real-world challenges.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -143,63 +105,101 @@
             <h3>Skills</h3>
             <p>Here are some technologies I work with:</p>
             <div class="skills-logos" aria-label="Skills logos">
-                <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer " class="reveal"
+                <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about Linux">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                        alt="Linux Logo" data-skill="Linux" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                            alt="Linux Logo" />
+                    </div>
+                    <span>Linux</span>
                 </a>
                 <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about Python">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                        alt="Python Logo" data-skill="Python" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                            alt="Python Logo" />
+                    </div>
+                    <span>Python</span>
                 </a>
                 <a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about C++">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
-                        alt="C++ Logo" data-skill="C++" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+                            alt="C++ Logo" />
+                    </div>
+                    <span>C++</span>
                 </a>
                 <a href="https://www.ubuntu.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about Ubuntu">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
-                        alt="Ubuntu Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
+                            alt="Ubuntu Logo" />
+                    </div>
+                    <span>Ubuntu</span>
                 </a>
                 <a href="https://www.ros.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about ROS">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg" alt="ROS Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg"
+                            alt="ROS Logo" class="icon-invert" />
+                    </div>
+                    <span>ROS</span>
                 </a>
                 <a href="http://gazebosim.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about Gazebo">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg"
-                        alt="Gazebo Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg"
+                            alt="Gazebo Logo" />
+                    </div>
+                    <span>Gazebo</span>
                 </a>
                 <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about Docker">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                        alt="Docker Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                            alt="Docker Logo" />
+                    </div>
+                    <span>Docker</span>
                 </a>
                 <a href="https://www.tensorflow.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about TensorFlow">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-                        alt="TensorFlow Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                            alt="TensorFlow Logo" />
+                    </div>
+                    <span>TensorFlow</span>
                 </a>
                 <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about PyTorch">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
-                        alt="PyTorch Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                            alt="PyTorch Logo" />
+                    </div>
+                    <span>PyTorch</span>
                 </a>
                 <a href="https://www.mysql.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about MySQL">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                        alt="MySQL Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                            alt="MySQL Logo" class="icon-invert" />
+                    </div>
+                    <span>MySQL</span>
                 </a>
                 <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     aria-label="Learn about Git">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                            alt="Git Logo" />
+                    </div>
+                    <span>Git</span>
                 </a>
                 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"
                     rel="noopener noreferrer" class="reveal" aria-label="Learn about JavaScript">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                        alt="JavaScript Logo" />
+                    <div class="icon-wrapper">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                            alt="JavaScript Logo" />
+                    </div>
+                    <span>JavaScript</span>
                 </a>
             </div>
         </section>
@@ -230,25 +230,74 @@
                         <p>Stack: OLLAMA, Langchain</p>
                         <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project"></a>
                     </div>
-                </article>                
+                </article>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" tabindex="0">
             <h3>Contact Me</h3>
-            <form id="contactForm">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required />
+            <div class="contact-container">
+                <div class="contact-info reveal">
+                    <div class="info-card">
+                        <h4>Contact Information</h4>
+                        <p>Feel free to reach out for collaborations or just a friendly hello!</p>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your email" required />
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <div>
+                                <label>Location</label>
+                                <span>Myanmar</span>
+                            </div>
+                        </div>
 
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+                        <div class="info-item">
+                            <span class="info-icon">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/viber.svg"
+                                    alt="Viber" style="width: 20px; height: 20px; filter: brightness(0) invert(1);" />
+                            </span>
+                            <div>
+                                <label>Viber</label>
+                                <span><a href="viber://chat?number=%2B959941396827">+95 994*****27</a></span>
+                            </div>
+                        </div>
 
-                <button type="submit">Send</button>
-            </form>
+                        <div class="info-item">
+                            <span class="info-icon">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+                                    alt="Telegram"
+                                    style="width: 20px; height: 20px; filter: brightness(0) invert(1);" />
+                            </span>
+                            <div>
+                                <label>Telegram</label>
+                                <span><a href="https://t.me/Hmue_Gyi">@Hmue_Gyi</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrap reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your email" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -261,48 +310,59 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section about">
-                <p>My ambition is always to get better and better.</p>
+        <div class="footer-grid">
+            <div class="footer-col links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
             </div>
-            <div class="footer-section social-media" aria-label="Social media links">
-                <!-- Added Contact Me text -->
-                <p>Contact me at:</p>
 
-                <a href="https://github.com/hmuegyi" target="_blank" rel="noopener" aria-label="GitHub">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                        alt="GitHub" style="filter: invert(1) brightness(2);" />
-                </a>
+            <div class="footer-col socials">
+                <h4>Connect</h4>
+                <div class="social-links-wrap">
+                    <a href="https://github.com/hmuegyi" target="_blank" rel="noopener" aria-label="GitHub">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                            alt="GitHub" style="filter: invert(1) brightness(2);" />
+                    </a>
 
-                <a href="https://www.linkedin.com/in/hmue-set-san-07bb5a23a/"
-                    target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
-                        alt="LinkedIn" style="filter: brightness(0) invert(1);" />
-                </a>
+                    <a href="https://www.linkedin.com/in/hmue-set-san-07bb5a23a/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
+                            alt="LinkedIn" style="filter: brightness(0) invert(1);" />
+                    </a>
 
-                <a href="https://twitter.com/hmuegyi" target="_blank" rel="noopener" aria-label="Twitter">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
-                        alt="Twitter" style="filter: brightness(0) invert(1);" />
-                </a>
+                    <a href="https://twitter.com/hmuegyi" target="_blank" rel="noopener" aria-label="Twitter">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
+                            alt="Twitter" style="filter: brightness(0) invert(1);" />
+                    </a>
 
-                <a href="https://t.me/Hmue_Gyi" target="_blank" rel="noopener" aria-label="Telegram">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram"
-                        style="filter: brightness(0) invert(1);" />
-                </a>
+                    <a href="https://t.me/Hmue_Gyi" target="_blank" rel="noopener" aria-label="Telegram">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+                            alt="Telegram" style="filter: brightness(0) invert(1);" />
+                    </a>
 
-                <a href="viber://chat?number=%2B959941396827" target="_blank" rel="noopener" aria-label="Viber">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/viber.svg" alt="Viber"
-                        style="filter: brightness(0) invert(1);" />
-                </a>
+                    <a href="viber://chat?number=%2B959941396827" target="_blank" rel="noopener" aria-label="Viber">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/viber.svg" alt="Viber"
+                            style="filter: brightness(0) invert(1);" />
+                    </a>
+                </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>© 2002 Hmuegyi. All rights reserved.</p>
+            <p>© <span id="year">2002</span> Hmue Set San. Built for the future of Robotics.</p>
         </div>
     </footer>
 
-    <script type="module" src="js/main.js"></script>
+    <script src="js/modules/elements.js"></script>
+    <script src="js/modules/menu.js"></script>
+    <script src="js/modules/theme.js"></script>
+    <script src="js/modules/animations.js"></script>
+    <script src="js/main.js"></script>
     </div>
 </body>
 
