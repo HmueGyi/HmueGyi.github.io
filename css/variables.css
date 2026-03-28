@@ -9,6 +9,7 @@
     --accent: #10b981;
     --header-bg: rgba(15, 23, 42, 0.85);
     --section-bg: rgba(30, 41, 59, 0.5);
+    --footer-bg: rgba(15, 23, 42, 0.4);
     
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
@@ -44,6 +45,7 @@ body.light {
     --link-hover-color: #1d4ed8;
     --header-bg: rgba(255, 255, 255, 0.98);
     --section-bg: #ffffff; /* Solid white for better definition */
+    --footer-bg: #e2e8f0; /* Soft gray for light mode footer */
     --muted: #475569;
     --accent: #059669;
     
