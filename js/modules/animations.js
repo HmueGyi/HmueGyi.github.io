@@ -1,6 +1,6 @@
 /* ============================================================
    animations.js  —  Premium Motion Design Engine
-   All animations are IntersectionObserver / rAF based.
+    All animations are IntersectionObserver / timer based.
    Zero external libraries. Respects prefers-reduced-motion.
    ============================================================ */
 
@@ -44,9 +44,9 @@ function initAnimations() {
         revealPage();
     }
 
-    /* =====================================================
-       2. TYPEWRITER — rAF timestamp-delta (no setTimeout jitter)
-       ===================================================== */
+        /* =====================================================
+             2. TYPEWRITER — one setTimeout per character
+             ===================================================== */
     function startTypewriter() {
         if (!typewriterElement) return;
 
@@ -65,55 +65,44 @@ function initAnimations() {
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let lastStamp = 0;
-        let pauseUntil = 0;
-        let rafId;
+        let timerId;
 
-        function tick(now) {
-            rafId = requestAnimationFrame(tick);
-
-            // Still in pause — keep cursor solid, don't render chars
-            if (now < pauseUntil) return;
-
-            // Remove pausing class once pause ends
+        function tick() {
             typewriterElement.classList.remove('tw-pausing');
-
-            const interval = isDeleting ? ERASING_MS : TYPING_MS;
-            if (now - lastStamp < interval) return;
-            lastStamp = now;
-
             const current = phrases[phraseIndex];
 
             if (!isDeleting) {
-                // Type next character
                 charIndex++;
                 typewriterElement.textContent = current.slice(0, charIndex);
 
                 if (charIndex === current.length) {
-                    // Phrase complete — pause, then start erasing
                     isDeleting = true;
-                    pauseUntil = now + PAUSE_FULL;
                     typewriterElement.classList.add('tw-pausing');
+                    timerId = setTimeout(tick, PAUSE_FULL);
+                    return;
                 }
+
+                timerId = setTimeout(tick, TYPING_MS);
             } else {
-                // Erase one character
                 charIndex--;
                 typewriterElement.textContent = current.slice(0, charIndex);
 
                 if (charIndex === 0) {
-                    // Fully erased — move to next phrase, brief pause
                     isDeleting = false;
                     phraseIndex = (phraseIndex + 1) % phrases.length;
-                    pauseUntil = now + PAUSE_EMPTY;
                     typewriterElement.classList.add('tw-pausing');
+                    timerId = setTimeout(tick, PAUSE_EMPTY);
+                    return;
                 }
+
+                timerId = setTimeout(tick, ERASING_MS);
             }
         }
 
-        rafId = requestAnimationFrame(tick);
+        timerId = setTimeout(tick, TYPING_MS);
 
         // Clean up if page unloads
-        window.addEventListener('unload', () => cancelAnimationFrame(rafId), { once: true });
+        window.addEventListener('unload', () => clearTimeout(timerId), { once: true });
     }
 
     /* =====================================================
