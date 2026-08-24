@@ -55,12 +55,18 @@ h2 {
 }
 
 /* ================== Accessibility ================== */
+/* Full reduced-motion reset is handled in animations.css */
 @media (prefers-reduced-motion: reduce) {
     .project-card,
     .skills-logos a,
-    .btn {
+    .btn,
+    [data-reveal],
+    .reveal,
+    header {
         transition: none !important;
         animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 

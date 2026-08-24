@@ -1,10 +1,11 @@
-const toggleThemeBtn = document.getElementById('toggleTheme');
-const icon = document.getElementById('icon');
-const menuToggleBtn = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
+/* ================== Cached DOM References ================== */
+const toggleThemeBtn    = document.getElementById('toggleTheme');
+const icon              = document.getElementById('icon');
+const menuToggleBtn     = document.getElementById('menuToggle');
+const navMenu           = document.getElementById('navMenu');
 const typewriterElement = document.getElementById('typewriter');
-const backToTop = document.getElementById('backToTop');
-const contactForm = document.getElementById('contactForm');
-const tiltCards = document.querySelectorAll('[data-tilt]');
-const revealElements = document.querySelectorAll('.reveal, section, .project-card, .about-photo, .skills-logos a');
+const backToTop         = document.getElementById('backToTop');
+const contactForm       = document.getElementById('contactForm');
+const tiltCards         = document.querySelectorAll('[data-tilt]');
+const revealElements    = document.querySelectorAll('.reveal, .project-card, .about-photo, .skills-logos a');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

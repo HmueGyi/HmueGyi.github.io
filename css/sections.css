@@ -262,7 +262,7 @@ section h3 {
 }
 
 
-/* ================== Typewriter ================== */
+/* ================== Text Rotator ================== */
 .typewriter {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
@@ -270,7 +270,15 @@ section h3 {
     color: var(--accent);
     margin-bottom: 1rem;
     min-height: 1.5em;
+    display: inline-block;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.typewriter.fade-out {
+    opacity: 0;
+    transform: translateY(5px);
+}
+
 
 @media (max-width: 1024px) {
     .hero-inner {

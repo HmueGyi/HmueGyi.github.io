@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hmuegyi - Robotics & AI Architect</title>
+    <title>Hmuegyi - Robotics &amp; AI Architect</title>
+    <meta name="description" content="Hmue Set San — Robotics &amp; AI Architect designing intelligent automation and autonomous systems at the intersection of AI and physics." />
+
     <!-- Professional Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,22 +19,40 @@
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/animations.css" />
 </head>
 
 <body>
+
+    <!-- =================== Page Loader =================== -->
+    <div id="page-loader" aria-hidden="true" role="presentation">
+        <div class="loader-inner">
+            <span class="loader-logo">HmueGyi</span>
+            <div class="loader-bar-wrap">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== Cursor Fireworks Canvas =================== -->
+    <canvas id="cursor-fx" aria-hidden="true"></canvas>
+
+    <!-- =================== Background Canvas =================== -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
     <header>
         <h1>HmueGyi</h1>
         <div class="header-right">
-            <button id="menuToggle" aria-label="Toggle navigation menu">☰</button>
+            <button id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
         </div>
     </header>
 
     <nav id="navMenu" aria-label="Primary navigation">
-        <a href="#home" tabindex="0">Home</a>
-        <a href="#about" tabindex="0">About</a>
-        <a href="#skills" tabindex="0">Skills</a>
+        <a href="#home"     tabindex="0">Home</a>
+        <a href="#about"    tabindex="0">About</a>
+        <a href="#skills"   tabindex="0">Skills</a>
         <a href="#projects" tabindex="0">Projects</a>
-        <a href="#contact" tabindex="0">Contact</a>
+        <a href="#contact"  tabindex="0">Contact</a>
 
         <button id="toggleTheme" aria-label="Toggle light and dark mode">
             <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -43,11 +63,17 @@
     </nav>
 
     <main class="container">
-        <!-- Hero Section -->
+
+        <!-- =================== Hero Section =================== -->
         <section id="home" class="hero" tabindex="0" aria-label="Hero">
+
+            <!-- Ambient light blobs -->
+            <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+            <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+
             <div class="hero-inner">
                 <div class="hero-left">
-                    <h2 class="hero-title">Robotics & AI Architect</h2>
+                    <h2 class="hero-title">Robotics &amp; AI Architect</h2>
                     <div class="typewriter" id="typewriter" aria-live="polite"></div>
 
                     <p class="hero-sub">
@@ -69,30 +95,29 @@
                 </div>
             </div>
 
-            </div>
         </section>
 
-        <!-- About Section -->
+        <!-- =================== About Section =================== -->
         <section id="about" tabindex="0">
-            <h3>About Me</h3>
+            <h3 data-reveal="fade">About Me</h3>
             <div class="about-container">
-                <div class="about-left">
+                <div class="about-left" data-reveal="slide-right">
                     <img src="assets/images/profile1.jpg" alt="Photo of Hmue Set San" class="about-photo" />
                 </div>
                 <div class="about-right">
-                    <p>
-                        Hello! I am <strong>Hmue Set San</strong>, a professional <strong>Robotics & AI
+                    <p data-reveal="slide-up">
+                        Hello! I am <strong>Hmue Set San</strong>, a professional <strong>Robotics &amp; AI
                             Developer</strong> with a rich academic foundation from three premier technical
                         institutions.
                     </p>
-                    <p>
+                    <p data-reveal="slide-up" style="--stagger-step:0.1s; transition-delay:0.1s;">
                         My journey began with deep-diving into computer science, spending 1.5
                         years at <strong>Computer University (Sittwe)</strong>, 1.5 years at <strong>Computer University
                             (Monywa)</strong>, and 1 year at <strong>Computer University (Pathein)</strong>. This
                         academic rotation provided me with a unique perspective on diverse technical ecosystems and
                         research methodologies.
                     </p>
-                    <p>
+                    <p data-reveal="slide-up" style="transition-delay:0.2s;">
                         Currently, I architect intelligent robotic solutions and machine learning models, merging
                         complex algorithms with physical automation to solve real-world challenges.
                     </p>
@@ -100,145 +125,164 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- =================== Skills Section =================== -->
         <section id="skills" tabindex="0">
-            <h3>Skills</h3>
-            <p>Here are some technologies I work with:</p>
-            <div class="skills-logos" aria-label="Skills logos">
+            <h3 data-reveal="fade">Skills</h3>
+            <p data-reveal="slide-up">Here are some technologies I work with:</p>
+            <div class="skills-logos" aria-label="Skills logos" data-stagger>
+
                 <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about Linux">
+                    data-reveal="zoom-fade" aria-label="Learn about Linux">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
                             alt="Linux Logo" />
                     </div>
                     <span>Linux</span>
                 </a>
+
                 <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about Python">
+                    data-reveal="zoom-fade" aria-label="Learn about Python">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                             alt="Python Logo" />
                     </div>
                     <span>Python</span>
                 </a>
+
                 <a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about C++">
+                    data-reveal="zoom-fade" aria-label="Learn about C++">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
                             alt="C++ Logo" />
                     </div>
                     <span>C++</span>
                 </a>
+
                 <a href="https://www.ubuntu.com/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about Ubuntu">
+                    data-reveal="zoom-fade" aria-label="Learn about Ubuntu">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
                             alt="Ubuntu Logo" />
                     </div>
                     <span>Ubuntu</span>
                 </a>
+
                 <a href="https://www.ros.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about ROS">
+                    data-reveal="zoom-fade" aria-label="Learn about ROS">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg"
                             alt="ROS Logo" class="icon-invert" />
                     </div>
                     <span>ROS</span>
                 </a>
+
                 <a href="http://gazebosim.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about Gazebo">
+                    data-reveal="zoom-fade" aria-label="Learn about Gazebo">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg"
                             alt="Gazebo Logo" />
                     </div>
                     <span>Gazebo</span>
                 </a>
+
                 <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about Docker">
+                    data-reveal="zoom-fade" aria-label="Learn about Docker">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
                             alt="Docker Logo" />
                     </div>
                     <span>Docker</span>
                 </a>
+
                 <a href="https://www.tensorflow.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about TensorFlow">
+                    data-reveal="zoom-fade" aria-label="Learn about TensorFlow">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
                             alt="TensorFlow Logo" />
                     </div>
                     <span>TensorFlow</span>
                 </a>
+
                 <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about PyTorch">
+                    data-reveal="zoom-fade" aria-label="Learn about PyTorch">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
                             alt="PyTorch Logo" />
                     </div>
                     <span>PyTorch</span>
                 </a>
+
                 <a href="https://www.mysql.com/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about MySQL">
+                    data-reveal="zoom-fade" aria-label="Learn about MySQL">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
                             alt="MySQL Logo" class="icon-invert" />
                     </div>
                     <span>MySQL</span>
                 </a>
+
                 <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="reveal"
-                    aria-label="Learn about Git">
+                    data-reveal="zoom-fade" aria-label="Learn about Git">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
                             alt="Git Logo" />
                     </div>
                     <span>Git</span>
                 </a>
+
                 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"
-                    rel="noopener noreferrer" class="reveal" aria-label="Learn about JavaScript">
+                    rel="noopener noreferrer" class="reveal" data-reveal="zoom-fade" aria-label="Learn about JavaScript">
                     <div class="icon-wrapper">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
                             alt="JavaScript Logo" />
                     </div>
                     <span>JavaScript</span>
                 </a>
+
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- =================== Projects Section =================== -->
         <section id="projects" tabindex="0">
-            <h3>Projects</h3>
+            <h3 data-reveal="fade">Projects</h3>
             <div class="projects-grid">
-                <article class="project-card" data-tilt>
+
+                <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
                         <h2>Simulation Robot with ROS2</h2>
                         <p>Stack: ROS, C++, URDF, Gazebo</p>
-                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project"></a>
+                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project on GitHub"
+                            target="_blank" rel="noopener noreferrer"></a>
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt>
+                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.1s;">
                     <div class="project-inner">
                         <h2>Object Detection with AI</h2>
                         <p>Stack: PyTorch, Python, YOLO</p>
-                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project"></a>
+                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project on GitHub"
+                            target="_blank" rel="noopener noreferrer"></a>
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt>
+                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.2s;">
                     <div class="project-inner">
                         <h2>Large Language Model with AI</h2>
                         <p>Stack: OLLAMA, Langchain</p>
-                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project"></a>
+                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project on GitHub"
+                            target="_blank" rel="noopener noreferrer"></a>
                     </div>
                 </article>
+
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- =================== Contact Section =================== -->
         <section id="contact" tabindex="0">
-            <h3>Contact Me</h3>
+            <h3 data-reveal="fade">Contact Me</h3>
             <div class="contact-container">
-                <div class="contact-info reveal">
+
+                <div class="contact-info reveal" data-reveal="slide-right">
                     <div class="info-card">
                         <h4>Contact Information</h4>
                         <p>Feel free to reach out for collaborations or just a friendly hello!</p>
@@ -276,7 +320,7 @@
                     </div>
                 </div>
 
-                <div class="contact-form-wrap reveal">
+                <div class="contact-form-wrap reveal" data-reveal="slide-left">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -297,18 +341,20 @@
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
+
             </div>
         </section>
+
     </main>
 
-    <!-- Back to Top Button -->
+    <!-- =================== Back to Top =================== -->
     <button id="backToTop" aria-label="Scroll to top" title="Back to top">
         <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 24 24" width="26" fill="currentColor">
             <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8z" />
         </svg>
     </button>
 
-    <!-- Footer -->
+    <!-- =================== Footer =================== -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col links">
@@ -353,7 +399,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© <span id="year">2002</span> Hmue Set San. Built for the future of Robotics.</p>
+            <p>© <span id="year">2024</span> Hmue Set San. Built for the future of Robotics.</p>
         </div>
     </footer>
 
@@ -362,7 +408,7 @@
     <script src="js/modules/theme.js"></script>
     <script src="js/modules/animations.js"></script>
     <script src="js/main.js"></script>
-    </div>
+
 </body>
 
 </html>

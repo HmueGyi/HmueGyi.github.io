@@ -1,0 +1,667 @@
+/* ============================================================
+   animations.css  —  Premium Motion Design System
+   All keyframes + animation utility classes live here.
+   Respects prefers-reduced-motion throughout.
+   ============================================================ */
+
+/* =================== Page Loader =================== */
+#page-loader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-color);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#page-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.loader-logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--link-color), var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: loaderFadeIn 0.4s ease forwards 0.1s;
+}
+
+.loader-bar-wrap {
+    width: 180px;
+    height: 3px;
+    background: var(--glass-border);
+    border-radius: 999px;
+    overflow: hidden;
+    opacity: 0;
+    animation: loaderFadeIn 0.4s ease forwards 0.3s;
+}
+
+.loader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--link-color), var(--accent));
+    border-radius: 999px;
+    animation: loaderProgress 0.9s var(--ease-out-expo) forwards 0.4s;
+}
+
+@keyframes loaderFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes loaderProgress {
+    to {
+        width: 100%;
+    }
+}
+
+/* =================== Cursor Fireworks Canvas =================== */
+#cursor-fx {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99998;
+}
+
+/* Hide on touch devices */
+@media (hover: none) {
+    #cursor-fx {
+        display: none;
+    }
+}
+
+
+/* =================== Background Canvas =================== */
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+/* =================== Page-Load Hero Entrance =================== */
+/* Applied via JS adding .page-ready to body */
+.hero-left>* {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+body.page-ready .hero-left .hero-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+}
+
+body.page-ready .hero-left .typewriter {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.28s;
+}
+
+body.page-ready .hero-left .hero-sub {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.38s;
+}
+
+body.page-ready .hero-left .hero-cta {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+/* Hero right — scale-in entrance */
+.hero-right {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+    transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+    transition-delay: 0.3s;
+}
+
+body.page-ready .hero-right {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Header entrance */
+header {
+    transform: translateY(-100%);
+    transition: transform 0.6s var(--ease-out-expo), background 0.4s ease, box-shadow 0.4s ease;
+}
+
+body.page-ready header {
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+/* Nav entrance stagger (desktop) */
+@media (min-width: 769px) {
+    nav a {
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: color 0.3s ease, background 0.3s ease,
+            opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+    }
+
+    body.page-ready nav a:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.55s;
+    }
+
+    body.page-ready nav a:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.62s;
+    }
+
+    body.page-ready nav a:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.69s;
+    }
+
+    body.page-ready nav a:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.76s;
+    }
+
+    body.page-ready nav a:nth-child(5) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.83s;
+    }
+
+    body.page-ready nav #toggleTheme {
+        opacity: 1;
+        transition-delay: 0.9s;
+    }
+
+    nav #toggleTheme {
+        opacity: 0;
+        transition: all 0.3s ease, opacity 0.5s var(--ease-out-expo);
+    }
+}
+
+/* =================== Navbar — Active Link =================== */
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 70%;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--link-color), var(--accent));
+    transition: transform 0.35s var(--ease-out-expo);
+}
+
+nav a:hover::after,
+nav a.nav-active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+nav a.nav-active {
+    color: var(--link-color) !important;
+}
+
+/* =================== Scroll-Triggered Reveal Variants =================== */
+/* Base state — JS adds .in-view */
+[data-reveal] {
+    will-change: transform, opacity;
+}
+
+[data-reveal="fade"] {
+    opacity: 0;
+    transition: opacity 0.75s var(--ease-out-expo);
+}
+
+[data-reveal="slide-up"] {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+}
+
+[data-reveal="slide-left"] {
+    opacity: 0;
+    transform: translateX(-44px);
+    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+}
+
+[data-reveal="slide-right"] {
+    opacity: 0;
+    transform: translateX(44px);
+    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+}
+
+[data-reveal="scale-in"] {
+    opacity: 0;
+    transform: scale(0.88);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+[data-reveal="zoom-fade"] {
+    opacity: 0;
+    transform: scale(0.94) translateY(20px);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+/* Revealed state */
+[data-reveal].in-view {
+    opacity: 1;
+    transform: none;
+}
+
+/* Stagger delays for child items */
+[data-stagger]>*:nth-child(1) {
+    transition-delay: calc(0 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(2) {
+    transition-delay: calc(1 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(3) {
+    transition-delay: calc(2 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(4) {
+    transition-delay: calc(3 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(5) {
+    transition-delay: calc(4 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(6) {
+    transition-delay: calc(5 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(7) {
+    transition-delay: calc(6 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(8) {
+    transition-delay: calc(7 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(9) {
+    transition-delay: calc(8 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(10) {
+    transition-delay: calc(9 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(11) {
+    transition-delay: calc(10 * var(--stagger-step, 0.08s));
+}
+
+[data-stagger]>*:nth-child(12) {
+    transition-delay: calc(11 * var(--stagger-step, 0.08s));
+}
+
+/* =================== Header scroll state =================== */
+header.scrolled {
+    background: var(--header-bg);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    padding: 0.7rem 2rem;
+}
+
+/* =================== Hero — Gradient light blobs =================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.hero-blob-1 {
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 70%);
+    top: -15%;
+    left: -10%;
+    animation: blobDrift1 14s ease-in-out infinite;
+}
+
+.hero-blob-2 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent 70%);
+    bottom: 10%;
+    right: 5%;
+    animation: blobDrift2 11s ease-in-out infinite;
+}
+
+@keyframes blobDrift1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -20px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 30px) scale(0.97);
+    }
+}
+
+@keyframes blobDrift2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    40% {
+        transform: translate(-25px, 20px) scale(1.06);
+    }
+
+    70% {
+        transform: translate(20px, -15px) scale(0.96);
+    }
+}
+
+/* =================== Robot wrap parallax float =================== */
+@keyframes heroFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+/* Float applied to img so JS parallax on .robot-wrap doesn't conflict */
+#robot-gif {
+    animation: heroFloat 6s ease-in-out infinite;
+}
+
+/* Override the section-level animation that was set in sections.css */
+.robot-wrap {
+    animation: pulseGlow 4s ease-in-out infinite !important;
+}
+
+/* =================== Section heading reveal accent line =================== */
+section h3 {
+    position: relative;
+    /* Keep existing text-align: center from sections.css; no positional override needed */
+}
+
+section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--link-color), var(--accent));
+    border-radius: 99px;
+    transition: transform 0.55s var(--ease-out-expo) 0.2s;
+}
+
+section h3.in-view::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* =================== Project cards — glow border on hover =================== */
+.project-card {
+    --glow-opacity: 0;
+    transition: var(--transition-smooth), --glow-opacity 0.4s ease;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(16, 185, 129, 0.3));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+/* =================== Skill icon shimmer =================== */
+@keyframes iconShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.skills-logos a:focus-visible .icon-wrapper,
+.skills-logos a:hover .icon-wrapper {
+    background: linear-gradient(90deg,
+            rgba(59, 130, 246, 0.08) 0%,
+            rgba(59, 130, 246, 0.18) 50%,
+            rgba(59, 130, 246, 0.08) 100%);
+    background-size: 200% auto;
+    animation: iconShimmer 1.2s linear forwards;
+}
+
+/* =================== Contact form input micro-interaction =================== */
+.form-group {
+    position: relative;
+}
+
+.form-group::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1.2rem;
+    right: 1.2rem;
+    height: 2px;
+    background: linear-gradient(90deg, var(--link-color), var(--accent));
+    border-radius: 99px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+.form-group:focus-within::after {
+    transform: scaleX(1);
+}
+
+/* =================== Mobile menu — slide in items =================== */
+@media (max-width: 768px) {
+    nav a {
+        opacity: 0;
+        transform: translateX(24px);
+        transition: color 0.3s ease, background 0.3s ease,
+            opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo),
+            border-bottom 0.3s ease;
+    }
+
+    nav.open a {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    nav.open a:nth-child(1) {
+        transition-delay: 0.08s;
+    }
+
+    nav.open a:nth-child(2) {
+        transition-delay: 0.14s;
+    }
+
+    nav.open a:nth-child(3) {
+        transition-delay: 0.20s;
+    }
+
+    nav.open a:nth-child(4) {
+        transition-delay: 0.26s;
+    }
+
+    nav.open a:nth-child(5) {
+        transition-delay: 0.32s;
+    }
+
+    nav.open #toggleTheme {
+        opacity: 1;
+        transition-delay: 0.38s;
+    }
+
+    nav #toggleTheme {
+        opacity: 0;
+        transition: all 0.3s ease, opacity 0.4s var(--ease-out-expo);
+    }
+}
+
+/* =================== Hamburger to X morph =================== */
+#menuToggle {
+    transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
+}
+
+#menuToggle:hover {
+    transform: scale(1.08);
+}
+
+/* =================== Social links glow =================== */
+.social-links-wrap a {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links-wrap a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.social-links-wrap a:hover::before {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+/* =================== Footer links slide =================== */
+.footer-col.links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer-col.links a::before {
+    content: '→';
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 0.85rem;
+    color: var(--link-color);
+}
+
+.footer-col.links a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* =================== About photo subtle parallax wrapper =================== */
+.about-left {
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+}
+
+/* =================== Info item hover =================== */
+.info-item {
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    margin-left: -0.8rem;
+    transition: background 0.3s ease;
+}
+
+.info-item:hover {
+    background: rgba(59, 130, 246, 0.06);
+}
+
+/* =================== Reduced motion override =================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-reveal],
+    .hero-left>*,
+    .hero-right,
+    nav a {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    header {
+        transform: none !important;
+    }
+
+    #cursor-fx,
+    #page-loader,
+    #bg-canvas {
+        display: none !important;
+    }
+
+    .hero-blob {
+        display: none;
+    }
+
+    .typewriter::after {
+        display: none !important;
+    }
+}
