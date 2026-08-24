@@ -12,7 +12,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem clamp(1rem, 4vw, 2rem);
     transition: all 0.4s ease;
 }
 
@@ -30,7 +30,7 @@ nav {
     gap: 1rem;
     position: fixed;
     top: 1.2rem;
-    right: 2rem;
+    right: clamp(1rem, 4vw, 2rem);
     z-index: 6000;
 }
 
@@ -91,7 +91,7 @@ nav a:hover {
 
 /* ================== Footer ================== */
 footer {
-    padding: 3rem 4rem 2rem;
+    padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 5vw, 4rem) 2rem;
     background: var(--footer-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -229,15 +229,14 @@ body.light .social-links-wrap a img {
         top: 0;
         right: 0;
         bottom: 0;
-        width: 80%; /* Takes up 80% on very small screens */
-        max-width: 300px; /* But no more than 300px */
+        width: min(82vw, 320px);
         background: var(--bg-color);
         box-shadow: -10px 0 50px rgba(0, 0, 0, 0.4);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding: 6rem 2rem 2rem;
+        padding: 6rem clamp(1rem, 5vw, 2rem) 2rem;
         gap: 1rem;
         transform: translateX(100%);
         transition: transform 0.4s var(--ease-out-expo);
@@ -263,8 +262,12 @@ body.light .social-links-wrap a img {
 
     /* Adjust header for mobile */
     header {
-        padding: 1rem 1.5rem;
+        padding: 0.85rem clamp(0.9rem, 4vw, 1.5rem);
         z-index: 10000;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
     }
 
     #menuToggle {
@@ -291,9 +294,37 @@ body.light .social-links-wrap a img {
 @media (max-width: 640px) {
     .footer-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
     .footer-col.brand {
         grid-column: span 1;
+    }
+
+    .footer-col h4,
+    .footer-logo,
+    .footer-col.brand p {
+        text-align: center !important;
+        max-width: none;
+    }
+
+    .footer-col.links ul {
+        text-align: center;
+    }
+
+    .social-links-wrap {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 380px) {
+    nav {
+        width: 88vw;
+    }
+
+    #menuToggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.55rem;
     }
 }

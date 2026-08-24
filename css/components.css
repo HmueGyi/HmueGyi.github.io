@@ -12,6 +12,8 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
+    text-align: center;
+    min-height: 44px;
 }
 
 .btn.ghost {
@@ -31,11 +33,11 @@
 
 /* ================== Skills Logos ================== */
 .skills-logos {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
     justify-content: center;
-    flex-wrap: wrap;
     align-items: flex-start;
-    gap: 2.5rem;
+    gap: clamp(1.25rem, 3.5vw, 2.5rem);
     margin-top: 4rem;
 }
 
@@ -45,6 +47,8 @@
     align-items: center;
     gap: 1rem;
     width: 120px;
+    max-width: 100%;
+    justify-self: center;
     transition: var(--transition-smooth);
     text-decoration: none;
 }
@@ -115,7 +119,7 @@ body.light .skills-logos img.icon-invert {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 28px;
-    padding: 2.5rem;
+    padding: clamp(1.35rem, 3.5vw, 2.5rem);
     position: relative;
     overflow: hidden;
     transition: var(--transition-smooth);
@@ -123,6 +127,7 @@ body.light .skills-logos img.icon-invert {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 0;
 }
 
 .project-card:hover {
@@ -163,7 +168,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 2.5rem;
+    padding: clamp(1.25rem, 3.5vw, 2.5rem);
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -197,6 +202,8 @@ textarea {
     color: var(--text-color);
     font-family: var(--font-body);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    min-width: 0;
 }
 
 body.light input,
@@ -306,6 +313,7 @@ button[type="submit"] {
 
 @media (max-width: 768px) {
     .skills-logos {
+        grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
         gap: 1.5rem;
         margin-top: 2rem;
     }
@@ -332,9 +340,18 @@ button[type="submit"] {
     form {
         padding: 1.8rem;
     }
+
+    button[type="submit"] {
+        width: 100%;
+        align-self: stretch;
+    }
 }
 
 @media (max-width: 480px) {
+    .projects-grid {
+        gap: 1rem;
+    }
+
     .skills-logos a {
         width: 80px;
     }
@@ -352,5 +369,33 @@ button[type="submit"] {
 
     .skills-logos span {
         font-size: 0.85rem;
+    }
+
+    #backToTop {
+        right: 1rem;
+        bottom: 1rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 380px) {
+    .skills-logos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.1rem 0.75rem;
+    }
+
+    .project-card h2 {
+        font-size: 1.25rem;
+    }
+
+    form {
+        gap: 1.1rem;
+    }
+
+    input,
+    textarea {
+        padding: 0.9rem 1rem;
     }
 }
