@@ -58,65 +58,44 @@ function initAnimations() {
         revealPage();
     }
 
-        /* =====================================================
-             2. TYPEWRITER — one setTimeout per character
-             ===================================================== */
-    function startTypewriter() {
-        if (!typewriterElement) return;
 
+    // ================== Typewriter ==================
+    if (!prefersReducedMotion && typewriterElement) {
         const phrases = [
-            'Engineering Intelligence Beyond Boundaries.',
-            'Building Machines That Think Deeper.',
-            'Pushing the Frontier of Intelligent Systems.',
-            'Where Physics Meets Artificial Intelligence.'
+            "Developing intelligent AI agents to assist in everyday tasks.",
+            "Hands-on robotics with ROS, sensors, and autonomous navigation.",
+            "Building robust AI systems using object detection and LLMs.",
+            "Exploring perception, planning, and decision-making for smart machines."
         ];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false;
+        const typingSpeed = 70, erasingSpeed = 36, delayBetween = 1600;
 
-        const TYPING_MS = 120;   // ms per character when typing
-        const ERASING_MS = 100;   // ms per character when erasing
-        const PAUSE_FULL = 2200; // ms pause at end of full phrase
-        const PAUSE_EMPTY = 380; // ms pause before typing next phrase
-
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let timerId;
-
-        function tick() {
-            typewriterElement.classList.remove('tw-pausing');
+        function type() {
             const current = phrases[phraseIndex];
-
             if (!isDeleting) {
+                typewriterElement.textContent = current.substring(0, charIndex + 1);
                 charIndex++;
-                typewriterElement.textContent = current.slice(0, charIndex);
-
                 if (charIndex === current.length) {
                     isDeleting = true;
-                    typewriterElement.classList.add('tw-pausing');
-                    timerId = setTimeout(tick, PAUSE_FULL);
-                    return;
+                    setTimeout(type, delayBetween);
+                } else {
+                    setTimeout(type, typingSpeed + Math.random() * 40);
                 }
-
-                timerId = setTimeout(tick, TYPING_MS);
             } else {
+                typewriterElement.textContent = current.substring(0, charIndex - 1);
                 charIndex--;
-                typewriterElement.textContent = current.slice(0, charIndex);
-
                 if (charIndex === 0) {
                     isDeleting = false;
                     phraseIndex = (phraseIndex + 1) % phrases.length;
-                    typewriterElement.classList.add('tw-pausing');
-                    timerId = setTimeout(tick, PAUSE_EMPTY);
-                    return;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    setTimeout(type, erasingSpeed);
                 }
-
-                timerId = setTimeout(tick, ERASING_MS);
             }
         }
-
-        timerId = setTimeout(tick, TYPING_MS);
-
-        // Clean up if page unloads
-        window.addEventListener('unload', () => clearTimeout(timerId), { once: true });
+        setTimeout(type, 700);
+    } else if (typewriterElement) {
+        typewriterElement.textContent = "Building smart AI models that solve real problems.";
     }
 
     /* =====================================================
