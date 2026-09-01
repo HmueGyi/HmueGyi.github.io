@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0e14" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Hmuegyi - Robotics &amp; AI Architect</title>
     <meta name="description"
         content="Hmue Set San — Robotics &amp; AI Architect designing intelligent automation and autonomous systems at the intersection of AI and physics." />
@@ -12,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="css/variables.css" />
@@ -25,6 +28,9 @@
 
 <body>
 
+    <!-- =================== Scroll Progress Bar =================== -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
     <!-- =================== Page Loader =================== -->
     <div id="page-loader" aria-hidden="true" role="presentation">
         <div class="loader-inner">
@@ -32,8 +38,12 @@
             <div class="loader-bar-wrap">
                 <div class="loader-bar"></div>
             </div>
+            <span class="loader-subtitle">Robotics &amp; AI Architect</span>
         </div>
     </div>
+
+    <!-- =================== Mobile Nav Overlay =================== -->
+    <div id="nav-overlay" aria-hidden="true"></div>
 
     <!-- =================== Cursor Fireworks Canvas =================== -->
     <canvas id="cursor-fx" aria-hidden="true"></canvas>
@@ -252,27 +262,39 @@
                 <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
                         <h2>Simulation Robot with ROS2</h2>
-                        <p>Stack: ROS, C++, URDF, Gazebo</p>
-                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project on GitHub"
-                            target="_blank" rel="noopener noreferrer"></a>
+                        <p>Autonomous differential-drive robot simulated in Gazebo with full URDF model, sensor fusion
+                            and ROS2 Nav2 navigation stack.</p>
+                        <div class="project-tags">
+                            <span>ROS2</span><span>C++</span><span>URDF</span><span>Gazebo</span>
+                        </div>
+                        <a class="project-link btn" href="https://github.com/hmuegyi" aria-label="View on GitHub"
+                            target="_blank" rel="noopener noreferrer">View Project →</a>
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.1s;">
+                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.12s;">
                     <div class="project-inner">
                         <h2>Object Detection with AI</h2>
-                        <p>Stack: PyTorch, Python, YOLO</p>
-                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project on GitHub"
-                            target="_blank" rel="noopener noreferrer"></a>
+                        <p>Real-time multi-class object detection pipeline using YOLOv8 and PyTorch, optimised for edge
+                            deployment on embedded hardware.</p>
+                        <div class="project-tags">
+                            <span>PyTorch</span><span>Python</span><span>YOLO</span><span>OpenCV</span>
+                        </div>
+                        <a class="project-link btn" href="https://github.com/hmuegyi" aria-label="View on GitHub"
+                            target="_blank" rel="noopener noreferrer">View Project →</a>
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.2s;">
+                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.24s;">
                     <div class="project-inner">
-                        <h2>Large Language Model with AI</h2>
-                        <p>Stack: OLLAMA, Langchain</p>
-                        <a class="project-link" href="https://github.com/hmuegyi" aria-label="Open project on GitHub"
-                            target="_blank" rel="noopener noreferrer"></a>
+                        <h2>Large Language Model AI</h2>
+                        <p>Local RAG-powered chatbot using OLLAMA and LangChain with document retrieval, context memory
+                            and streaming responses.</p>
+                        <div class="project-tags">
+                            <span>OLLAMA</span><span>LangChain</span><span>Python</span><span>RAG</span>
+                        </div>
+                        <a class="project-link btn" href="https://github.com/hmuegyi" aria-label="View on GitHub"
+                            target="_blank" rel="noopener noreferrer">View Project →</a>
                     </div>
                 </article>
 

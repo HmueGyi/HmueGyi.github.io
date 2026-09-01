@@ -10,6 +10,20 @@ function initAnimations() {
     const reduced = prefersReducedMotion;
 
     /* =====================================================
+       0. SCROLL PROGRESS BAR
+       ===================================================== */
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = pct + '%';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+    }
+    /* =====================================================
        1. PAGE LOADER
        ===================================================== */
     const loader = document.getElementById('page-loader');
@@ -490,9 +504,10 @@ function initAnimations() {
     }
 
     /* =====================================================
-       8. PROJECT CARD TILT (3-D)
+       8. PROJECT CARD TILT (3-D)  — desktop only
        ===================================================== */
-    if (!reduced) {
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (!reduced && !isTouchDevice) {
         let lastMove = 0;
         tiltCards.forEach(card => {
             card.addEventListener('mousemove', e => {
@@ -609,6 +624,39 @@ function initAnimations() {
             const offset = (center - vh) * 0.04;
             aboutPhoto.style.transform = `translateY(${offset}px)`;
         }, { passive: true });
+    }
+
+    /* =====================================================
+       15. ANIMATED STAT COUNTERS
+       ===================================================== */
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+    if (statNumbers.length && !reduced) {
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.count, 10);
+            const duration = 1400;
+            const startTime = performance.now();
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(eased * target);
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        const counterObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => counterObserver.observe(el));
     }
 
 }

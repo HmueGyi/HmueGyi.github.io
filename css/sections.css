@@ -11,6 +11,95 @@ section {
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* =================== Stats Section =================== */
+.stats-section {
+    padding: clamp(1.5rem, 4vw, 2.5rem) !important;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: clamp(1rem, 3vw, 1.8rem) 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease, border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(59,130,246,0.12), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--link-color);
+    box-shadow: 0 20px 40px rgba(59,130,246,0.15);
+}
+
+.stat-item:hover::before { opacity: 1; }
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--link-color), var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.stat-unit {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 800;
+    color: var(--accent);
+    margin-top: -0.5rem;
+    align-self: flex-start;
+    margin-left: -0.5rem;
+}
+
+.stat-label {
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.2rem;
+}
+
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.7rem;
+    }
+    .stat-number { font-size: 1.8rem; }
+}
+
 section h3 {
     font-size: clamp(1.8rem, 4.2vw, 2.5rem);
     font-family: var(--font-heading);
@@ -269,6 +358,70 @@ section h3 {
 }
 
 
+/* ================== Project Card Internals ================== */
+.project-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 0.8rem;
+}
+
+.project-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+    filter: drop-shadow(0 4px 8px rgba(59,130,246,0.3));
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+.project-card:hover .project-icon {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+.project-card p {
+    flex: 1;
+    font-size: 0.93rem;
+    color: var(--muted);
+    margin: 0;
+    text-align: left;
+    line-height: 1.65;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.4rem;
+}
+
+.project-tags span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 99px;
+    color: var(--link-color);
+    letter-spacing: 0.3px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover .project-tags span {
+    background: rgba(59, 130, 246, 0.18);
+    border-color: rgba(59, 130, 246, 0.45);
+}
+
+.project-link.btn {
+    margin-top: 0.8rem;
+    align-self: flex-start;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+}
+
+@media (max-width: 480px) {
+    .project-link.btn { width: 100%; text-align: center; align-self: stretch; }
+}
+
 /* ================== Text Rotator ================== */
 .typewriter {
     font-family: 'JetBrains Mono', monospace;
@@ -322,8 +475,8 @@ section h3 {
 
 @media (max-width: 768px) {
     section {
-        margin: 1.2rem auto;
-        padding: 2rem 1.2rem;
+        margin: 1rem auto;
+        padding: 1.6rem 1.1rem;
         border-radius: 22px;
     }
 
@@ -336,10 +489,11 @@ section h3 {
         margin-top: 86px;
         min-height: auto;
         padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     .hero-title {
-        font-size: clamp(2.2rem, 8vw, 3rem);
+        font-size: clamp(2rem, 8vw, 3rem);
     }
 
     .hero-sub {
@@ -348,6 +502,16 @@ section h3 {
 
     .contact-container {
         margin-top: 2rem;
+    }
+}
+
+/* iOS Safe Area Support */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    footer {
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    }
+    #backToTop {
+        bottom: calc(2rem + env(safe-area-inset-bottom));
     }
 }
 
