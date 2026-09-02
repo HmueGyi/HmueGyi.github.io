@@ -42,7 +42,7 @@ section {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(59,130,246,0.12), transparent 70%);
+    background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -50,10 +50,12 @@ section {
 .stat-item:hover {
     transform: translateY(-6px);
     border-color: var(--link-color);
-    box-shadow: 0 20px 40px rgba(59,130,246,0.15);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
 }
 
-.stat-item:hover::before { opacity: 1; }
+.stat-item:hover::before {
+    opacity: 1;
+}
 
 .stat-number {
     font-family: var(--font-heading);
@@ -97,7 +99,10 @@ section {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.7rem;
     }
-    .stat-number { font-size: 1.8rem; }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
 }
 
 section h3 {
@@ -162,28 +167,42 @@ section h3 {
     width: fit-content;
     height: fit-content;
     max-width: 100%;
-    padding: clamp(1rem, 4vw, 2.5rem); /* Scales down smoothly on smaller screens */
+    /* Scales down smoothly on smaller screens */
     background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2), transparent 75%);
     border-radius: 50%;
+    overflow: hidden;
+    /* Clip the GIF into the circle */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 50px rgba(59, 130, 246, 0.08); /* More subtle glow */
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.08);
+    /* More subtle glow */
     animation: pulseGlow 4s ease-in-out infinite;
 }
 
 @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.05); transform: scale(1); }
-    50% { box-shadow: 0 0 70px rgba(59, 130, 246, 0.2); transform: scale(1.03); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.05);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 70px rgba(59, 130, 246, 0.2);
+        transform: scale(1.03);
+    }
 }
 
 #robot-gif {
-    width: min(320px, 58vw); /* Base width for laptop to make it visible */
-    height: auto;
+    width: min(320px, 38vw);
+    /* Base width for laptop to make it visible */
+    height: min(320px, 38vw);
     max-width: 100%;
     display: block;
-    border-radius: 20px;
-    object-fit: contain;
+    border-radius: 50%;
+    /* Fully circular */
+    object-fit: cover;
     /* Added for sharpness since it's a small GIF being enlarged */
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -193,14 +212,19 @@ section h3 {
     .robot-wrap {
         padding: 2rem;
     }
+
     #robot-gif {
-        width: 250px; /* Smaller for tablets/small laptops */
+        width: 250px;
+        /* Smaller for tablets/small laptops */
+        height: 250px;
     }
 }
 
 @media (max-width: 640px) {
     #robot-gif {
-        width: 180px; /* Perfect for mobile phones */
+        width: 180px;
+        /* Perfect for mobile phones */
+        height: 180px;
     }
 }
 
@@ -251,7 +275,8 @@ section h3 {
 }
 
 .info-card p {
-    text-align: left !important; /* Override section p centering */
+    text-align: left !important;
+    /* Override section p centering */
     font-size: 1rem !important;
     margin-bottom: 2rem !important;
 }
@@ -305,7 +330,8 @@ section h3 {
 }
 
 .contact-form-wrap form {
-    margin: 0; /* Override default form margin */
+    margin: 0;
+    /* Override default form margin */
     max-width: 100%;
 }
 
@@ -315,6 +341,7 @@ section h3 {
         gap: 2rem;
     }
 }
+
 .about-container {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -370,7 +397,7 @@ section h3 {
     font-size: 2.2rem;
     line-height: 1;
     margin-bottom: 0.2rem;
-    filter: drop-shadow(0 4px 8px rgba(59,130,246,0.3));
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3));
     transition: transform 0.4s var(--ease-out-expo);
 }
 
@@ -419,7 +446,11 @@ section h3 {
 }
 
 @media (max-width: 480px) {
-    .project-link.btn { width: 100%; text-align: center; align-self: stretch; }
+    .project-link.btn {
+        width: 100%;
+        text-align: center;
+        align-self: stretch;
+    }
 }
 
 /* ================== Text Rotator ================== */
@@ -510,6 +541,7 @@ section h3 {
     footer {
         padding-bottom: calc(2rem + env(safe-area-inset-bottom));
     }
+
     #backToTop {
         bottom: calc(2rem + env(safe-area-inset-bottom));
     }
