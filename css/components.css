@@ -66,11 +66,57 @@
     box-shadow: var(--project-card-shadow);
 }
 
+body.light .skills-logos .icon-wrapper {
+    background: #e9eef5;
+    border-color: rgba(15, 23, 42, 0.16);
+}
+
 .skills-logos img {
     width: 52px;
     height: 52px;
     object-fit: contain;
     transition: transform 0.4s var(--ease-out-expo);
+}
+
+.skills-logos img.brand-wordmark {
+    width: min(82px, 90%);
+    height: auto;
+    max-height: 42px;
+}
+
+.skills-logos img.yolo-wordmark {
+    filter: brightness(0) invert(1);
+}
+
+body.light .skills-logos img.yolo-wordmark {
+    filter: none;
+}
+
+body.light .skills-logos img.langchain-wordmark {
+    filter: brightness(0);
+}
+
+.skills-logos img.ollama-wordmark {
+    filter: brightness(0) invert(1);
+}
+
+body.light .skills-logos img.ollama-wordmark {
+    filter: none;
+}
+
+.skills-logos img.huggingface-mark {
+    padding: 5px;
+    border-radius: 50%;
+    background: #263238;
+}
+
+.skills-logos img.nvidia-wordmark {
+    padding: 0;
+    background: transparent;
+}
+
+body.light .skills-logos img.nvidia-wordmark {
+    filter: brightness(0);
 }
 
 .skills-logos img.icon-invert {

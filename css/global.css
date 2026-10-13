@@ -113,7 +113,7 @@ h2 {
     transition-delay: calc(var(--reveal-index, 0) * 0.1s);
 }
 
-/* Automatic child delays (up to 12 items) */
+/* Automatic child delays (up to 20 items) */
 .skills-logos a:nth-child(1) { --reveal-index: 1; }
 .skills-logos a:nth-child(2) { --reveal-index: 2; }
 .skills-logos a:nth-child(3) { --reveal-index: 3; }
@@ -126,6 +126,14 @@ h2 {
 .skills-logos a:nth-child(10) { --reveal-index: 10; }
 .skills-logos a:nth-child(11) { --reveal-index: 11; }
 .skills-logos a:nth-child(12) { --reveal-index: 12; }
+.skills-logos a:nth-child(13) { --reveal-index: 1; }
+.skills-logos a:nth-child(14) { --reveal-index: 2; }
+.skills-logos a:nth-child(15) { --reveal-index: 3; }
+.skills-logos a:nth-child(16) { --reveal-index: 4; }
+.skills-logos a:nth-child(17) { --reveal-index: 5; }
+.skills-logos a:nth-child(18) { --reveal-index: 6; }
+.skills-logos a:nth-child(19) { --reveal-index: 7; }
+.skills-logos a:nth-child(20) { --reveal-index: 8; }
 
 .projects-grid article:nth-child(1) { --reveal-index: 1; }
 .projects-grid article:nth-child(2) { --reveal-index: 2; }

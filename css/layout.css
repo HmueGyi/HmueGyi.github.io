@@ -30,7 +30,7 @@ nav {
     gap: 1rem;
     position: fixed;
     top: 1.2rem;
-    right: clamp(1rem, 4vw, 2rem);
+    right: calc(clamp(1rem, 4vw, 2rem) + 3.5rem);
     z-index: 6000;
 }
 
@@ -67,9 +67,9 @@ nav a:hover {
 #toggleTheme {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,20 +274,16 @@ body.light .social-links-wrap a img {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        width: 44px;
-        height: 44px;
+        border-radius: 14px;
+        width: 42px;
+        height: 42px;
         cursor: pointer;
         color: var(--link-color);
         box-shadow: var(--project-card-shadow);
         z-index: 11000;
-    }
-
-    #toggleTheme {
-        margin-top: 1.5rem;
     }
 }
 
@@ -323,8 +319,8 @@ body.light .social-links-wrap a img {
     }
 
     #menuToggle {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         font-size: 1.55rem;
     }
 }
