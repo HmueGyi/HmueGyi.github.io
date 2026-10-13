@@ -42,7 +42,7 @@ section {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 70%);
+    background: radial-gradient(circle at 50% 0%, rgba(var(--link-rgb), 0.12), transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -50,7 +50,7 @@ section {
 .stat-item:hover {
     transform: translateY(-6px);
     border-color: var(--link-color);
-    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 20px 40px rgba(var(--link-rgb), 0.15);
 }
 
 .stat-item:hover::before {
@@ -168,14 +168,14 @@ section h3 {
     height: fit-content;
     max-width: 100%;
     /* Scales down smoothly on smaller screens */
-    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2), transparent 75%);
+    background: radial-gradient(circle at center, rgba(var(--link-rgb), 0.2), transparent 75%);
     border-radius: 50%;
     overflow: hidden;
     /* Clip the GIF into the circle */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 50px rgba(59, 130, 246, 0.08);
+    box-shadow: 0 0 50px rgba(var(--link-rgb), 0.08);
     /* More subtle glow */
     animation: pulseGlow 4s ease-in-out infinite;
 }
@@ -184,12 +184,12 @@ section h3 {
 
     0%,
     100% {
-        box-shadow: 0 0 40px rgba(59, 130, 246, 0.05);
+        box-shadow: 0 0 40px rgba(var(--link-rgb), 0.05);
         transform: scale(1);
     }
 
     50% {
-        box-shadow: 0 0 70px rgba(59, 130, 246, 0.2);
+        box-shadow: 0 0 70px rgba(var(--link-rgb), 0.2);
         transform: scale(1.03);
     }
 }
@@ -292,7 +292,7 @@ section h3 {
 .info-icon {
     width: 48px;
     height: 48px;
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(var(--link-rgb), 0.1);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -363,7 +363,7 @@ section h3 {
 
 .about-photo:hover {
     transform: scale(1.02) rotate(2deg);
-    box-shadow: 0 40px 80px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 40px 80px rgba(var(--link-rgb), 0.25);
 }
 
 .about-right p {
@@ -381,7 +381,7 @@ section h3 {
 }
 
 .about-right strong:hover {
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(var(--link-rgb), 0.1);
 }
 
 
@@ -397,7 +397,7 @@ section h3 {
     font-size: 2.2rem;
     line-height: 1;
     margin-bottom: 0.2rem;
-    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3));
+    filter: drop-shadow(0 4px 8px rgba(var(--link-rgb), 0.3));
     transition: transform 0.4s var(--ease-out-expo);
 }
 
@@ -425,8 +425,8 @@ section h3 {
     font-size: 0.75rem;
     font-weight: 600;
     padding: 0.3rem 0.7rem;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.25);
+    background: rgba(var(--link-rgb), 0.1);
+    border: 1px solid rgba(var(--link-rgb), 0.25);
     border-radius: 99px;
     color: var(--link-color);
     letter-spacing: 0.3px;
@@ -434,8 +434,8 @@ section h3 {
 }
 
 .project-card:hover .project-tags span {
-    background: rgba(59, 130, 246, 0.18);
-    border-color: rgba(59, 130, 246, 0.45);
+    background: rgba(var(--link-rgb), 0.18);
+    border-color: rgba(var(--link-rgb), 0.45);
 }
 
 .project-link.btn {

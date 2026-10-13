@@ -1,36 +1,38 @@
 /* ================== Professional Branding Variables ================== */
 :root {
-    /* Core Palette - Deep Navy & Electric Blue */
-    --bg-color: #0b0e14;
-    --text-color: #f0f2f5;
-    --link-color: #3b82f6;
-    --link-hover-color: #60a5fa;
-    --muted: #94a3b8;
-    --accent: #10b981;
-    --header-bg: rgba(15, 23, 42, 0.85);
-    --section-bg: rgba(30, 41, 59, 0.5);
-    --footer-bg: rgba(15, 23, 42, 0.4);
+    /* Midnight navy, electric cyan and cobalt */
+    --bg-color: #091322;
+    --text-color: #eaf1f8;
+    --link-color: #35bdf2;
+    --link-hover-color: #80dbff;
+    --link-rgb: 53, 189, 242;
+    --muted: #9eafc5;
+    --accent: #4c8dff;
+    --accent-rgb: 76, 141, 255;
+    --header-bg: rgba(5, 11, 25, 0.96);
+    --section-bg: rgba(18, 29, 50, 0.94);
+    --footer-bg: rgba(7, 14, 29, 0.96);
     
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
     
     /* Buttons */
-    --button-bg: #3b82f6;
+    --button-bg: linear-gradient(110deg, #087ba9, #1d4ed8);
     --button-text: #ffffff;
-    --button-hover-bg: #2563ea;
+    --button-hover-bg: linear-gradient(110deg, #06658a, #1e40af);
     
     /* Effects & Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --card-elev: 0 20px 50px rgba(0, 0, 0, 0.3);
-    --shadow-3d: 0 30px 60px rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.045);
+    --glass-border: rgba(220, 230, 255, 0.12);
+    --card-elev: 0 20px 50px rgba(0, 0, 0, 0.28);
+    --shadow-3d: 0 30px 60px rgba(0, 0, 0, 0.36);
     
     /* Project Cards */
-    --project-card-bg: rgba(30, 41, 59, 0.7);
-    --project-card-text: #f0f2f5;
+    --project-card-bg: rgba(22, 33, 56, 0.96);
+    --project-card-text: #e7edfa;
     --project-card-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    --project-card-accent: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 70%);
+    --project-card-accent: radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.14), transparent 70%);
     /* Motion & Transitions */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --transition-smooth: all 0.5s var(--ease-out-expo);
@@ -39,22 +41,27 @@
 }
 
 body.light {
-    --bg-color: #f1f5f9; /* Slightly darker background for better separation */
-    --text-color: #1e293b;
-    --link-color: #2563eb;
-    --link-hover-color: #1d4ed8;
-    --header-bg: rgba(255, 255, 255, 0.98);
-    --section-bg: #ffffff; /* Solid white for better definition */
-    --footer-bg: #e2e8f0; /* Soft gray for light mode footer */
-    --muted: #475569;
-    --accent: #059669;
+    --bg-color: #f4f6fc;
+    --text-color: #18243a;
+    --link-color: #087ba9;
+    --link-hover-color: #065f86;
+    --link-rgb: 8, 123, 169;
+    --header-bg: rgba(250, 251, 255, 0.98);
+    --section-bg: #ffffff;
+    --footer-bg: #e7ebf5;
+    --muted: #4c5870;
+    --accent: #1d4ed8;
+    --accent-rgb: 29, 78, 216;
+    --button-bg: linear-gradient(110deg, #087ba9, #1d4ed8);
+    --button-hover-bg: linear-gradient(110deg, #06658a, #1e40af);
     
-    --glass-bg: rgba(255, 255, 255, 0.8);
-    --glass-border: rgba(0, 0, 0, 0.12); /* More distinct border */
-    --card-elev: 0 10px 40px rgba(0, 0, 0, 0.08); /* Stronger shadow */
-    --shadow-3d: 0 20px 50px rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.78);
+    --glass-border: rgba(24, 36, 58, 0.13);
+    --card-elev: 0 10px 40px rgba(18, 31, 55, 0.08);
+    --shadow-3d: 0 20px 50px rgba(18, 31, 55, 0.1);
     
-    --project-card-bg: #ffffff;
-    --project-card-text: #1e293b;
-    --project-card-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    --project-card-bg: #fbfcff;
+    --project-card-text: #18243a;
+    --project-card-shadow: 0 12px 30px rgba(18, 31, 55, 0.07);
+    --project-card-accent: radial-gradient(circle at top right, rgba(var(--accent-rgb), 0.1), transparent 70%);
 }

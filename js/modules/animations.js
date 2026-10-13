@@ -129,8 +129,8 @@ function initAnimations() {
 
         function drawParticles() {
             ctx.clearRect(0, 0, W, H);
-            const particleColor = isLight() ? '59,90,170' : '100,160,255';
-            const lineColor = isLight() ? '59,90,170' : '100,160,255';
+            const particleColor = isLight() ? '8,123,169' : '53,185,242';
+            const lineColor = isLight() ? '29,78,216' : '76,141,255';
 
             particles.forEach(p => {
                 p.x += p.vx;
@@ -497,15 +497,15 @@ function initAnimations() {
                 const rect = card.getBoundingClientRect();
                 const px = (e.clientX - rect.left) / rect.width;
                 const py = (e.clientY - rect.top) / rect.height;
-                const rotY = (px - 0.5) * 14;
-                const rotX = (0.5 - py) * 9;
-                const tx = (px - 0.5) * 5;
-                const ty = (py - 0.5) * 5;
+                const rotY = (px - 0.5) * 6;
+                const rotX = (0.5 - py) * 4;
+                const tx = (px - 0.5) * 2.5;
+                const ty = (py - 0.5) * 2.5;
 
                 card.style.transform =
                     `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) ` +
-                    `translate(${tx}px, ${ty}px) scale3d(1.025, 1.025, 1.025)`;
-                card.style.transition = 'transform 0.1s ease, box-shadow 0.4s ease, border-color 0.4s ease';
+                `translate(${tx}px, ${ty}px) scale3d(1.01, 1.01, 1.01)`;
+                card.style.transition = 'transform 0.16s ease-out, box-shadow 0.35s ease, border-color 0.35s ease';
             });
 
             card.addEventListener('mouseleave', () => {
@@ -531,21 +531,52 @@ function initAnimations() {
     /* =====================================================
        10. CONTACT FORM
        ===================================================== */
-    contactForm?.addEventListener('submit', e => {
+    contactForm?.addEventListener('submit', async e => {
         e.preventDefault();
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const status = document.getElementById('contactFormStatus');
+        const formData = new URLSearchParams();
+        new FormData(contactForm).forEach((value, key) => {
+            formData.append(key, String(value));
+        });
 
-        const btn = contactForm.querySelector('button[type="submit"]');
-        if (btn) {
-            const orig = btn.textContent;
-            btn.textContent = '✓ Sent!';
-            btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-            setTimeout(() => {
-                btn.textContent = orig;
-                btn.style.background = '';
-            }, 3000);
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+        }
+        if (status) {
+            status.dataset.state = 'sending';
+            status.textContent = 'Sending your message...';
         }
 
-        contactForm.reset();
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/hmuesett2002@gmail.com', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: formData
+            });
+            const result = await response.json();
+
+            if (!response.ok || (result.success !== true && result.success !== 'true')) {
+                throw new Error(result.message || 'Message could not be sent.');
+            }
+
+            if (status) {
+                status.dataset.state = 'success';
+                status.textContent = 'Message sent. Thank you!';
+            }
+            contactForm.reset();
+        } catch {
+            if (status) {
+                status.dataset.state = 'error';
+                status.textContent = 'Could not send your message. Please try again.';
+            }
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send in Email';
+            }
+        }
     });
 
     /* =====================================================

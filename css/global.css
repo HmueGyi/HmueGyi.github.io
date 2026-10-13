@@ -15,8 +15,8 @@ body {
     margin: 0;
     font-family: var(--font-body);
     background: 
-        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05), transparent 40%),
-        radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05), transparent 40%),
+        radial-gradient(circle at 0% 0%, rgba(var(--link-rgb), 0.05), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(var(--accent-rgb), 0.05), transparent 40%),
         var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
