@@ -200,6 +200,7 @@ body.light .skills-logos img.icon-invert {
     content: '';
     position: absolute;
     inset: 0;
+    pointer-events: none;
     background: var(--project-card-accent);
     opacity: 0;
     transition: opacity 0.4s ease;
