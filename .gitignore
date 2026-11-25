@@ -1,0 +1,45 @@
+# ================== Editor / IDE ==================
+# Contains local settings (and an API key) — never commit this
+.vscode/
+.idea/
+*.code-workspace
+
+# ================== Personal scratch notes ==================
+# Local prompt/notes file, not part of the site
+prompt
+
+# ================== OS junk ==================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ================== Logs & temp ==================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+.tmp/
+tmp/
+
+# ================== Node / build tooling (not used by this site) ==================
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+
+# ================== Local dev artifacts ==================
+# Jekyll (GitHub Pages) output if it is ever run locally
+_site/
+.jekyll-cache/
+.jekyll-metadata
+# Sass caches
+.sass-cache/
