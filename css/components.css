@@ -51,8 +51,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    width: 120px;
-    max-width: 100%;
+    width: 100%;
     justify-self: center;
     transition: var(--transition-smooth);
     text-decoration: none;
@@ -71,7 +70,7 @@
     box-shadow: var(--project-card-shadow);
 }
 
-body.light .skills-logos .icon-wrapper {
+html.light .skills-logos .icon-wrapper {
     background: #edf1fa;
     border-color: rgba(24, 36, 58, 0.15);
 }
@@ -93,26 +92,44 @@ body.light .skills-logos .icon-wrapper {
     filter: brightness(0) invert(1);
 }
 
-body.light .skills-logos img.yolo-wordmark {
+html.light .skills-logos img.yolo-wordmark {
     filter: none;
 }
 
-body.light .skills-logos img.langchain-wordmark {
-    filter: brightness(0);
+html.light .skills-logos img.langchain-wordmark {
+    /* No filter: the light-theme logo file is swapped in by theme.js */
+    filter: none;
 }
 
 .skills-logos img.ollama-wordmark {
+    /* simple-icons path is dark: show it white on the dark theme */
     filter: brightness(0) invert(1);
 }
 
-body.light .skills-logos img.ollama-wordmark {
+html.light .skills-logos img.ollama-wordmark {
     filter: none;
 }
 
 .skills-logos img.huggingface-mark {
-    padding: 5px;
-    border-radius: 50%;
-    background: #263238;
+    padding: 0;
+    border-radius: 0;
+    /* Official multi-colour mark (yellow face, red mouth, white collar):
+       readable on both the dark card and the light one — never filter it,
+       and never put ring padding on it (that used to hide the face). */
+    background: transparent;
+    filter: none;
+}
+
+html.light .skills-logos img.huggingface-mark {
+    background: transparent;
+    filter: none;
+}
+
+/* Light theme: keep the yellow face but drop the white collar into the
+   darker shirt so the outline stays visible on #edf1fa */
+html.light .skills-logos img.huggingface-mark {
+    mix-blend-mode: normal;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
 }
 
 .skills-logos img.nvidia-wordmark {
@@ -120,7 +137,7 @@ body.light .skills-logos img.ollama-wordmark {
     background: transparent;
 }
 
-body.light .skills-logos img.nvidia-wordmark {
+html.light .skills-logos img.nvidia-wordmark {
     padding: 4px;
     border-radius: 4px;
     background: #091322;
@@ -130,16 +147,21 @@ body.light .skills-logos img.nvidia-wordmark {
     filter: brightness(0) invert(1);
 }
 
-body.light .skills-logos img.icon-invert {
+html.light .skills-logos img.icon-invert {
     filter: none;
 }
 
 .skills-logos span {
     font-size: 0.95rem;
     font-weight: 600;
+    line-height: 1.25;
     color: var(--muted);
     transition: var(--transition-fast);
     text-align: center;
+    max-width: 100%;
+    /* Long names ("Hugging Face", "NVIDIA CUDA") must wrap, never clip */
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .skills-logos a:hover .icon-wrapper {
@@ -175,6 +197,7 @@ body.light .skills-logos img.icon-invert {
         grid-column: span 2;
     }
 
+    /* 5 cards: a row of three, then two centred underneath */
     .projects-grid .project-card:nth-child(4) {
         grid-column: 2 / span 2;
     }
@@ -222,11 +245,15 @@ body.light .skills-logos img.icon-invert {
     border-color: var(--link-color);
 }
 
-.project-card h2 {
+.project-card h4 {
     font-family: var(--font-heading);
+    font-size: 1.35rem;
     font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
     text-align: left;
-    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    margin: 0 0 0.5rem;
 }
 
 .project-card p {
@@ -293,8 +320,8 @@ textarea {
     min-width: 0;
 }
 
-body.light input,
-body.light textarea {
+html.light input,
+html.light textarea {
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -310,6 +337,27 @@ textarea:focus {
 button[type="submit"] {
     margin-top: 0.5rem;
     align-self: flex-start;
+}
+
+/* Honeypot — must stay invisible to people, visible to bots */
+.hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-fallback {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: left;
+}
+
+.form-fallback a {
+    color: var(--link-color);
 }
 
 .contact-form-status {
@@ -427,7 +475,7 @@ button[type="submit"] {
     }
 
     .skills-logos a {
-        width: 100px;
+        width: 100%;
     }
 
     .skills-logos .icon-wrapper {
@@ -461,7 +509,11 @@ button[type="submit"] {
     }
 
     .skills-logos a {
-        width: 80px;
+        width: 100%;
+    }
+
+    .skills-logos span {
+        font-size: 0.8rem;
     }
 
     .skills-logos .icon-wrapper {
@@ -494,8 +546,8 @@ button[type="submit"] {
         gap: 1.1rem 0.75rem;
     }
 
-    .project-card h2 {
-        font-size: 1.25rem;
+    .project-card h4 {
+        font-size: 1.2rem;
     }
 
     form {

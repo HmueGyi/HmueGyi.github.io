@@ -11,100 +11,6 @@ section {
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* =================== Stats Section =================== */
-.stats-section {
-    padding: clamp(1.5rem, 4vw, 2.5rem) !important;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(1rem, 3vw, 2rem);
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: clamp(1rem, 3vw, 1.8rem) 1rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    text-align: center;
-    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease, border-color 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.stat-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(var(--link-rgb), 0.12), transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.stat-item:hover {
-    transform: translateY(-6px);
-    border-color: var(--link-color);
-    box-shadow: 0 20px 40px rgba(var(--link-rgb), 0.15);
-}
-
-.stat-item:hover::before {
-    opacity: 1;
-}
-
-.stat-number {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--link-color), var(--accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-}
-
-.stat-unit {
-    font-family: var(--font-heading);
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 800;
-    color: var(--accent);
-    margin-top: -0.5rem;
-    align-self: flex-start;
-    margin-left: -0.5rem;
-}
-
-.stat-label {
-    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
-    color: var(--muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 0.2rem;
-}
-
-@media (max-width: 640px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.9rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.7rem;
-    }
-
-    .stat-number {
-        font-size: 1.8rem;
-    }
-}
-
 section h3 {
     font-size: clamp(1.8rem, 4.2vw, 2.5rem);
     font-family: var(--font-heading);
@@ -160,6 +66,7 @@ section h3 {
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
     perspective: 1000px;
 }
 
@@ -167,16 +74,16 @@ section h3 {
     width: fit-content;
     height: fit-content;
     max-width: 100%;
+    padding: 14px;
     /* Scales down smoothly on smaller screens */
     background: radial-gradient(circle at center, rgba(var(--link-rgb), 0.2), transparent 75%);
     border-radius: 50%;
     overflow: hidden;
-    /* Clip the GIF into the circle */
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 50px rgba(var(--link-rgb), 0.08);
-    /* More subtle glow */
+    /* Subtle glow */
     animation: pulseGlow 4s ease-in-out infinite;
 }
 
@@ -194,26 +101,20 @@ section h3 {
     }
 }
 
-#robot-gif {
+/* Hero mascot is a <video> (~84 KB) instead of the old 1.4 MB GIF */
+.robot-media {
     width: min(320px, 38vw);
-    /* Base width for laptop to make it visible */
     height: min(320px, 38vw);
     max-width: 100%;
     display: block;
     border-radius: 50%;
-    /* Fully circular */
     object-fit: cover;
-    /* Added for sharpness since it's a small GIF being enlarged */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    object-position: center center;
+    background: transparent;
 }
 
 @media (max-width: 1024px) {
-    .robot-wrap {
-        padding: 2rem;
-    }
-
-    #robot-gif {
+    .robot-media {
         width: 250px;
         /* Smaller for tablets/small laptops */
         height: 250px;
@@ -221,10 +122,14 @@ section h3 {
 }
 
 @media (max-width: 640px) {
-    #robot-gif {
+    .robot-media {
         width: 180px;
         /* Perfect for mobile phones */
         height: 180px;
+    }
+
+    .robot-wrap {
+        padding: 10px;
     }
 }
 
@@ -290,15 +195,28 @@ section h3 {
 }
 
 .info-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background: rgba(var(--link-rgb), 0.1);
-    border-radius: 12px;
+    border-radius: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1;
     flex-shrink: 0;
+}
+
+/* Local brand SVGs (simple-icons) are black by default */
+.info-icon .info-brand-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+html.light .info-icon .info-brand-icon {
+    filter: none;
 }
 
 .info-item div {
@@ -307,15 +225,17 @@ section h3 {
     min-width: 0;
 }
 
-.info-item label {
+/* Was a <label> pointing at no input; now a plain caption */
+.info-item .info-label {
     font-size: 0.8rem;
     color: var(--muted);
+    font-weight: 600;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.info-item span,
+.info-item div > span:last-child,
 .info-item a {
     font-size: 1rem;
     color: var(--text-color);
@@ -393,18 +313,6 @@ section h3 {
     gap: 0.8rem;
 }
 
-.project-icon {
-    font-size: 2.2rem;
-    line-height: 1;
-    margin-bottom: 0.2rem;
-    filter: drop-shadow(0 4px 8px rgba(var(--link-rgb), 0.3));
-    transition: transform 0.4s var(--ease-out-expo);
-}
-
-.project-card:hover .project-icon {
-    transform: scale(1.2) rotate(-5deg);
-}
-
 .project-card p {
     flex: 1;
     font-size: 0.93rem;
@@ -412,6 +320,23 @@ section h3 {
     margin: 0;
     text-align: left;
     line-height: 1.65;
+}
+
+.project-outcome {
+    flex: 0 0 auto;
+    font-size: 0.9rem !important;
+    color: var(--text-color) !important;
+    background: rgba(var(--link-rgb), 0.07);
+    border-left: 3px solid var(--link-color);
+    border-radius: 0 10px 10px 0;
+    padding: 0.6rem 0.85rem;
+    margin: 0.2rem 0 0 !important;
+    line-height: 1.55;
+}
+
+.project-outcome strong {
+    color: var(--link-color);
+    font-weight: 700;
 }
 
 .project-tags {
@@ -594,7 +519,8 @@ section h3 {
     }
 
     .info-icon {
-        width: 42px;
-        height: 42px;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
     }
 }

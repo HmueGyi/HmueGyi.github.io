@@ -7,23 +7,95 @@
     <meta name="theme-color" content="#0b0e14" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title>Hmuegyi - Robotics &amp; AI Architect</title>
+    <title>Hmue Set San — Robotics &amp; AI Architect</title>
     <meta name="description"
         content="Hmue Set San — Robotics &amp; AI Architect designing intelligent automation and autonomous systems at the intersection of AI and physics." />
+    <link rel="canonical" href="https://hmuegyi.github.io/" />
 
-    <!-- Professional Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
-        rel="stylesheet">
+    <!-- Theme: apply the saved preference before first paint (no light-mode flash) -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (saved === 'light' || (!saved && !dark)) {
+                    document.documentElement.classList.add('light');
+                }
+            } catch (e) { /* private mode: fall back to dark */ }
+        })();
+    </script>
 
+    <!-- Icons & social preview -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link rel="apple-touch-icon" href="assets/images/profile1.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hmue Set San" />
+    <meta property="og:title" content="Hmue Set San — Robotics &amp; AI Architect" />
+    <meta property="og:description"
+        content="Robotics &amp; AI Architect building offline voice assistants, computer-vision systems and ROS 2 robots." />
+    <meta property="og:url" content="https://hmuegyi.github.io/" />
+    <meta property="og:image" content="https://hmuegyi.github.io/assets/images/og-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Hmue Set San — Robotics & AI Architect" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hmuegyi" />
+    <meta name="twitter:title" content="Hmue Set San — Robotics &amp; AI Architect" />
+    <meta name="twitter:description"
+        content="Robotics &amp; AI Architect building offline voice assistants, computer-vision systems and ROS 2 robots." />
+    <meta name="twitter:image" content="https://hmuegyi.github.io/assets/images/og-cover.png" />
+
+    <!-- Structured data for search engines -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Hmue Set San",
+        "jobTitle": "Robotics & AI Architect",
+        "url": "https://hmuegyi.github.io/",
+        "image": "https://hmuegyi.github.io/assets/images/profile1.jpg",
+        "knowsAbout": ["ROS 2", "Computer Vision", "Large Language Models", "Robotics", "Python", "C++"],
+        "sameAs": [
+            "https://github.com/HmueGyi",
+            "https://www.linkedin.com/in/hmue-set-san-07bb5a23a/",
+            "https://x.com/hmuegyi"
+        ]
+    }
+    </script>
+
+    <!-- Self-hosted fonts (assets/fonts). No third-party font requests. -->
+    <link rel="preload" href="assets/fonts/outfit-800.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/sections.css" />
     <link rel="stylesheet" href="css/animations.css" />
+
+    <!-- Without JS the reveal animations would leave the page blank -->
+    <noscript>
+        <style>
+            [data-reveal],
+            .reveal,
+            .hero-left>*,
+            .hero-right {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            #page-loader {
+                display: none !important;
+            }
+
+            nav a {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -52,7 +124,7 @@
     <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
     <header>
-        <h1>HmueGyi</h1>
+        <h1><a href="#home">HmueGyi</a></h1>
         <div class="header-right">
             <button id="toggleTheme" aria-label="Toggle light and dark mode">
                 <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -65,17 +137,17 @@
     </header>
 
     <nav id="navMenu" aria-label="Primary navigation">
-        <a href="#home" tabindex="0">Home</a>
-        <a href="#about" tabindex="0">About</a>
-        <a href="#skills" tabindex="0">Skills</a>
-        <a href="#projects" tabindex="0">Projects</a>
-        <a href="#contact" tabindex="0">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </nav>
 
     <main class="container">
 
         <!-- =================== Hero Section =================== -->
-        <section id="home" class="hero" tabindex="0" aria-label="Hero">
+        <section id="home" class="hero" aria-label="Introduction">
 
             <!-- Ambient light blobs -->
             <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
@@ -98,9 +170,16 @@
                 </div>
 
                 <div class="hero-right">
-                    <!-- Interactive Chatbot Mascot GIF -->
-                    <div class="robot-wrap" aria-hidden="true">
-                        <img id="robot-gif" src="assets/Gif/Live chatbot.gif" alt="Live Chatbot Mascot" />
+                    <!-- Chatbot mascot: video is ~17x smaller than the old 1.4 MB GIF -->
+                    <div class="robot-wrap">
+                        <video id="robot-media" class="robot-media" autoplay muted loop playsinline
+                            poster="assets/media/robot-poster.jpg" width="480" height="480"
+                            aria-label="Live chatbot mascot animation">
+                            <source src="assets/media/robot.webm" type="video/webm" />
+                            <source src="assets/media/robot.mp4" type="video/mp4" />
+                            <img src="assets/media/robot-poster.jpg" alt="Live chatbot mascot" width="480"
+                                height="480" />
+                        </video>
                     </div>
                 </div>
             </div>
@@ -108,44 +187,44 @@
         </section>
 
         <!-- =================== About Section =================== -->
-        <section id="about" tabindex="0">
+        <section id="about">
             <h3 data-reveal="fade">About Me</h3>
             <div class="about-container">
                 <div class="about-left" data-reveal="slide-right">
-                    <img src="assets/images/profile1.jpg" alt="Photo of Hmue Set San" class="about-photo" />
+                    <img src="assets/images/profile1.jpg" alt="Photo of Hmue Set San" class="about-photo"
+                        loading="lazy" decoding="async" width="300" height="300" />
                 </div>
                 <div class="about-right">
                     <p data-reveal="slide-up">
-                        Hello! I am <strong>Hmue Set San</strong>, a professional <strong>Robotics &amp; AI
-                            Developer</strong> with a rich academic foundation from three premier technical
-                        institutions.
+                        I'm <strong>Hmue Set San</strong>, a <strong>Robotics &amp; AI Developer</strong> who builds
+                        systems that see, listen and act — computer-vision models, local LLM agents and ROS 2 robots
+                        that run on real hardware, not just in notebooks.
                     </p>
                     <p data-reveal="slide-up" style="--stagger-step:0.1s; transition-delay:0.1s;">
-                        My journey began with deep-diving into computer science, spending 1.5
-                        years at <strong>Computer University (Sittwe)</strong>, 1.5 years at <strong>Computer University
-                            (Monywa)</strong>, and 1 year at <strong>Computer University (Pathein)</strong>. This
-                        academic rotation provided me with a unique perspective on diverse technical ecosystems and
-                        research methodologies.
+                        I studied computer science across three universities — <strong>Computer University
+                            (Sittwe)</strong>, <strong>Computer University (Monywa)</strong> and <strong>Computer
+                            University (Pathein)</strong> — which gave me first-hand experience of very different lab
+                        setups, teams and problem-solving styles.
                     </p>
                     <p data-reveal="slide-up" style="transition-delay:0.2s;">
-                        Currently, I architect intelligent robotic solutions and machine learning models, merging
-                        complex algorithms with physical automation to solve real-world challenges.
+                        Today I design and ship intelligent robotic solutions: perception pipelines, motion and
+                        automation, and offline-first AI so a system keeps working when the network does not.
                     </p>
                 </div>
             </div>
         </section>
 
         <!-- =================== Skills Section =================== -->
-        <section id="skills" tabindex="0">
+        <section id="skills">
             <h3 data-reveal="fade">Skills</h3>
             <p data-reveal="slide-up">Here are some technologies I work with:</p>
-            <div class="skills-logos" aria-label="Skills logos" data-stagger>
+            <div class="skills-logos" aria-label="Technologies I work with" data-stagger>
 
                 <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Linux">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                            alt="Linux Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                            alt="" />
                     </div>
                     <span>Linux</span>
                 </a>
@@ -153,8 +232,8 @@
                 <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Python">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                            alt="Python Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                            alt="" />
                     </div>
                     <span>Python</span>
                 </a>
@@ -162,8 +241,8 @@
                 <a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about C++">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
-                            alt="C++ Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+                            alt="" />
                     </div>
                     <span>C++</span>
                 </a>
@@ -171,8 +250,8 @@
                 <a href="https://www.ubuntu.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Ubuntu">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
-                            alt="Ubuntu Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg"
+                            alt="" />
                     </div>
                     <span>Ubuntu</span>
                 </a>
@@ -180,8 +259,8 @@
                 <a href="https://www.ros.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about ROS 2">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg"
-                            alt="ROS Logo" class="icon-invert" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg"
+                            alt="" class="icon-invert" />
                     </div>
                     <span>ROS 2</span>
                 </a>
@@ -189,8 +268,8 @@
                 <a href="http://gazebosim.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Gazebo">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg"
-                            alt="Gazebo Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gazebo/gazebo-original.svg"
+                            alt="" />
                     </div>
                     <span>Gazebo</span>
                 </a>
@@ -198,8 +277,9 @@
                 <a href="https://developer.nvidia.com/isaac/sim" target="_blank" rel="noopener noreferrer"
                     class="reveal" data-reveal="zoom-fade" aria-label="Learn about NVIDIA Isaac Sim">
                     <div class="icon-wrapper">
-                        <img src="https://avatars.githubusercontent.com/u/157846462?s=120&amp;v=4"
-                            alt="Isaac Sim Logo" />
+                        <img loading="lazy" decoding="async" width="52" height="52"
+                            src="https://avatars.githubusercontent.com/u/157846462?s=120&amp;v=4"
+                            alt="" />
                     </div>
                     <span>Isaac Sim</span>
                 </a>
@@ -207,9 +287,9 @@
                 <a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="noopener noreferrer"
                     class="reveal" data-reveal="zoom-fade" aria-label="Learn about NVIDIA CUDA">
                     <div class="icon-wrapper">
-                        <img class="nvidia-wordmark"
+                        <img loading="lazy" decoding="async" class="nvidia-wordmark"
                             src="https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/69f07e27d6b85b9690276be2_Nvidia%20logo.svg"
-                            alt="NVIDIA Logo" />
+                            alt="" />
                     </div>
                     <span>NVIDIA CUDA</span>
                 </a>
@@ -217,8 +297,8 @@
                 <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Docker">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                            alt="Docker Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                            alt="" />
                     </div>
                     <span>Docker</span>
                 </a>
@@ -226,8 +306,8 @@
                 <a href="https://www.tensorflow.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about TensorFlow">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-                            alt="TensorFlow Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                            alt="" />
                     </div>
                     <span>TensorFlow</span>
                 </a>
@@ -235,8 +315,8 @@
                 <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about PyTorch">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
-                            alt="PyTorch Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                            alt="" />
                     </div>
                     <span>PyTorch</span>
                 </a>
@@ -244,8 +324,8 @@
                 <a href="https://opencv.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about OpenCV">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
-                            alt="OpenCV Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
+                            alt="" />
                     </div>
                     <span>OpenCV</span>
                 </a>
@@ -253,9 +333,9 @@
                 <a href="https://docs.ultralytics.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about YOLOv8">
                     <div class="icon-wrapper">
-                        <img class="brand-wordmark yolo-wordmark"
+                        <img loading="lazy" decoding="async" class="brand-wordmark yolo-wordmark"
                             src="https://cdn.ul.run/i/9224ce7ba8c19a7e96b433011eb93202.svg"
-                            alt="Ultralytics YOLOv8 Logo" />
+                            alt="" />
                     </div>
                     <span>YOLOv8</span>
                 </a>
@@ -263,8 +343,8 @@
                 <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Hugging Face">
                     <div class="icon-wrapper">
-                        <img class="huggingface-mark" src="https://cdn.simpleicons.org/huggingface"
-                            alt="Hugging Face Logo" />
+                        <img loading="lazy" decoding="async" class="huggingface-mark" src="assets/icons/huggingface.svg"
+                            alt="" />
                     </div>
                     <span>Hugging Face</span>
                 </a>
@@ -272,9 +352,9 @@
                 <a href="https://www.langchain.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about LangChain">
                     <div class="icon-wrapper">
-                        <img class="brand-wordmark langchain-wordmark"
-                            src="https://raw.githubusercontent.com/langchain-ai/langchain/master/.github/images/logo-dark.svg"
-                            alt="LangChain Logo" />
+                        <img loading="lazy" decoding="async" class="brand-wordmark langchain-wordmark"
+                            src="assets/icons/langchain-dark.svg" data-theme-light-src="assets/icons/langchain-light.svg"
+                            alt="" />
                     </div>
                     <span>LangChain</span>
                 </a>
@@ -282,7 +362,7 @@
                 <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Ollama">
                     <div class="icon-wrapper">
-                        <img class="ollama-wordmark" src="https://cdn.simpleicons.org/ollama" alt="Ollama Logo" />
+                        <img loading="lazy" decoding="async" class="ollama-wordmark" src="assets/icons/ollama.svg" alt="" />
                     </div>
                     <span>Ollama</span>
                 </a>
@@ -290,8 +370,8 @@
                 <a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Jupyter">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
-                            alt="Jupyter Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
+                            alt="" />
                     </div>
                     <span>Jupyter</span>
                 </a>
@@ -299,8 +379,8 @@
                 <a href="https://www.mysql.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about MySQL">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                            alt="MySQL Logo" class="icon-invert" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                            alt="" class="icon-invert" />
                     </div>
                     <span>MySQL</span>
                 </a>
@@ -308,8 +388,8 @@
                 <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="reveal"
                     data-reveal="zoom-fade" aria-label="Learn about Git">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                            alt="Git Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                            alt="" />
                     </div>
                     <span>Git</span>
                 </a>
@@ -318,8 +398,8 @@
                     rel="noopener noreferrer" class="reveal" data-reveal="zoom-fade"
                     aria-label="Learn about JavaScript">
                     <div class="icon-wrapper">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                            alt="JavaScript Logo" />
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                            alt="" />
                     </div>
                     <span>JavaScript</span>
                 </a>
@@ -328,15 +408,17 @@
         </section>
 
         <!-- =================== Projects Section =================== -->
-        <section id="projects" tabindex="0">
+        <section id="projects">
             <h3 data-reveal="fade">Projects</h3>
             <div class="projects-grid">
 
                 <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
-                        <h2>ROS 2 Offline Voice Assistant</h2>
+                        <h4>ROS 2 Offline Voice Assistant</h4>
                         <p>Kilo Bot listens continuously with Vosk, runs a local Llama model through Ollama and speaks
                             with Piper. Voice activity detection lets it stop speaking when interrupted.</p>
+                        <p class="project-outcome"><strong>Outcome:</strong> a fully offline voice loop — no cloud API
+                            calls, interruptible mid-sentence.</p>
                         <div class="project-tags">
                             <span>ROS 2</span><span>Ollama</span><span>Vosk</span><span>Piper TTS</span><span>VAD</span>
                         </div>
@@ -348,9 +430,11 @@
 
                 <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.12s;">
                     <div class="project-inner">
-                        <h2>Facial Emotion Detection</h2>
+                        <h4>Facial Emotion Detection</h4>
                         <p>Real-time webcam emotion inference using MediaPipe face detection and an EfficientNet-V2-S
                             classifier trained with PyTorch. Includes a training notebook and evaluation results.</p>
+                        <p class="project-outcome"><strong>Outcome:</strong> live per-frame inference from a webcam
+                            with the whole training/eval path reproducible from one notebook.</p>
                         <div class="project-tags">
                             <span>MediaPipe</span><span>PyTorch</span><span>EfficientNet</span><span>Python</span>
                         </div>
@@ -362,9 +446,11 @@
 
                 <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.24s;">
                     <div class="project-inner">
-                        <h2>Four-Wheel Robot Simulation</h2>
+                        <h4>Four-Wheel Robot Simulation</h4>
                         <p>A ROS 2 four-wheel car robot model with separate robot-description and Gazebo simulation
                             packages.</p>
+                        <p class="project-outcome"><strong>Outcome:</strong> a reusable URDF + Gazebo stack other ROS 2
+                            projects can drop in as a base robot.</p>
                         <div class="project-tags">
                             <span>ROS 2</span><span>Gazebo</span><span>Robot Description</span><span>Simulation</span>
                         </div>
@@ -376,9 +462,11 @@
 
                 <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.36s;">
                     <div class="project-inner">
-                        <h2>Local VLM Image Captioning</h2>
+                        <h4>Local VLM Image Captioning</h4>
                         <p>Explore images and live camera feeds with local vision-language models through a browser
                             UI, with inference options for Transformers, ONNX Runtime and llama.cpp.</p>
+                        <p class="project-outcome"><strong>Outcome:</strong> one UI, three runtimes — compare VLM
+                            quality against speed without rewriting the app.</p>
                         <div class="project-tags">
                             <span>VLM</span><span>Web UI</span><span>ONNX</span><span>llama.cpp</span>
                         </div>
@@ -390,9 +478,11 @@
 
                 <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.48s;">
                     <div class="project-inner">
-                        <h2>YOLO Object Detection with ONNX</h2>
+                        <h4>YOLO Object Detection with ONNX</h4>
                         <p>Run YOLOv8 detection on images, videos or webcam feeds using ONNX or PyTorch models, with
                             CPU and CUDA setup options.</p>
+                        <p class="project-outcome"><strong>Outcome:</strong> the same detector runs on a laptop CPU or
+                            a CUDA GPU, with a documented switch between them.</p>
                         <div class="project-tags">
                             <span>YOLOv8</span><span>ONNX</span><span>OpenCV</span><span>CUDA</span>
                         </div>
@@ -406,7 +496,7 @@
         </section>
 
         <!-- =================== Contact Section =================== -->
-        <section id="contact" tabindex="0">
+        <section id="contact">
             <h3 data-reveal="fade">Contact Me</h3>
             <div class="contact-container">
 
@@ -418,30 +508,27 @@
                         <div class="info-item">
                             <span class="info-icon">📍</span>
                             <div>
-                                <label>Location</label>
+                                <span class="info-label">Location</span>
                                 <span>Myanmar</span>
                             </div>
                         </div>
 
                         <div class="info-item">
                             <span class="info-icon">
-                                <img src="https://cdn.simpleicons.org/viber/7360F2" alt="Viber"
-                                    style="width: 20px; height: 20px;" />
+                                <img loading="lazy" decoding="async" class="info-brand-icon viber-icon" src="assets/icons/viber.svg" alt="Viber" />
                             </span>
                             <div>
-                                <label>Viber</label>
+                                <span class="info-label">Viber</span>
                                 <span><a href="viber://chat?number=%2B959941396827">+95 994*****27</a></span>
                             </div>
                         </div>
 
                         <div class="info-item">
                             <span class="info-icon">
-                                <img src="https://cdn.simpleicons.org/telegram/26A5E4"
-                                    alt="Telegram"
-                                    style="width: 20px; height: 20px;" />
+                                <img loading="lazy" decoding="async" class="info-brand-icon telegram-icon" src="assets/icons/telegram.svg" alt="Telegram" />
                             </span>
                             <div>
-                                <label>Telegram</label>
+                                <span class="info-label">Telegram</span>
                                 <span><a href="https://t.me/Hmue_Gyi">@Hmue_Gyi</a></span>
                             </div>
                         </div>
@@ -451,6 +538,11 @@
                 <div class="contact-form-wrap reveal" data-reveal="slide-left">
                     <form id="contactForm" action="https://formsubmit.co/hmuesett2002@gmail.com" method="POST">
                         <input type="hidden" name="_subject" value="New portfolio message" />
+                        <input type="hidden" name="_template" value="table" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <!-- Honeypot: bots fill this, humans never see it -->
+                        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off"
+                            aria-hidden="true" />
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" placeholder="Your name" required />
@@ -469,6 +561,9 @@
 
                         <p id="contactFormStatus" class="contact-form-status" role="status" aria-live="polite"></p>
                         <button type="submit" class="btn">Send in Email</button>
+                        <p class="form-fallback">Prefer email? Write to
+                            <a href="mailto:hmuesett2002@gmail.com">hmuesett2002@gmail.com</a> directly.
+                        </p>
                     </form>
                 </div>
 
@@ -494,6 +589,7 @@
                     <li><a href="#about">About Me</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
 
@@ -501,28 +597,27 @@
                 <h4>Connect</h4>
                 <div class="social-links-wrap">
                     <a href="https://github.com/hmuegyi" target="_blank" rel="noopener" aria-label="GitHub">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
                             alt="GitHub" />
                     </a>
 
                     <a href="https://www.linkedin.com/in/hmue-set-san-07bb5a23a/" target="_blank" rel="noopener"
                         aria-label="LinkedIn">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
                             alt="LinkedIn" />
                     </a>
 
-                    <a href="https://twitter.com/hmuegyi" target="_blank" rel="noopener" aria-label="Twitter">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
+                    <a href="https://x.com/hmuegyi" target="_blank" rel="noopener" aria-label="X (Twitter)">
+                        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
                             alt="Twitter" />
                     </a>
 
                     <a href="https://t.me/Hmue_Gyi" target="_blank" rel="noopener" aria-label="Telegram">
-                        <img src="https://cdn.simpleicons.org/telegram/26A5E4"
-                            alt="Telegram" />
+                        <img loading="lazy" decoding="async" class="telegram-icon" src="assets/icons/telegram.svg" alt="Telegram" />
                     </a>
 
-                    <a href="viber://chat?number=%2B959941396827" target="_blank" rel="noopener" aria-label="Viber">
-                        <img src="https://cdn.simpleicons.org/viber/7360F2" alt="Viber" />
+                    <a href="viber://chat?number=%2B959941396827" rel="noopener" aria-label="Viber">
+                        <img loading="lazy" decoding="async" class="viber-icon" src="assets/icons/viber.svg" alt="Viber" />
                     </a>
                 </div>
             </div>
@@ -536,7 +631,14 @@
     <script src="js/modules/elements.js"></script>
     <script src="js/modules/menu.js"></script>
     <script src="js/modules/theme.js"></script>
-    <script src="js/modules/animations.js"></script>
+    <script src="js/modules/loader.js"></script>
+    <script src="js/modules/typewriter.js"></script>
+    <script src="js/modules/nav.js"></script>
+    <script src="js/modules/background.js"></script>
+    <script src="js/modules/cursor.js"></script>
+    <script src="js/modules/hero.js"></script>
+    <script src="js/modules/interactions.js"></script>
+    <script src="js/modules/form.js"></script>
     <script src="js/main.js"></script>
 
 </body>

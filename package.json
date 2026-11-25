@@ -1,0 +1,16 @@
+{
+  "name": "hmuegyi-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hmue Set San — Robotics & AI Architect portfolio (static site, no build step)",
+  "scripts": {
+    "start": "python3 -m http.server 5500",
+    "check": "node scripts/check.mjs",
+    "check:shots": "node scripts/check.mjs --shots ./.shots",
+    "validate": "html-validate index.html 404.html"
+  },
+  "devDependencies": {
+    "html-validate": "^9.0.0",
+    "playwright": "^1.48.0"
+  }
+}

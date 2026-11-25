@@ -9,6 +9,8 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
     width: 100%;
+    /* Reveal transforms start off-screen; clip them instead of creating a scrollbar */
+    overflow-x: clip;
 }
 
 body {
@@ -31,6 +33,10 @@ canvas {
     max-width: 100%;
 }
 
+img {
+    height: auto;
+}
+
 p,
 h1,
 h2,
@@ -43,6 +49,19 @@ input,
 textarea,
 button {
     overflow-wrap: anywhere;
+}
+
+/* Visually hidden but announced by screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 a {
@@ -107,36 +126,8 @@ h2 {
     transform: translateY(0) scale(1);
 }
 
-/* Staggered entry for grids */
-.skills-logos > .reveal,
-.projects-grid > .reveal {
-    transition-delay: calc(var(--reveal-index, 0) * 0.1s);
-}
-
-/* Automatic child delays (up to 20 items) */
-.skills-logos a:nth-child(1) { --reveal-index: 1; }
-.skills-logos a:nth-child(2) { --reveal-index: 2; }
-.skills-logos a:nth-child(3) { --reveal-index: 3; }
-.skills-logos a:nth-child(4) { --reveal-index: 4; }
-.skills-logos a:nth-child(5) { --reveal-index: 5; }
-.skills-logos a:nth-child(6) { --reveal-index: 6; }
-.skills-logos a:nth-child(7) { --reveal-index: 7; }
-.skills-logos a:nth-child(8) { --reveal-index: 8; }
-.skills-logos a:nth-child(9) { --reveal-index: 9; }
-.skills-logos a:nth-child(10) { --reveal-index: 10; }
-.skills-logos a:nth-child(11) { --reveal-index: 11; }
-.skills-logos a:nth-child(12) { --reveal-index: 12; }
-.skills-logos a:nth-child(13) { --reveal-index: 1; }
-.skills-logos a:nth-child(14) { --reveal-index: 2; }
-.skills-logos a:nth-child(15) { --reveal-index: 3; }
-.skills-logos a:nth-child(16) { --reveal-index: 4; }
-.skills-logos a:nth-child(17) { --reveal-index: 5; }
-.skills-logos a:nth-child(18) { --reveal-index: 6; }
-.skills-logos a:nth-child(19) { --reveal-index: 7; }
-.skills-logos a:nth-child(20) { --reveal-index: 8; }
-
-.projects-grid article:nth-child(1) { --reveal-index: 1; }
-.projects-grid article:nth-child(2) { --reveal-index: 2; }
-.projects-grid article:nth-child(3) { --reveal-index: 3; }
-.projects-grid article:nth-child(4) { --reveal-index: 4; }
-
+/* ---------------------------------------------------------------
+   Stagger delays are defined once, in animations.css, through
+   [data-stagger] > *:nth-child(n). Do not add a second system here —
+   the old --reveal-index rules fought with it and neither was reliable.
+   --------------------------------------------------------------- */

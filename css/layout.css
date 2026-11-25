@@ -174,7 +174,7 @@ footer {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body.light .social-links-wrap a {
+html.light .social-links-wrap a {
     background: rgba(255, 255, 255, 0.78);
 }
 
@@ -185,7 +185,7 @@ body.light .social-links-wrap a {
     filter: brightness(0) invert(1);
 }
 
-body.light .social-links-wrap a img {
+html.light .social-links-wrap a img {
     filter: none;
 }
 

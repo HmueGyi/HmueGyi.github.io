@@ -242,6 +242,18 @@ body.page-ready header {
         transition-delay: 0.83s;
     }
 
+    body.page-ready nav a:nth-child(6) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.9s;
+    }
+
+    body.page-ready nav a:nth-child(7) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.97s;
+    }
+
     body.page-ready nav #toggleTheme {
         opacity: 1;
         transition-delay: 0.9s;
@@ -460,14 +472,17 @@ header.scrolled {
     }
 }
 
-/* Float applied to img so JS parallax on .robot-wrap doesn't conflict */
-#robot-gif {
-    animation: heroFloat 6s ease-in-out infinite;
+/* Float applied to the WRAP (not the img) so it translates as a whole.
+   The img must stay flex-centred; animating it on its own shifted it out
+   of the circle and broke the centring. */
+.robot-wrap {
+    animation:
+        pulseGlow 4s ease-in-out infinite,
+        heroFloat 6s ease-in-out infinite !important;
 }
 
-/* Override the section-level animation that was set in sections.css */
-.robot-wrap {
-    animation: pulseGlow 4s ease-in-out infinite !important;
+#robot-gif {
+    object-position: center center;
 }
 
 /* =================== Section heading reveal accent line =================== */
@@ -592,6 +607,14 @@ section h3.in-view::after {
 
     nav.open a:nth-child(5) {
         transition-delay: 0.32s;
+    }
+
+    nav.open a:nth-child(6) {
+        transition-delay: 0.38s;
+    }
+
+    nav.open a:nth-child(7) {
+        transition-delay: 0.44s;
     }
 
     nav.open #toggleTheme {

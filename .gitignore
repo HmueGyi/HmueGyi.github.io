@@ -3,10 +3,14 @@
 .vscode/
 .idea/
 *.code-workspace
+todo.md
 
 # ================== Personal scratch notes ==================
-# Local prompt/notes file, not part of the site
+# Local notes, not part of the site. Review before pushing: todo.md and
+# recommendations.md describe internal work, not the published portfolio.
 prompt
+todo.md
+recommendations.md
 
 # ================== OS junk ==================
 .DS_Store
@@ -35,6 +39,9 @@ build/
 .env
 .env.*
 !.env.example
+
+# ================== Smoke-test screenshots ==================
+.shots/
 
 # ================== Local dev artifacts ==================
 # Jekyll (GitHub Pages) output if it is ever run locally
