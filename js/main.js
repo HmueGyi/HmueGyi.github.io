@@ -19,6 +19,8 @@
     m.initCardTilt();
     m.initMagneticSkills();
     m.initMagneticButtons();
+    m.initStorytelling?.();
+    m.initTactileUI?.();
     m.initContactForm();
     m.initFooterYear();
 })();

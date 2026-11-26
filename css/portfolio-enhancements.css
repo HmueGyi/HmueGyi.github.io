@@ -1,40 +1,9 @@
 /* ============================================================
-   portfolio-enhancements.css — Availability, Metrics, Timeline,
-   Filters, Visual Previews, Modals, Toast & Command Palette
+   portfolio-enhancements.css — Bento Metrics, Sliding Pill Filters,
+   Project Actions, Pipeline Chips, Modals, Command Palette & Toast
    ============================================================ */
 
-/* ================== Availability Badge ================== */
-.availability-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.38rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(var(--teal-rgb), 0.12);
-    border: 1px solid rgba(var(--teal-rgb), 0.34);
-    color: var(--text-color);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    margin-bottom: 1.15rem;
-}
-
-.availability-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #2dd4bf;
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
-    animation: statusPulse 2.2s infinite;
-}
-
-@keyframes statusPulse {
-    0%   { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.65); }
-    70%  { box-shadow: 0 0 0 8px rgba(45, 212, 191, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0); }
-}
-
-/* ================== About Metrics & Timeline ================== */
+/* ================== About Bento Metrics ================== */
 .about-right p {
     max-width: 65ch;
 }
@@ -42,220 +11,177 @@
 .about-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.9rem;
-    margin: 1.5rem 0;
+    gap: 0.85rem;
+    margin-top: 1.65rem;
 }
 
 .metric-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    padding: 0.95rem 1rem;
+    border-radius: 18px;
+    padding: 1rem 1.05rem;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    transition: var(--transition-fast);
+    gap: 0.25rem;
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+    transition:
+        transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.28s ease,
+        background-color 0.28s ease,
+        box-shadow 0.35s var(--ease-out-expo);
 }
 
 .metric-card:hover {
-    border-color: rgba(var(--link-rgb), 0.45);
-    transform: translateY(-2px);
+    border-color: rgba(var(--link-rgb), 0.46);
+    background: var(--glass-bg-hover);
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 14px 30px rgba(var(--link-rgb), 0.14);
 }
 
 .metric-value {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: clamp(1.08rem, 2vw, 1.26rem);
     font-weight: 800;
+    letter-spacing: -0.02em;
     color: var(--link-color);
 }
 
 .metric-label {
     font-size: 0.8rem;
     color: var(--muted);
-    line-height: 1.35;
+    line-height: 1.38;
 }
 
-.about-timeline {
-    margin-top: 1.35rem;
-    padding-left: 1.25rem;
-    border-left: 2px solid rgba(var(--link-rgb), 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    text-align: left;
-}
-
-.timeline-item {
-    position: relative;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: calc(-1.25rem - 5px);
-    top: 0.42rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--link-color);
-    box-shadow: 0 0 10px rgba(var(--link-rgb), 0.65);
-}
-
-.timeline-role {
-    font-weight: 700;
-    font-size: 0.92rem;
-    color: var(--text-color);
-}
-
-.timeline-meta {
-    font-size: 0.82rem;
-    color: var(--muted);
-}
-
-@media (max-width: 640px) {
+@media (max-width: 680px) {
     .about-metrics {
         grid-template-columns: 1fr;
     }
 }
 
-/* ================== Category Filter Pills ================== */
+/* ================== Sliding Pill Filter Bar ================== */
 .filter-pills {
-    display: flex;
+    position: relative;
+    display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.6rem;
-    margin-top: 1.25rem;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem;
+    margin: 0 auto 2rem;
+    border-radius: 999px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+}
+
+.filter-pill-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    border-radius: 999px;
+    background: var(--button-bg);
+    box-shadow: 0 6px 18px rgba(var(--link-rgb), 0.28);
+    transform-origin: left center;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+    will-change: transform;
+    transition:
+        transform 0.38s cubic-bezier(0.34, 1.45, 0.64, 1),
+        opacity 0.2s ease;
+}
+
+.filter-pill-indicator.visible {
+    opacity: 1;
 }
 
 .filter-pill {
-    padding: 0.46rem 1rem;
+    position: relative;
+    z-index: 1;
+    padding: 0.48rem 1rem;
     border-radius: 999px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
+    border: 1px solid transparent;
+    background: transparent;
     color: var(--muted);
     font-family: var(--font-body);
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition-fast);
+    transition: color 0.25s ease, transform 0.22s var(--ease-out-expo), background-color 0.25s ease;
 }
 
 .filter-pill:hover {
     color: var(--text-color);
-    border-color: rgba(var(--link-rgb), 0.45);
+}
+
+.filter-pill:active {
+    transform: scale(0.96);
 }
 
 .filter-pill.active {
-    background: var(--button-bg);
     color: var(--button-text);
-    border-color: transparent;
-    box-shadow: 0 8px 20px rgba(var(--link-rgb), 0.25);
+}
+
+/* Fallback if indicator isn't visible (e.g. wrapped multi-line mobile or reduced motion) */
+.filter-pills.no-indicator .filter-pill.active {
+    background: var(--button-bg);
+    box-shadow: 0 6px 18px rgba(var(--link-rgb), 0.26);
 }
 
 .is-filtered-out {
     display: none !important;
 }
 
-/* ================== Project Visual Previews & Actions ================== */
-.project-visual {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 1.15rem;
-    border: 1px solid var(--glass-border);
-    background: linear-gradient(135deg, rgba(var(--link-rgb), 0.14), rgba(var(--accent-rgb), 0.16));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (max-width: 600px) {
+    .filter-pills {
+        border-radius: 18px;
+        gap: 0.3rem;
+        padding: 0.35rem;
+    }
 }
 
-.project-visual svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.project-badge {
-    position: absolute;
-    top: 0.65rem;
-    left: 0.65rem;
-    padding: 0.24rem 0.65rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    background: rgba(6, 11, 22, 0.78);
-    color: #38bdf8;
-    border: 1px solid rgba(56, 189, 248, 0.42);
-    backdrop-filter: blur(8px);
-}
-
+/* ================== Project Card Actions ================== */
 .project-actions {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.65rem;
-    margin-top: 1rem;
+    margin-top: 0.65rem;
+}
+
+.project-actions .project-link.btn {
+    margin-top: 0;
 }
 
 .project-actions .btn {
-    padding: 0.62rem 1.05rem;
+    padding: 0.62rem 1.15rem;
     font-size: 0.88rem;
 }
 
-/* ================== Copy Email & Toast ================== */
-.copy-email-btn {
-    margin-left: 0.45rem;
-    padding: 0.2rem 0.55rem;
-    border-radius: 8px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    color: var(--link-color);
-    font-size: 0.76rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-fast);
+@media (max-width: 480px) {
+    .project-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .project-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
-.copy-email-btn:hover {
-    background: var(--link-color);
-    color: #ffffff;
-}
-
-#portfolio-toast {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translate(-50%, 20px);
-    padding: 0.65rem 1.25rem;
-    border-radius: 999px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--link-rgb), 0.5);
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
-    font-size: 0.88rem;
-    font-weight: 600;
-    opacity: 0;
-    pointer-events: none;
-    z-index: var(--z-loader);
-    transition: opacity 0.25s ease, transform 0.3s var(--ease-out-expo);
-}
-
-#portfolio-toast.visible {
-    opacity: 1;
-    transform: translate(-50%, 0);
-}
-
-/* ================== Modals (Case Study, CV & Command Palette) ================== */
+/* ================== Modals (Case Study & Command Palette) ================== */
 .modal-backdrop {
     position: fixed;
     inset: 0;
     background: rgba(6, 11, 22, 0.72);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: var(--z-modal);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 12000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,7 +189,11 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
+    transition: opacity 0.26s ease, visibility 0.26s ease;
+}
+
+html.light .modal-backdrop {
+    background: rgba(15, 28, 51, 0.42);
 }
 
 .modal-backdrop.open {
@@ -273,16 +203,16 @@
 }
 
 .modal-card {
-    width: min(100%, 660px);
+    width: min(100%, 680px);
     max-height: min(86vh, 760px);
     overflow-y: auto;
     background: var(--bg-color);
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(var(--link-rgb), 0.25);
     border-radius: 24px;
-    padding: clamp(1.35rem, 3vw, 2rem);
+    padding: clamp(1.35rem, 3vw, 2.1rem);
     box-shadow: var(--shadow-3d);
-    transform: translateY(12px) scale(0.98);
-    transition: transform 0.3s var(--ease-out-expo);
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.36s cubic-bezier(0.34, 1.45, 0.64, 1);
     position: relative;
 }
 
@@ -292,52 +222,158 @@
 
 .modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.05rem;
+    right: 1.05rem;
     width: 36px;
     height: 36px;
-    border-radius: 10px;
+    border-radius: 11px;
     border: 1px solid var(--glass-border);
     background: var(--glass-bg);
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    line-height: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition:
+        border-color 0.22s ease,
+        color 0.22s ease,
+        background-color 0.22s ease,
+        transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modal-close:hover {
     border-color: var(--link-color);
     color: var(--link-color);
+    background: var(--glass-bg-hover);
+    transform: scale(1.06);
+}
+
+.modal-domain-badge {
+    display: inline-block;
+    padding: 0.26rem 0.72rem;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(var(--link-rgb), 0.12);
+    border: 1px solid rgba(var(--link-rgb), 0.3);
+    color: var(--link-color);
+    margin-bottom: 0.75rem;
+}
+
+#caseStudyTitle {
+    margin: 0 2.5rem 0.6rem 0;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    line-height: 1.2;
+    color: var(--text-color);
+}
+
+.modal-summary,
+.modal-decisions {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.96rem;
+    line-height: 1.68;
 }
 
 .modal-section-label {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     color: var(--link-color);
     font-weight: 700;
-    margin-top: 1.15rem;
-    margin-bottom: 0.35rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Tactile Signal Pipeline Chips */
+.pipeline-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+}
+
+.pipeline-node {
+    padding: 0.34rem 0.72rem;
+    border-radius: 10px;
+    background: rgba(var(--link-rgb), 0.11);
+    border: 1px solid rgba(var(--link-rgb), 0.28);
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.pipeline-arrow {
+    color: var(--link-color);
+    font-size: 0.88rem;
+    font-weight: 700;
+    user-select: none;
+}
+
+.modal-footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.modal-footer-actions .btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+}
+
+/* ================== Command Palette ================== */
+.modal-card-cmdk {
+    width: min(100%, 580px);
+    padding: 1.15rem;
+}
+
+.cmdk-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
 }
 
 .cmdk-input {
-    width: 100%;
-    padding: 0.85rem 1rem;
+    flex: 1;
+    min-width: 0;
+    padding: 0.82rem 1rem;
     border-radius: 14px;
     border: 1px solid var(--glass-border);
     background: var(--input-bg);
     color: var(--text-color);
     font-family: var(--font-body);
     font-size: 0.95rem;
-    margin-bottom: 0.85rem;
+    outline: none;
+    transition: border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.cmdk-input:focus {
+    border-color: var(--link-color);
+    background: var(--input-focus-bg);
+}
+
+.cmdk-close {
+    position: static;
+    flex-shrink: 0;
 }
 
 .cmdk-list {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.28rem;
+    max-height: min(52vh, 380px);
+    overflow-y: auto;
 }
 
 .cmdk-item {
@@ -354,16 +390,92 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
+    transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.16s ease, color 0.16s ease;
 }
 
 .cmdk-item:hover,
+.cmdk-item.is-selected,
 .cmdk-item:focus-visible {
     background: var(--glass-bg-hover);
-    border-color: rgba(var(--link-rgb), 0.35);
+    border-color: rgba(var(--link-rgb), 0.38);
     color: var(--link-color);
+    transform: translateX(3px);
 }
 
-.cmdk-item span.cmdk-hint {
-    font-size: 0.78rem;
+.cmdk-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
     color: var(--muted);
+    flex-shrink: 0;
+}
+
+.cmdk-empty {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.cmdk-footer-hints {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.7rem 0.35rem 0.1rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.76rem;
+    color: var(--muted);
+}
+
+.cmdk-footer-hints kbd {
+    display: inline-block;
+    padding: 0.12rem 0.38rem;
+    margin-right: 0.22rem;
+    border-radius: 6px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-color);
+}
+
+/* ================== Toast Feedback ================== */
+#portfolio-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translate(-50%, 18px);
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid rgba(var(--link-rgb), 0.48);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+    font-size: 0.88rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 12500;
+    transition: opacity 0.25s ease, transform 0.32s var(--ease-out-expo);
+}
+
+#portfolio-toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .filter-pill-indicator {
+        display: none !important;
+    }
+
+    .filter-pill.active {
+        background: var(--button-bg);
+        box-shadow: 0 6px 18px rgba(var(--link-rgb), 0.26);
+    }
+
+    .modal-card {
+        transition: none !important;
+    }
 }

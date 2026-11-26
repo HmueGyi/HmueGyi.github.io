@@ -18,6 +18,55 @@
     z-index: 9999;
 }
 
+/* =================== Card-to-Modal Shared-Element View Transition =================== */
+::view-transition-group(active-project-card) {
+    animation-duration: 0.42s;
+    animation-timing-function: var(--ease-out-expo);
+    z-index: 12050;
+}
+
+::view-transition-old(active-project-card),
+::view-transition-new(active-project-card) {
+    height: 100%;
+    overflow: clip;
+    border-radius: 24px;
+}
+
+/* =================== Editorial Masked Split-Word Typography =================== */
+.split-word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+}
+
+.split-word {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.hero-title.gsap-split-active {
+    background: none;
+    -webkit-text-fill-color: initial;
+    opacity: 1;
+    filter: none;
+    transform: none;
+}
+
+.hero-title.gsap-split-active .split-word {
+    background: linear-gradient(135deg, var(--text-color) 35%, var(--link-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+section h3.gsap-split-active {
+    opacity: 1;
+    filter: none;
+    transform: none;
+}
+
 /* =================== Scroll Progress Bar =================== */
 #scroll-progress {
     position: fixed;
@@ -586,6 +635,7 @@ section h3.in-view::after {
     .reveal,
     .hero-left > *,
     .hero-right,
+    .split-word,
     nav a {
         opacity: 1 !important;
         filter: none !important;
