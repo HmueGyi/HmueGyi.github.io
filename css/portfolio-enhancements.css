@@ -1,0 +1,369 @@
+/* ============================================================
+   portfolio-enhancements.css — Availability, Metrics, Timeline,
+   Filters, Visual Previews, Modals, Toast & Command Palette
+   ============================================================ */
+
+/* ================== Availability Badge ================== */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.38rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(var(--teal-rgb), 0.12);
+    border: 1px solid rgba(var(--teal-rgb), 0.34);
+    color: var(--text-color);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.15rem;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2dd4bf;
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+    animation: statusPulse 2.2s infinite;
+}
+
+@keyframes statusPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.65); }
+    70%  { box-shadow: 0 0 0 8px rgba(45, 212, 191, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0); }
+}
+
+/* ================== About Metrics & Timeline ================== */
+.about-right p {
+    max-width: 65ch;
+}
+
+.about-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 1.5rem 0;
+}
+
+.metric-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 0.95rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    transition: var(--transition-fast);
+}
+
+.metric-card:hover {
+    border-color: rgba(var(--link-rgb), 0.45);
+    transform: translateY(-2px);
+}
+
+.metric-value {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--link-color);
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.35;
+}
+
+.about-timeline {
+    margin-top: 1.35rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(var(--link-rgb), 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: left;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.25rem - 5px);
+    top: 0.42rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--link-color);
+    box-shadow: 0 0 10px rgba(var(--link-rgb), 0.65);
+}
+
+.timeline-role {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-color);
+}
+
+.timeline-meta {
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+@media (max-width: 640px) {
+    .about-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================== Category Filter Pills ================== */
+.filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+}
+
+.filter-pill {
+    padding: 0.46rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.filter-pill:hover {
+    color: var(--text-color);
+    border-color: rgba(var(--link-rgb), 0.45);
+}
+
+.filter-pill.active {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(var(--link-rgb), 0.25);
+}
+
+.is-filtered-out {
+    display: none !important;
+}
+
+/* ================== Project Visual Previews & Actions ================== */
+.project-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.15rem;
+    border: 1px solid var(--glass-border);
+    background: linear-gradient(135deg, rgba(var(--link-rgb), 0.14), rgba(var(--accent-rgb), 0.16));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-visual svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.project-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.24rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(6, 11, 22, 0.78);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.42);
+    backdrop-filter: blur(8px);
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1rem;
+}
+
+.project-actions .btn {
+    padding: 0.62rem 1.05rem;
+    font-size: 0.88rem;
+}
+
+/* ================== Copy Email & Toast ================== */
+.copy-email-btn {
+    margin-left: 0.45rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--link-color);
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.copy-email-btn:hover {
+    background: var(--link-color);
+    color: #ffffff;
+}
+
+#portfolio-toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid rgba(var(--link-rgb), 0.5);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    font-size: 0.88rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    z-index: var(--z-loader);
+    transition: opacity 0.25s ease, transform 0.3s var(--ease-out-expo);
+}
+
+#portfolio-toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* ================== Modals (Case Study, CV & Command Palette) ================== */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 11, 22, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-card {
+    width: min(100%, 660px);
+    max-height: min(86vh, 760px);
+    overflow-y: auto;
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: clamp(1.35rem, 3vw, 2rem);
+    box-shadow: var(--shadow-3d);
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.3s var(--ease-out-expo);
+    position: relative;
+}
+
+.modal-backdrop.open .modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    border-color: var(--link-color);
+    color: var(--link-color);
+}
+
+.modal-section-label {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--link-color);
+    font-weight: 700;
+    margin-top: 1.15rem;
+    margin-bottom: 0.35rem;
+}
+
+.cmdk-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--glass-border);
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+}
+
+.cmdk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.cmdk-item {
+    width: 100%;
+    text-align: left;
+    padding: 0.7rem 0.95rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cmdk-item:hover,
+.cmdk-item:focus-visible {
+    background: var(--glass-bg-hover);
+    border-color: rgba(var(--link-rgb), 0.35);
+    color: var(--link-color);
+}
+
+.cmdk-item span.cmdk-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+}
