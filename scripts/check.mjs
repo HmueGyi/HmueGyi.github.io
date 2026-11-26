@@ -294,7 +294,13 @@ async function main() {
         };
     });
     await page.evaluate(() => document.getElementById('menuToggle').click());
-    await page.waitForTimeout(500);
+    // Wait for the drawer transition to finish, not a fixed delay — a flat
+    // timeout measures the animation, not the state.
+    await page.waitForFunction(() => {
+        const nav = document.getElementById('navMenu');
+        return nav.getBoundingClientRect().right <= window.innerWidth + 1;
+    }, { timeout: 3000 }).catch(() => {});
+    await page.waitForTimeout(150);
     const menu = await page.evaluate(() => {
         const nav = document.getElementById('navMenu');
         const r = nav.getBoundingClientRect();

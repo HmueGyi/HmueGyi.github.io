@@ -1,6 +1,7 @@
 /* ============================================================
-   nav.js — full-width glass header, GPU sliding glow underline,
-   active section link & border highlight, back-to-top, smooth scroll
+   nav.js — full-width glass header, GPU sliding glow underline
+   (follows the ACTIVE section only — hovering a link does not move it),
+   back-to-top, smooth scroll
    ============================================================ */
 
 (() => {
@@ -15,7 +16,6 @@
 
         let navUnderline = null;
         let activeLink = null;
-        let hoveredLink = null;
         let ticking = false;
 
         if (navMenu && navLinks.length) {
@@ -66,21 +66,9 @@
             });
 
             activeLink = matched;
-            if (!hoveredLink) moveUnderlineTo(activeLink);
+            moveUnderlineTo(activeLink);
             ticking = false;
         }
-
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                hoveredLink = link;
-                moveUnderlineTo(link);
-            });
-        });
-
-        navMenu?.addEventListener('mouseleave', () => {
-            hoveredLink = null;
-            moveUnderlineTo(activeLink);
-        });
 
         window.addEventListener('scroll', () => {
             if (ticking) return;
@@ -89,7 +77,7 @@
         }, { passive: true });
 
         window.addEventListener('resize', () => {
-            moveUnderlineTo(hoveredLink || activeLink);
+            moveUnderlineTo(activeLink);
         }, { passive: true });
 
         P.onPageRevealed(() => moveUnderlineTo(activeLink));
