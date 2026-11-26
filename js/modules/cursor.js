@@ -1,6 +1,6 @@
 /* ============================================================
-   cursor.js — theme-aware sparkle trail, click burst, and
-   smooth custom halo ring on hover targets (desktop only)
+   cursor.js — theme-aware sparkle trail + click burst (desktop only).
+   The custom halo ring around the pointer was removed on request.
    ============================================================ */
 
 (() => {
@@ -33,21 +33,12 @@
             'rgba(13, 148, 136,',
             'rgba(148, 197, 248,'
         ];
-        const INTERACTIVE_SELECTOR = 'a, button, .project-card, input, textarea, .robot-wrap';
-
         const particles = [];
         let rafId = null;
         let enabled = !P.isReducedMotion();
         let lastTrail = 0;
 
         let pointerInside = false;
-        let mouseX = -100;
-        let mouseY = -100;
-        let haloX = -100;
-        let haloY = -100;
-        let haloRadius = 14;
-        let haloAlpha = 0;
-        let hoveringInteractive = false;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -96,31 +87,6 @@
         function render() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Smooth trailing halo ring
-            const targetAlpha = pointerInside ? (hoveringInteractive ? 0.45 : 0.22) : 0;
-            const targetRadius = hoveringInteractive ? 23 : 13;
-            haloAlpha += (targetAlpha - haloAlpha) * 0.14;
-            haloRadius += (targetRadius - haloRadius) * 0.16;
-            if (pointerInside) {
-                haloX += (mouseX - haloX) * 0.18;
-                haloY += (mouseY - haloY) * 0.18;
-            }
-
-            if (haloAlpha > 0.01) {
-                const ringColor = P.isLightTheme() ? '2, 132, 199' : '56, 189, 248';
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(haloX, haloY, haloRadius, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(${ringColor}, ${haloAlpha})`;
-                ctx.lineWidth = hoveringInteractive ? 1.5 : 1.1;
-                if (hoveringInteractive) {
-                    ctx.fillStyle = `rgba(${ringColor}, 0.05)`;
-                    ctx.fill();
-                }
-                ctx.stroke();
-                ctx.restore();
-            }
-
             for (let i = particles.length - 1; i >= 0; i--) {
                 const p = particles[i];
                 p.x += p.vx;
@@ -145,8 +111,7 @@
                 }
             }
 
-            const keepRunning = (particles.length > 0 || pointerInside || haloAlpha > 0.01)
-                && enabled && !document.hidden;
+            const keepRunning = particles.length > 0 && enabled && !document.hidden;
             if (keepRunning) {
                 rafId = requestAnimationFrame(render);
             } else {
@@ -162,15 +127,7 @@
 
         document.addEventListener('mousemove', e => {
             if (!enabled) return;
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            if (!pointerInside) {
-                haloX = mouseX;
-                haloY = mouseY;
-                pointerInside = true;
-            }
-            hoveringInteractive = !!(e.target && e.target.closest && e.target.closest(INTERACTIVE_SELECTOR));
-            ensureLoop();
+            pointerInside = true;
 
             const now = performance.now();
             if (now - lastTrail < 34) return;
@@ -180,7 +137,6 @@
 
         document.addEventListener('mouseleave', () => {
             pointerInside = false;
-            hoveringInteractive = false;
         });
 
         document.addEventListener('click', e => {
@@ -204,7 +160,6 @@
                 if (rafId) cancelAnimationFrame(rafId);
                 rafId = null;
                 particles.length = 0;
-                haloAlpha = 0;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         });
