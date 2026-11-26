@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#0b0e14" />
+    <meta name="theme-color" content="#060b16" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Hmue Set San — Robotics &amp; AI Architect</title>
@@ -171,15 +171,17 @@
 
                 <div class="hero-right">
                     <!-- Chatbot mascot: video is ~17x smaller than the old 1.4 MB GIF -->
-                    <div class="robot-wrap">
-                        <video id="robot-media" class="robot-media" autoplay muted loop playsinline
-                            poster="assets/media/robot-poster.jpg" width="480" height="480"
-                            aria-label="Live chatbot mascot animation">
-                            <source src="assets/media/robot.webm" type="video/webm" />
-                            <source src="assets/media/robot.mp4" type="video/mp4" />
-                            <img src="assets/media/robot-poster.jpg" alt="Live chatbot mascot" width="480"
-                                height="480" />
-                        </video>
+                    <div class="robot-parallax">
+                        <div class="robot-wrap">
+                            <video id="robot-media" class="robot-media" autoplay muted loop playsinline
+                                poster="assets/media/robot-poster.jpg" width="480" height="480"
+                                aria-label="Live chatbot mascot animation">
+                                <source src="assets/media/robot.webm" type="video/webm" />
+                                <source src="assets/media/robot.mp4" type="video/mp4" />
+                                <img src="assets/media/robot-poster.jpg" alt="Live chatbot mascot" width="480"
+                                    height="480" />
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,19 +196,19 @@
                     <img src="assets/images/profile1.jpg" alt="Photo of Hmue Set San" class="about-photo"
                         loading="lazy" decoding="async" width="300" height="300" />
                 </div>
-                <div class="about-right">
+                <div class="about-right" data-stagger>
                     <p data-reveal="slide-up">
                         I'm <strong>Hmue Set San</strong>, a <strong>Robotics &amp; AI Developer</strong> who builds
                         systems that see, listen and act — computer-vision models, local LLM agents and ROS 2 robots
                         that run on real hardware, not just in notebooks.
                     </p>
-                    <p data-reveal="slide-up" style="--stagger-step:0.1s; transition-delay:0.1s;">
+                    <p data-reveal="slide-up">
                         I studied computer science across three universities — <strong>Computer University
                             (Sittwe)</strong>, <strong>Computer University (Monywa)</strong> and <strong>Computer
                             University (Pathein)</strong> — which gave me first-hand experience of very different lab
                         setups, teams and problem-solving styles.
                     </p>
-                    <p data-reveal="slide-up" style="transition-delay:0.2s;">
+                    <p data-reveal="slide-up">
                         Today I design and ship intelligent robotic solutions: perception pipelines, motion and
                         automation, and offline-first AI so a system keeps working when the network does not.
                     </p>
@@ -410,7 +412,7 @@
         <!-- =================== Projects Section =================== -->
         <section id="projects">
             <h3 data-reveal="fade">Projects</h3>
-            <div class="projects-grid">
+            <div class="projects-grid" data-stagger>
 
                 <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
@@ -428,7 +430,7 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.12s;">
+                <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
                         <h4>Facial Emotion Detection</h4>
                         <p>Real-time webcam emotion inference using MediaPipe face detection and an EfficientNet-V2-S
@@ -444,7 +446,7 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.24s;">
+                <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
                         <h4>Four-Wheel Robot Simulation</h4>
                         <p>A ROS 2 four-wheel car robot model with separate robot-description and Gazebo simulation
@@ -460,7 +462,7 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.36s;">
+                <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
                         <h4>Local VLM Image Captioning</h4>
                         <p>Explore images and live camera feeds with local vision-language models through a browser
@@ -476,7 +478,7 @@
                     </div>
                 </article>
 
-                <article class="project-card" data-tilt data-reveal="slide-up" style="transition-delay:0.48s;">
+                <article class="project-card" data-tilt data-reveal="slide-up">
                     <div class="project-inner">
                         <h4>YOLO Object Detection with ONNX</h4>
                         <p>Run YOLOv8 detection on images, videos or webcam feeds using ONNX or PyTorch models, with
@@ -574,7 +576,12 @@
 
     <!-- =================== Back to Top =================== -->
     <button id="backToTop" aria-label="Scroll to top" title="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 24 24" width="26" fill="currentColor">
+        <svg class="btt-ring" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="btt-ring-track" cx="26" cy="26" r="23" />
+            <circle class="btt-ring-fill" cx="26" cy="26" r="23" />
+        </svg>
+        <svg class="btt-arrow" xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 24 24" width="26"
+            fill="currentColor" aria-hidden="true">
             <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8z" />
         </svg>
     </button>

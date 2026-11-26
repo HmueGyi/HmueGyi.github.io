@@ -5,53 +5,135 @@ header {
     left: 0;
     right: 0;
     background: var(--header-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
     border-bottom: 1px solid var(--glass-border);
     z-index: 5000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem clamp(1rem, 4vw, 2rem);
-    transition: all 0.4s ease;
+    transition:
+        transform 0.6s var(--ease-out-expo),
+        padding 0.35s var(--ease-out-expo),
+        background-color 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 5%,
+        rgba(var(--link-rgb), 0.55) 35%,
+        rgba(var(--accent-rgb), 0.5) 65%,
+        transparent 95%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+header.scrolled::after {
+    opacity: 1;
 }
 
 header h1 {
     font-weight: 800;
     font-size: 1.4rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     color: var(--text-color);
     margin: 0;
+}
+
+header h1 a {
+    background: linear-gradient(135deg, var(--text-color) 35%, var(--link-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: transform 0.3s var(--ease-out-expo), filter 0.3s ease;
+}
+
+header h1 a:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
 }
 
 nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.35rem;
     position: fixed;
-    top: 1.2rem;
+    top: 1.15rem;
     right: calc(clamp(1rem, 4vw, 2rem) + 3.5rem);
     z-index: 6000;
+    transition: top 0.35s var(--ease-out-expo);
+}
+
+@media (min-width: 769px) {
+    header.scrolled {
+        padding: 0.78rem clamp(1rem, 4vw, 2rem);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    html.light header.scrolled {
+        box-shadow: 0 10px 28px rgba(15, 35, 70, 0.09);
+    }
+
+    header.scrolled ~ nav {
+        top: 0.93rem;
+    }
+}
+
+.nav-underline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 2.5px;
+    transform-origin: left center;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--link-color), var(--accent));
+    box-shadow: 0 0 10px rgba(var(--link-rgb), 0.55);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2;
+    will-change: transform;
+    transition:
+        transform 0.36s var(--ease-out-expo),
+        opacity 0.22s ease;
+}
+
+.nav-underline.visible {
+    opacity: 1;
 }
 
 nav a {
+    position: relative;
+    z-index: 1;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     color: var(--muted);
-    transition: color 0.3s ease;
-    padding: 0.5rem 0.8rem;
-    border-radius: 8px;
+    padding: 0.46rem 0.88rem;
+    border-radius: 10px;
+    transition: color 0.25s ease, background-color 0.25s ease;
 }
 
 nav a:hover {
     color: var(--link-color);
-    background: var(--glass-bg);
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
 }
 
 #menuToggle {
@@ -69,19 +151,30 @@ nav a:hover {
     border: 1px solid var(--glass-border);
     width: 42px;
     height: 42px;
-    border-radius: 14px;
+    border-radius: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     color: var(--link-color);
-    transition: all 0.3s ease;
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.35s var(--ease-out-expo),
+        box-shadow 0.3s ease;
 }
 
 #toggleTheme:hover {
     background: var(--link-color);
-    color: white;
-    transform: scale(1.05);
+    border-color: var(--link-color);
+    color: #ffffff;
+    transform: scale(1.06) rotate(8deg);
+    box-shadow: 0 8px 22px rgba(var(--link-rgb), 0.3);
+}
+
+#toggleTheme:active {
+    transform: scale(0.95);
 }
 
 #toggleTheme svg {
@@ -93,10 +186,10 @@ nav a:hover {
 footer {
     padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 5vw, 4rem) 2rem;
     background: var(--footer-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
     border-top: 1px solid var(--glass-border);
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .footer-grid {
@@ -108,80 +201,63 @@ footer {
 }
 
 .footer-col h4 {
-    font-size: 1.1rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-color);
 }
 
-.footer-logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--link-color), var(--accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.footer-col.brand p {
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 320px;
-    text-align: left !important;
-}
-
 .footer-col.links ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .footer-col.links li {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-col.links a {
     color: var(--muted);
     text-decoration: none;
-    transition: all 0.3s ease;
     font-size: 0.95rem;
+    transition: color 0.25s ease, padding-left 0.3s var(--ease-out-expo);
 }
 
 .footer-col.links a:hover {
     color: var(--link-color);
-    padding-left: 5px;
+    padding-left: 4px;
 }
 
 .social-links-wrap {
     display: flex;
-    gap: 1.2rem;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
 .social-links-wrap a {
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.05);
+    width: 44px;
+    height: 44px;
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
+    border-radius: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-html.light .social-links-wrap a {
-    background: rgba(255, 255, 255, 0.78);
+    transition:
+        transform 0.4s var(--ease-out-expo),
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.35s ease;
 }
 
 .social-links-wrap a img {
     width: 20px;
     height: 20px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s var(--ease-out-expo), filter 0.25s ease;
     filter: brightness(0) invert(1);
 }
 
@@ -192,12 +268,13 @@ html.light .social-links-wrap a img {
 .social-links-wrap a:hover {
     background: var(--link-color);
     border-color: var(--link-color);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(var(--link-rgb), 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(var(--link-rgb), 0.28);
 }
 
 .social-links-wrap a:hover img {
     transform: scale(1.1);
+    filter: brightness(0) invert(1);
 }
 
 .footer-bottom {
@@ -209,21 +286,16 @@ html.light .social-links-wrap a img {
     font-size: 0.9rem;
 }
 
-/* Responsive MQs */
+/* ================== Responsive Layout ================== */
 @media (max-width: 1024px) {
     footer {
         padding: 2rem 1.5rem 1.5rem;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
     }
-    
+
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
-    }
-    
-    .footer-col.brand {
-        grid-column: span 2;
-        margin-bottom: 2rem;
     }
 }
 
@@ -235,18 +307,36 @@ html.light .social-links-wrap a img {
         bottom: 0;
         width: min(82vw, 320px);
         background: var(--bg-color);
-        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.4);
+        box-shadow: -12px 0 48px rgba(0, 0, 0, 0.4);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         padding: 6rem clamp(1rem, 5vw, 2rem) 2rem;
-        gap: 1rem;
+        gap: 0.75rem;
         transform: translateX(100%);
-        transition: transform 0.4s var(--ease-out-expo);
+        transition: transform 0.4s var(--ease-out-expo), visibility 0.4s ease;
         z-index: 9000;
         overflow-y: auto;
-        visibility: hidden; /* Prevent focus on hidden menu links */
+        visibility: hidden;
+    }
+
+    header.scrolled ~ nav {
+        top: 0;
+    }
+
+    .nav-underline {
+        display: none;
+    }
+
+    main.container {
+        transition: transform 0.4s var(--ease-out-expo), filter 0.35s ease;
+        transform-origin: center top;
+    }
+
+    body.menu-open main.container {
+        transform: scale(0.975);
+        filter: brightness(0.88);
     }
 
     nav.open {
@@ -259,29 +349,29 @@ html.light .social-links-wrap a img {
         font-weight: 500;
         color: var(--text-color);
         width: 100%;
-        padding: 1rem;
+        padding: 0.95rem 1rem;
         text-align: center;
         border-bottom: 1px solid var(--glass-border);
+        border-radius: 10px;
     }
 
-    /* Adjust header for mobile */
     header {
         padding: 0.85rem clamp(0.9rem, 4vw, 1.5rem);
         z-index: 10000;
     }
 
     header h1 {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
     }
 
     #menuToggle {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.45rem;
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
-        border-radius: 14px;
+        border-radius: 13px;
         width: 42px;
         height: 42px;
         cursor: pointer;
@@ -296,16 +386,9 @@ html.light .social-links-wrap a img {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
-    .footer-col.brand {
-        grid-column: span 1;
-    }
 
-    .footer-col h4,
-    .footer-logo,
-    .footer-col.brand p {
-        text-align: center !important;
-        max-width: none;
+    .footer-col h4 {
+        text-align: center;
     }
 
     .footer-col.links ul {
@@ -320,11 +403,5 @@ html.light .social-links-wrap a img {
 @media (max-width: 380px) {
     nav {
         width: 88vw;
-    }
-
-    #menuToggle {
-        width: 42px;
-        height: 42px;
-        font-size: 1.55rem;
     }
 }

@@ -1,21 +1,24 @@
 /* ============================================================
-   main.js — boot. Order matters only for the loader/typewriter
-   handshake (the typewriter waits for window.__pageRevealed).
+   main.js — boot sequence
    ============================================================ */
 
-initTheme();
-initMenu();
+(() => {
+    const m = window.Portfolio.modules;
 
-initLoader();          // page loader
-initReveal();          // IntersectionObserver reveal observers
-initTypewriter();
-initScrollProgress();
-initNav();
-initBackground();
-initCursorFX();
-initHeroParallax();
-initAboutParallax();
-initCardTilt();
-initMagneticSkills();
-initContactForm();
-initFooterYear();
+    m.initTheme();
+    m.initMenu();
+    m.initLoader();
+    m.initReveal();
+    m.initTypewriter();
+    m.initScrollProgress();
+    m.initNav();
+    m.initBackground();
+    m.initCursorFX();
+    m.initHeroParallax();
+    m.initAboutParallax();
+    m.initCardTilt();
+    m.initMagneticSkills();
+    m.initMagneticButtons();
+    m.initContactForm();
+    m.initFooterYear();
+})();

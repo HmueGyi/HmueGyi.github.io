@@ -1,23 +1,38 @@
 /* ============================================================
-   animations.css  —  Premium Motion Design System
-   All keyframes + animation utility classes live here.
+   animations.css — Motion Design System
    Respects prefers-reduced-motion throughout.
    ============================================================ */
+
+/* =================== View Transition Theme Ripple =================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 9999;
+}
 
 /* =================== Scroll Progress Bar =================== */
 #scroll-progress {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
     height: 3px;
-    width: 0%;
+    transform: scaleX(0);
+    transform-origin: left center;
     background: linear-gradient(90deg, var(--link-color), var(--accent), var(--link-color));
     background-size: 200% 100%;
-    animation: progressShimmer 2s linear infinite;
+    animation: progressShimmer 2.4s linear infinite;
     z-index: 99999;
-    transition: width 0.1s linear;
-    border-radius: 0 99px 99px 0;
-    box-shadow: 0 0 10px rgba(var(--link-rgb), 0.6);
+    box-shadow: 0 0 12px rgba(var(--link-rgb), 0.6);
+    will-change: transform;
 }
 
 @keyframes progressShimmer {
@@ -30,9 +45,9 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(6, 11, 22, 0.58);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: 8500;
     opacity: 0;
     transition: opacity 0.35s ease;
@@ -52,7 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.45s var(--ease-out-expo), visibility 0.45s ease;
 }
 
 #page-loader.loaded {
@@ -65,7 +80,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.35rem;
 }
 
 .loader-logo {
@@ -77,17 +92,17 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 0;
-    animation: loaderFadeIn 0.4s ease forwards 0.1s;
+    animation: loaderFadeIn 0.35s ease forwards 0.05s;
 }
 
 .loader-subtitle {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--muted);
     letter-spacing: 2px;
     text-transform: uppercase;
     opacity: 0;
-    animation: loaderFadeIn 0.4s ease forwards 0.6s;
+    animation: loaderFadeIn 0.35s ease forwards 0.35s;
 }
 
 .loader-bar-wrap {
@@ -97,7 +112,7 @@
     border-radius: 999px;
     overflow: hidden;
     opacity: 0;
-    animation: loaderFadeIn 0.4s ease forwards 0.3s;
+    animation: loaderFadeIn 0.3s ease forwards 0.15s;
 }
 
 .loader-bar {
@@ -105,7 +120,7 @@
     width: 0%;
     background: linear-gradient(90deg, var(--link-color), var(--accent));
     border-radius: 999px;
-    animation: loaderProgress 0.9s var(--ease-out-expo) forwards 0.4s;
+    animation: loaderProgress 0.55s var(--ease-out-expo) forwards 0.2s;
 }
 
 @keyframes loaderFadeIn {
@@ -120,7 +135,7 @@
     }
 }
 
-/* =================== Cursor Fireworks Canvas =================== */
+/* =================== Cursor & Background Canvases =================== */
 #cursor-fx {
     position: fixed;
     inset: 0;
@@ -130,61 +145,67 @@
     z-index: 99998;
 }
 
-/* Hide on touch devices */
 @media (hover: none) {
     #cursor-fx {
         display: none;
     }
 }
 
-
-/* =================== Background Canvas =================== */
 #bg-canvas {
     position: fixed;
     inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.65;
+    transition: opacity 0.6s ease;
 }
 
 /* =================== Page-Load Hero Entrance =================== */
-/* Applied via JS adding .page-ready to body */
-.hero-left>* {
+.hero-left > * {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    transform: translateY(18px);
+    transition:
+        opacity 0.58s var(--ease-out-expo),
+        transform 0.58s var(--ease-out-expo),
+        filter 0.58s var(--ease-out-expo);
+}
+
+.hero-left .hero-title {
+    filter: blur(6px);
+    transform: translateY(14px);
 }
 
 body.page-ready .hero-left .hero-title {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
-    transition-delay: 0.15s;
+    transition-delay: 0.06s;
 }
 
 body.page-ready .hero-left .typewriter {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.28s;
+    transition-delay: 0.18s;
 }
 
 body.page-ready .hero-left .hero-sub {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.38s;
+    transition-delay: 0.26s;
 }
 
 body.page-ready .hero-left .hero-cta {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.5s;
+    transition-delay: 0.34s;
 }
 
-/* Hero right — scale-in entrance */
 .hero-right {
     opacity: 0;
-    transform: scale(0.88) translateY(20px);
-    transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
-    transition-delay: 0.3s;
+    transform: scale(0.9) translateY(18px);
+    transition: opacity 0.85s var(--ease-out-expo), transform 0.85s var(--ease-out-expo);
+    transition-delay: 0.2s;
 }
 
 body.page-ready .hero-right {
@@ -195,12 +216,10 @@ body.page-ready .hero-right {
 /* Header entrance */
 header {
     transform: translateY(-100%);
-    transition: transform 0.6s var(--ease-out-expo), background 0.4s ease, box-shadow 0.4s ease;
 }
 
 body.page-ready header {
     transform: translateY(0);
-    transition-delay: 0s;
 }
 
 /* Nav entrance stagger (desktop) */
@@ -208,194 +227,126 @@ body.page-ready header {
     nav a {
         opacity: 0;
         transform: translateY(-8px);
-        transition: color 0.3s ease, background 0.3s ease,
-            opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+        transition:
+            color 0.25s ease,
+            background-color 0.25s ease,
+            opacity 0.45s var(--ease-out-expo),
+            transform 0.45s var(--ease-out-expo);
     }
 
-    body.page-ready nav a:nth-child(1) {
+    body.page-ready nav a {
         opacity: 1;
         transform: translateY(0);
-        transition-delay: 0.55s;
     }
 
-    body.page-ready nav a:nth-child(2) {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.62s;
-    }
-
-    body.page-ready nav a:nth-child(3) {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.69s;
-    }
-
-    body.page-ready nav a:nth-child(4) {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.76s;
-    }
-
-    body.page-ready nav a:nth-child(5) {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.83s;
-    }
-
-    body.page-ready nav a:nth-child(6) {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.9s;
-    }
-
-    body.page-ready nav a:nth-child(7) {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.97s;
-    }
-
-    body.page-ready nav #toggleTheme {
-        opacity: 1;
-        transition-delay: 0.9s;
-    }
-
-    nav #toggleTheme {
-        opacity: 0;
-        transition: all 0.3s ease, opacity 0.5s var(--ease-out-expo);
-    }
+    body.page-ready nav a:nth-child(1) { transition-delay: 0.25s; }
+    body.page-ready nav a:nth-child(2) { transition-delay: 0.30s; }
+    body.page-ready nav a:nth-child(3) { transition-delay: 0.35s; }
+    body.page-ready nav a:nth-child(4) { transition-delay: 0.40s; }
+    body.page-ready nav a:nth-child(5) { transition-delay: 0.45s; }
 }
 
 /* =================== Navbar — Active Link =================== */
-nav a {
-    position: relative;
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 70%;
-    height: 2px;
-    border-radius: 99px;
-    background: linear-gradient(90deg, var(--link-color), var(--accent));
-    transition: transform 0.35s var(--ease-out-expo);
-}
-
-nav a:hover::after,
-nav a.nav-active::after {
-    transform: translateX(-50%) scaleX(1);
-}
-
 nav a.nav-active {
     color: var(--link-color) !important;
 }
 
 /* =================== Scroll-Triggered Reveal Variants =================== */
-/* Base state — JS adds .in-view */
 [data-reveal] {
-    will-change: transform, opacity;
+    will-change: transform, opacity, filter;
 }
 
 [data-reveal="fade"] {
     opacity: 0;
-    transition: opacity 0.75s var(--ease-out-expo);
+    filter: blur(5px);
+    transform: translateY(12px);
+    transition:
+        opacity 0.55s var(--ease-out-expo),
+        filter 0.55s var(--ease-out-expo),
+        transform 0.55s var(--ease-out-expo);
 }
 
 [data-reveal="slide-up"] {
     opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+    transform: translateY(22px);
+    transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo);
 }
 
 [data-reveal="slide-left"] {
     opacity: 0;
-    transform: translateX(-44px);
-    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+    transform: translateX(-24px);
+    transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo);
 }
 
 [data-reveal="slide-right"] {
     opacity: 0;
-    transform: translateX(44px);
-    transition: opacity 0.75s var(--ease-out-expo), transform 0.75s var(--ease-out-expo);
+    transform: translateX(24px);
+    transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo);
 }
 
 [data-reveal="scale-in"] {
     opacity: 0;
-    transform: scale(0.88);
-    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    transform: scale(0.92);
+    transition: opacity 0.52s var(--ease-out-expo), transform 0.52s var(--ease-out-expo);
 }
 
 [data-reveal="zoom-fade"] {
     opacity: 0;
-    transform: scale(0.94) translateY(20px);
-    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    transform: scale(0.95) translateY(14px);
+    transition: opacity 0.52s var(--ease-out-expo), transform 0.52s var(--ease-out-expo);
 }
 
-/* Revealed state */
 [data-reveal].in-view {
     opacity: 1;
+    filter: blur(0);
     transform: none;
 }
 
-/* Stagger delays for child items */
-[data-stagger]>*:nth-child(1) {
-    transition-delay: calc(0 * var(--stagger-step, 0.08s));
+/* Stagger delays for child items (supports skills grid up to 20 items & card grids) */
+[data-stagger] > *:nth-child(1)  { transition-delay: calc(0 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(2)  { transition-delay: calc(1 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(3)  { transition-delay: calc(2 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(4)  { transition-delay: calc(3 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(5)  { transition-delay: calc(4 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(6)  { transition-delay: calc(5 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(7)  { transition-delay: calc(6 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(8)  { transition-delay: calc(7 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(9)  { transition-delay: calc(8 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(10) { transition-delay: calc(9 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(11) { transition-delay: calc(10 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(12) { transition-delay: calc(11 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(13) { transition-delay: calc(12 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(14) { transition-delay: calc(13 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(15) { transition-delay: calc(14 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(16) { transition-delay: calc(15 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(17) { transition-delay: calc(16 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(18) { transition-delay: calc(17 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(19) { transition-delay: calc(18 * var(--stagger-step, 0.045s)); }
+[data-stagger] > *:nth-child(20) { transition-delay: calc(19 * var(--stagger-step, 0.045s)); }
+
+.projects-grid[data-stagger] {
+    --stagger-step: 0.09s;
 }
 
-[data-stagger]>*:nth-child(2) {
-    transition-delay: calc(1 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(3) {
-    transition-delay: calc(2 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(4) {
-    transition-delay: calc(3 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(5) {
-    transition-delay: calc(4 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(6) {
-    transition-delay: calc(5 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(7) {
-    transition-delay: calc(6 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(8) {
-    transition-delay: calc(7 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(9) {
-    transition-delay: calc(8 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(10) {
-    transition-delay: calc(9 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(11) {
-    transition-delay: calc(10 * var(--stagger-step, 0.08s));
-}
-
-[data-stagger]>*:nth-child(12) {
-    transition-delay: calc(11 * var(--stagger-step, 0.08s));
+.about-right[data-stagger] {
+    --stagger-step: 0.09s;
 }
 
 /* =================== Header scroll state =================== */
-header.scrolled {
-    background: var(--header-bg);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
-    padding: 0.7rem 2rem;
+/* Desktop floating capsule dimensions & alignment live in layout.css */
+@media (max-width: 768px) {
+    header.scrolled {
+        background: var(--header-bg);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+        padding: 0.72rem clamp(0.9rem, 4vw, 1.5rem);
+    }
+
+    html.light header.scrolled {
+        box-shadow: 0 8px 24px rgba(15, 35, 70, 0.09);
+    }
 }
 
-/* =================== Hero — Gradient light blobs =================== */
+/* =================== Hero — Ambient light blobs =================== */
 .hero {
     position: relative;
     overflow: hidden;
@@ -404,7 +355,7 @@ header.scrolled {
 .hero-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(85px);
     pointer-events: none;
     will-change: transform;
 }
@@ -412,83 +363,48 @@ header.scrolled {
 .hero-blob-1 {
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle, rgba(var(--link-rgb), 0.12), transparent 70%);
-    top: -15%;
+    background: radial-gradient(circle, rgba(var(--link-rgb), 0.14), transparent 70%);
+    top: -18%;
     left: -10%;
     animation: blobDrift1 14s ease-in-out infinite;
 }
 
 .hero-blob-2 {
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1), transparent 70%);
-    bottom: 10%;
-    right: 5%;
+    width: 390px;
+    height: 390px;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.12), transparent 70%);
+    bottom: 8%;
+    right: 4%;
     animation: blobDrift2 11s ease-in-out infinite;
 }
 
 @keyframes blobDrift1 {
-
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        transform: translate(30px, -20px) scale(1.05);
-    }
-
-    66% {
-        transform: translate(-20px, 30px) scale(0.97);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(28px, -18px) scale(1.05); }
+    66%      { transform: translate(-18px, 28px) scale(0.97); }
 }
 
 @keyframes blobDrift2 {
-
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    40% {
-        transform: translate(-25px, 20px) scale(1.06);
-    }
-
-    70% {
-        transform: translate(20px, -15px) scale(0.96);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40%      { transform: translate(-24px, 18px) scale(1.06); }
+    70%      { transform: translate(18px, -14px) scale(0.96); }
 }
 
-/* =================== Robot wrap parallax float =================== */
+/* =================== Robot wrap float =================== */
 @keyframes heroFloat {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-14px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-13px); }
 }
 
-/* Float applied to the WRAP (not the img) so it translates as a whole.
-   The img must stay flex-centred; animating it on its own shifted it out
-   of the circle and broke the centring. */
 .robot-wrap {
     animation:
-        pulseGlow 4s ease-in-out infinite,
-        heroFloat 6s ease-in-out infinite !important;
-}
-
-#robot-gif {
-    object-position: center center;
+        pulseGlow 4.2s ease-in-out infinite,
+        heroFloat 5.6s ease-in-out infinite;
 }
 
 /* =================== Section heading reveal accent line =================== */
 section h3 {
     position: relative;
-    /* Keep existing text-align: center from sections.css; no positional override needed */
 }
 
 section h3::after {
@@ -498,57 +414,50 @@ section h3::after {
     left: 50%;
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
-    width: 60px;
+    width: 64px;
     height: 3px;
     background: linear-gradient(90deg, var(--link-color), var(--accent));
     border-radius: 99px;
-    transition: transform 0.55s var(--ease-out-expo) 0.2s;
+    transition: transform 0.55s var(--ease-out-expo) 0.15s;
 }
 
 section h3.in-view::after {
     transform: translateX(-50%) scaleX(1);
 }
 
-/* =================== Project cards — glow border on hover =================== */
-.project-card {
-    --glow-opacity: 0;
-    transition: var(--transition-smooth), --glow-opacity 0.4s ease;
-}
-
+/* =================== Project cards — gradient border on hover =================== */
 .project-card::after {
     content: '';
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(var(--link-rgb), 0.4), rgba(var(--accent-rgb), 0.3));
+    background: linear-gradient(135deg, rgba(var(--link-rgb), 0.45), rgba(var(--accent-rgb), 0.32));
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.35s ease;
     z-index: -1;
 }
 
-.project-card:hover::after {
+.project-card:hover::after,
+.project-card:focus-within::after {
     opacity: 1;
 }
 
 /* =================== Skill icon shimmer =================== */
 @keyframes iconShimmer {
-    0% {
-        background-position: -200% center;
-    }
-
-    100% {
-        background-position: 200% center;
-    }
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
 }
 
 .skills-logos a:focus-visible .icon-wrapper,
 .skills-logos a:hover .icon-wrapper {
-    background: linear-gradient(90deg,
-            rgba(var(--link-rgb), 0.08) 0%,
-            rgba(var(--link-rgb), 0.18) 50%,
-            rgba(var(--link-rgb), 0.08) 100%);
+    background: linear-gradient(
+        105deg,
+        rgba(var(--link-rgb), 0.08) 0%,
+        rgba(var(--link-rgb), 0.22) 50%,
+        rgba(var(--link-rgb), 0.08) 100%
+    );
     background-size: 200% auto;
-    animation: iconShimmer 1.2s linear forwards;
+    animation: iconShimmer 1.1s linear forwards;
 }
 
 /* =================== Contact form input micro-interaction =================== */
@@ -560,14 +469,14 @@ section h3.in-view::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 1.2rem;
-    right: 1.2rem;
+    left: 1.15rem;
+    right: 1.15rem;
     height: 2px;
     background: linear-gradient(90deg, var(--link-color), var(--accent));
     border-radius: 99px;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.4s var(--ease-out-expo);
+    transition: transform 0.35s var(--ease-out-expo);
 }
 
 .form-group:focus-within::after {
@@ -578,10 +487,12 @@ section h3.in-view::after {
 @media (max-width: 768px) {
     nav a {
         opacity: 0;
-        transform: translateX(24px);
-        transition: color 0.3s ease, background 0.3s ease,
-            opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo),
-            border-bottom 0.3s ease;
+        transform: translateX(22px);
+        transition:
+            color 0.25s ease,
+            background-color 0.25s ease,
+            opacity 0.38s var(--ease-out-expo),
+            transform 0.38s var(--ease-out-expo);
     }
 
     nav.open a {
@@ -589,52 +500,20 @@ section h3.in-view::after {
         transform: translateX(0);
     }
 
-    nav.open a:nth-child(1) {
-        transition-delay: 0.08s;
-    }
-
-    nav.open a:nth-child(2) {
-        transition-delay: 0.14s;
-    }
-
-    nav.open a:nth-child(3) {
-        transition-delay: 0.20s;
-    }
-
-    nav.open a:nth-child(4) {
-        transition-delay: 0.26s;
-    }
-
-    nav.open a:nth-child(5) {
-        transition-delay: 0.32s;
-    }
-
-    nav.open a:nth-child(6) {
-        transition-delay: 0.38s;
-    }
-
-    nav.open a:nth-child(7) {
-        transition-delay: 0.44s;
-    }
-
-    nav.open #toggleTheme {
-        opacity: 1;
-        transition-delay: 0.38s;
-    }
-
-    nav #toggleTheme {
-        opacity: 0;
-        transition: all 0.3s ease, opacity 0.4s var(--ease-out-expo);
-    }
+    nav.open a:nth-child(1) { transition-delay: 0.06s; }
+    nav.open a:nth-child(2) { transition-delay: 0.11s; }
+    nav.open a:nth-child(3) { transition-delay: 0.16s; }
+    nav.open a:nth-child(4) { transition-delay: 0.21s; }
+    nav.open a:nth-child(5) { transition-delay: 0.26s; }
 }
 
-/* =================== Hamburger to X morph =================== */
+/* =================== Hamburger button hover =================== */
 #menuToggle {
-    transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
+    transition: transform 0.3s var(--ease-out-expo), background-color 0.25s ease;
 }
 
 #menuToggle:hover {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 /* =================== Social links glow =================== */
@@ -647,29 +526,29 @@ section h3.in-view::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle, rgba(var(--link-rgb), 0.2), transparent 70%);
+    background: radial-gradient(circle, rgba(var(--link-rgb), 0.24), transparent 70%);
     opacity: 0;
     transform: scale(0.5);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transition: opacity 0.3s ease, transform 0.35s var(--ease-out-expo);
 }
 
 .social-links-wrap a:hover::before {
     opacity: 1;
-    transform: scale(1.5);
+    transform: scale(1.4);
 }
 
 /* =================== Footer links slide =================== */
 .footer-col.links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
 .footer-col.links a::before {
     content: '→';
     opacity: 0;
     transform: translateX(-8px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.25s ease, transform 0.3s var(--ease-out-expo);
     font-size: 0.85rem;
     color: var(--link-color);
 }
@@ -679,28 +558,21 @@ section h3.in-view::after {
     transform: translateX(0);
 }
 
-/* =================== About photo subtle parallax wrapper =================== */
-.about-left {
-    overflow: visible;
-    display: flex;
-    justify-content: center;
-}
-
 /* =================== Info item hover =================== */
 .info-item {
-    border-radius: 12px;
-    padding: 0.6rem 0.8rem;
-    margin-left: -0.8rem;
-    transition: background 0.3s ease;
+    border-radius: 14px;
+    padding: 0.65rem 0.85rem;
+    margin-left: -0.85rem;
+    transition: background-color 0.25s ease, transform 0.3s var(--ease-out-expo);
 }
 
 .info-item:hover {
-    background: rgba(var(--link-rgb), 0.06);
+    background: rgba(var(--link-rgb), 0.08);
+    transform: translateX(3px);
 }
 
 /* =================== Reduced motion override =================== */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -711,10 +583,12 @@ section h3.in-view::after {
     }
 
     [data-reveal],
-    .hero-left>*,
+    .reveal,
+    .hero-left > *,
     .hero-right,
     nav a {
         opacity: 1 !important;
+        filter: none !important;
         transform: none !important;
         transition: none !important;
     }
@@ -723,17 +597,14 @@ section h3.in-view::after {
         transform: none !important;
     }
 
+    .nav-underline,
     #cursor-fx,
     #page-loader,
-    #bg-canvas {
-        display: none !important;
-    }
-
-    .hero-blob {
-        display: none;
-    }
-
-    .typewriter::after {
+    #bg-canvas,
+    .hero-blob,
+    .typewriter::after,
+    .robot-wrap::before,
+    .robot-wrap::after {
         display: none !important;
     }
 }

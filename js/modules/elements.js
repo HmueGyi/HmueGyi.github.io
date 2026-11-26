@@ -1,27 +1,54 @@
-/* ================== Cached DOM References ================== */
-const toggleThemeBtn = document.getElementById('toggleTheme');
-const icon = document.getElementById('icon');
-const menuToggleBtn = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-const typewriterElement = document.getElementById('typewriter');
-const backToTop = document.getElementById('backToTop');
-const contactForm = document.getElementById('contactForm');
-const tiltCards = document.querySelectorAll('[data-tilt]');
-const robotMedia = document.getElementById('robot-media');
+/* ============================================================
+   elements.js — shared DOM cache, motion & theme event bus
+   ============================================================ */
 
-/* ================== Motion preference (live) ==================
-   Read once for the initial render, but also kept in sync: a visitor who
-   flips "reduce motion" in their OS should not have to reload the page.
-   Modules with running rAF loops register a teardown via onMotionChange(). */
-const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-let prefersReducedMotion = motionQuery.matches;
-const motionListeners = [];
+window.Portfolio = (() => {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const motionListeners = new Set();
+    const themeListeners = new Set();
+    const revealListeners = new Set();
 
-function onMotionChange(fn) {
-    motionListeners.push(fn);
-}
+    const state = {
+        prefersReducedMotion: motionQuery.matches,
+        pageRevealed: false
+    };
 
-motionQuery.addEventListener('change', e => {
-    prefersReducedMotion = e.matches;
-    motionListeners.forEach(fn => fn(prefersReducedMotion));
-});
+    const dom = {
+        root: document.documentElement,
+        toggleThemeBtn: document.getElementById('toggleTheme'),
+        themeIcon: document.getElementById('icon'),
+        menuToggleBtn: document.getElementById('menuToggle'),
+        navMenu: document.getElementById('navMenu'),
+        navOverlay: document.getElementById('nav-overlay'),
+        typewriter: document.getElementById('typewriter'),
+        backToTop: document.getElementById('backToTop'),
+        contactForm: document.getElementById('contactForm'),
+        tiltCards: document.querySelectorAll('[data-tilt]')
+    };
+
+    motionQuery.addEventListener('change', e => {
+        state.prefersReducedMotion = e.matches;
+        motionListeners.forEach(fn => fn(state.prefersReducedMotion));
+    });
+
+    return {
+        dom,
+        isReducedMotion: () => state.prefersReducedMotion,
+        isLightTheme: () => dom.root.classList.contains('light'),
+        onMotionChange: fn => motionListeners.add(fn),
+        onThemeChange: fn => themeListeners.add(fn),
+        emitThemeChange: theme => themeListeners.forEach(fn => fn(theme)),
+        onPageRevealed: fn => {
+            if (state.pageRevealed) fn();
+            else revealListeners.add(fn);
+        },
+        markPageRevealed: () => {
+            if (state.pageRevealed) return;
+            state.pageRevealed = true;
+            window.__pageRevealed = true;
+            revealListeners.forEach(fn => fn());
+            revealListeners.clear();
+        },
+        modules: {}
+    };
+})();
