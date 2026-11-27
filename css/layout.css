@@ -136,67 +136,6 @@ nav a:hover {
     gap: 0.55rem;
 }
 
-.cmdk-trigger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    height: 42px;
-    padding: 0 0.72rem;
-    border-radius: 13px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--muted);
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        background-color 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        transform 0.35s var(--ease-out-expo),
-        box-shadow 0.3s ease;
-}
-
-.cmdk-trigger svg {
-    width: 15px;
-    height: 15px;
-    color: var(--link-color);
-    flex-shrink: 0;
-}
-
-.cmdk-trigger kbd {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.74rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--text-color);
-}
-
-.cmdk-trigger:hover {
-    background: var(--glass-bg-hover);
-    border-color: rgba(var(--link-rgb), 0.45);
-    color: var(--text-color);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(var(--link-rgb), 0.18);
-}
-
-.cmdk-trigger:active {
-    transform: scale(0.95);
-}
-
-@media (max-width: 768px) {
-    .cmdk-trigger {
-        width: 42px;
-        padding: 0;
-    }
-
-    .cmdk-trigger kbd {
-        display: none;
-    }
-}
-
 #menuToggle {
     display: none;
     font-size: 1.5rem;

@@ -17,7 +17,7 @@
 
 ---
 
-## 1. HTML5 (`index.html` — 653 lines)
+## 1. HTML5 (`index.html` — 659 lines)
 
 Site တစ်ခုလုံးရဲ့ Single-page document ဖြစ်ပြီး Framework templating မပါဘဲ Semantic HTML5 နဲ့ ရေးထားပါတယ်။
 
@@ -39,14 +39,12 @@ Site တစ်ခုလုံးရဲ့ Single-page document ဖြစ်ပ�
 Sass/LESS သို့မဟုတ် Tailwind CSS မသုံးဘဲ Pure CSS3 ကို တာဝန်အလိုက် ဖိုင် 7 ဖိုင်ခွဲပြီး `index.html` ထဲမှာ အစဉ်လိုက် ချိတ်ဆက်ရေးသားထားပါတယ်-
 
 1. **`css/fonts.css`** (73 lines) — Google Fonts CDN အစား Self-hosted `.woff2` ဖောင့်များ (`Outfit` 400/800, `Inter` 400/500/700, `JetBrains Mono` 400) ကို `@font-face` (`font-display: swap`) နဲ့ ချိတ်ထားပါတယ်။
-2. **`css/variables.css`** (83 lines) — Design System Token များကို CSS Custom Properties (`--bg-color`, `--link-color`, `--accent`, `--glass-bg`, `--ease-out-expo`, `--transition-smooth` စသည်) နဲ့ သတ်မှတ်ထားပြီး `:root` (Midnight Observatory Dark Theme) နဲ့ `html.light` (Alpine Morning Mist Light Theme) ကို ခွဲထားပါတယ်။
+2. **`css/variables.css`** (82 lines) — Design System Token များကို CSS Custom Properties (`--bg-color`, `--link-color`, `--accent`, `--glass-bg`, `--ease-out-expo`, `--transition-smooth` စသည်) နဲ့ သတ်မှတ်ထားပြီး `:root` (Midnight Observatory Dark Theme) နဲ့ `html.light` (Alpine Morning Mist Light Theme) ကို ခွဲထားပါတယ်။
 3. **`css/global.css`** (128 lines) — Box-sizing reset, body radial gradient backgrounds, smooth scroll, typography headings, `:focus-visible` keyboard ring, `.sr-only` တို့ကို ရေးထားပါတယ်။
 4. **`css/layout.css`** (407 lines) — Full-width glassmorphic sticky `<header>`, `.nav-underline` (GPU `scaleX` slide indicator), mobile slide-in nav drawer + `body.menu-open` background scale depth effect, နဲ့ `<footer>` grid တို့ကို Flexbox/Grid နဲ့ ရေးထားပါတယ်။
 5. **`css/components.css`** (638 lines) — Shimmer `.btn`, `.skills-logos` icon cards (item တစ်ခုချင်းစီအတွက် `--skill-rgb` brand glow), `.project-card` glassmorphism + CSS variables (`--mx`, `--my`) သုံး mouse spotlight gradient, form validation (`:user-valid` / `:user-invalid`), `#backToTop` circular SVG ring button, နဲ့ touch devices (`@media (hover: none)`) tap styles တို့ ပါဝင်ပါတယ်။
 6. **`css/sections.css`** (684 lines) — Hero layout & `.robot-wrap` orbital HUD rings + click pulse animation, About layout & `.about-photo`, Skills & Projects grid (tag hover stagger waves), `.section-active` glow, `.typewriter::after` caret, နဲ့ Responsive media queries များ ပါဝင်ပါတယ်။
-7. **`css/animations.css`** (610 lines) — Keyframe animations, View Transitions API (`::view-transition-old/new(root)`), `[data-reveal]` / `[data-stagger]` blur + slide entrance animations, `#scroll-progress` (`scaleX`), `#page-loader`, `#cursor-fx` / `#bg-canvas` layer positioning, နဲ့ `@media (prefers-reduced-motion: reduce)` support တို့ကို ရေးထားပါတယ်။
-
-*(မှတ်ချက် — `css/portfolio-enhancements.css` ဖိုင်တစ်ခု repository ထဲမှာ ရှိသော်လည်း လက်ရှိ `index.html` မှာ Link ချိတ်ဆက်အသုံးပြုထားခြင်း မရှိသေးပါ။)*
+7. **`css/animations.css`** (646 lines) — Keyframe animations, View Transitions API (`::view-transition-old/new(root)`), `[data-reveal]` / `[data-stagger]` blur + slide entrance animations, `#scroll-progress` (`scaleX`), `#page-loader`, `#cursor-fx` / `#bg-canvas` layer positioning, နဲ့ `@media (prefers-reduced-motion: reduce)` support တို့ကို ရေးထားပါတယ်။
 
 ---
 
@@ -56,7 +54,7 @@ Transpiler / Bundler မလိုဘဲ Browser-native **ES6+ Vanilla JavaScript
 
 ### Module Architecture & Boot Sequence
 - **`js/modules/elements.js`** — `window.Portfolio` global singleton ကို တည်ဆောက်ပြီး DOM element cache (`P.dom`), `prefers-reduced-motion` tracker, Theme / Motion / Page-revealed event listeners (`Set`), နဲ့ `P.modules` registry တို့ကို စုစည်းပေးထားပါတယ်။
-- **`js/main.js`** — Module 16 ခုကို အစဉ်လိုက် Initialize လုပ်ပေးသော Entry point ဖြစ်ပါတယ်။
+- **`js/main.js`** — လက်ရှိအသုံးပြုနေသော feature initializer များကို အစဉ်လိုက် စတင်ပေးသော Entry point ဖြစ်ပါတယ်။
 
 ### Feature Modules (`js/modules/`)
 1. **`theme.js`** (`initTheme`) — Dark/Light theme toggle ကို `localStorage`, system `prefers-color-scheme`, theme-aware image swap (`data-theme-light-src`), screen reader `aria-live` announcement, နဲ့ **View Transitions API (`document.startViewTransition` + `clipPath` circular ripple)** တို့နဲ့ ရေးထားပါတယ်။
@@ -70,9 +68,8 @@ Transpiler / Bundler မလိုဘဲ Browser-native **ES6+ Vanilla JavaScript
 7. **`cursor.js`** (`initCursorFX`) — Desktop pointer devices (`hover: hover`, non-low-end CPU, non-save-data) အတွက် `#cursor-fx` Canvas 2D ပေါ်မှာ theme-aware **sparkle trail + click burst** particles များ ရေးဆွဲထားပါတယ်။ *(Pointer ဘေးက Custom Cursor Halo Ring ကို အသုံးမပြုတော့ဘဲ ဖယ်ရှားထားပြီးဖြစ်ပါတယ်။)*
 8. **`hero.js`** (`initHeroParallax`, `initAboutParallax`) — Hero mascot (`.robot-parallax`) နဲ့ `.hero-blob` တွေကို lerped `requestAnimationFrame` mouse parallax လုပ်ခြင်း, mascot click `.pulse-active` trigger, နဲ့ About photo scroll parallax တို့ ပါဝင်ပါတယ်။
 9. **`interactions.js`** (`initScrollProgress`, `initCardTilt`, `initMagneticSkills`, `initMagneticButtons`, `initFooterYear`) — Top scroll progress bar (`scaleX`) & `#backToTop` SVG ring (`strokeDashoffset`), 3D project card perspective tilt + CSS spotlight vars (`--mx`, `--my`, `--px`, `--py`), skill icon & CTA button magnetic hover physics, နဲ့ dynamic copyright year တို့ကို ရေးထားပါတယ်။
-10. **`form.js`** (`initContactForm`) — Contact form ကို `fetch()` API + `URLSearchParams`/`FormData` နဲ့ `formsubmit.co` Ajax endpoint သို့ Asynchronous `POST` ပို့ပေးပြီး honeypot (`_honey`) spam check နဲ့ UI status feedback ပြပေးပါတယ်။
-
-*(မှတ်ချက် — `js/modules/enhancements.js` ဖိုင်တစ်ခု repository ထဲမှာ ရှိသော်လည်း လက်ရှိ `index.html` နဲ့ `js/main.js` မှာ ချိတ်ဆက်ခေါ်ယူထားခြင်း မရှိသေးပါ။)*
+10. **`storytelling.js`** (`initStorytelling`) — Lenis smooth scrolling, GSAP ScrollTrigger နဲ့ hero/section heading များအတွက် editorial word reveal နှင့် hero visual scroll depth ကို ထည့်ပေးပါတယ်။ Reduced-motion preference ရှိလျှင် animation များကို ပိတ်ပါတယ်။
+11. **`form.js`** (`initContactForm`) — Contact form ကို `fetch()` API + `URLSearchParams`/`FormData` နဲ့ `formsubmit.co` Ajax endpoint သို့ Asynchronous `POST` ပို့ပေးပြီး honeypot (`_honey`) spam check နဲ့ UI status feedback ပြပေးပါတယ်။
 
 ---
 

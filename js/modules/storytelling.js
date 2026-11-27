@@ -54,7 +54,6 @@
                 smoothWheel: true,
                 wheelMultiplier: 0.95
             });
-            window.__lenis = lenis;
         }
 
         const gsap = window.gsap;
@@ -133,28 +132,6 @@
                 });
             }
 
-            // 4. Bento metric cards spring stagger
-            const metricCards = gsap.utils.toArray('.about-metrics .metric-card');
-            if (metricCards.length) {
-                gsap.set(metricCards, { y: 18, opacity: 0, scale: 0.96 });
-                ScrollTrigger.create({
-                    trigger: '.about-metrics',
-                    start: 'top 90%',
-                    once: true,
-                    onEnter: () => {
-                        gsap.to(metricCards, {
-                            y: 0,
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.62,
-                            stagger: 0.09,
-                            ease: 'back.out(1.4)',
-                            clearProps: 'transform,opacity'
-                        });
-                    }
-                });
-            }
-
             window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
         } else if (lenis) {
             const raf = time => {
@@ -170,7 +147,6 @@
             if (fallbackRafId) cancelAnimationFrame(fallbackRafId);
             if (lenis) {
                 lenis.destroy?.();
-                window.__lenis = null;
             }
             if (ScrollTrigger) {
                 ScrollTrigger.getAll().forEach(st => st.kill());
@@ -178,10 +154,6 @@
             document.querySelectorAll('.split-word').forEach(w => {
                 w.style.opacity = '1';
                 w.style.transform = 'none';
-            });
-            document.querySelectorAll('.about-metrics .metric-card').forEach(c => {
-                c.style.opacity = '1';
-                c.style.transform = 'none';
             });
         });
     };

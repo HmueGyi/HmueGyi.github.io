@@ -7,7 +7,7 @@
     "start": "python3 -m http.server 5500",
     "check": "node scripts/check.mjs",
     "check:shots": "node scripts/check.mjs --shots ./.shots",
-    "validate": "html-validate index.html 404.html"
+    "validate": "html-validate index.html"
   },
   "devDependencies": {
     "html-validate": "^9.0.0",

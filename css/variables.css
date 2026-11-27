@@ -44,7 +44,6 @@
     /* Motion & Transitions */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --transition-smooth: transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo), background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.4s var(--ease-out-expo);
-    --transition-fast: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, transform 0.3s var(--ease-out-expo);
     --transition-bounce: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.4s var(--ease-out-expo);
 }
 
